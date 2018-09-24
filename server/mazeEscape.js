@@ -16,5 +16,25 @@ app.get('/index.html', function (req, res) {
    res.sendFile('index.html', { root: './client/views' });
 });
 
+app.get('/menu.html', function (req, res) {
+   res.sendFile('menu.html', { root: './client/views' });
+});
+
+app.get('/maze.html', function (req, res) {
+   res.sendFile('maze.html', { root: './client/views' });
+});
+
+app.get('/about.html', function (req, res) {
+   res.sendFile('index.html', { root: './client/views' });
+});
+
+app.get('/leaders.html', function (req, res) {
+   res.sendFile('index.html', { root: './client/views' });
+});
+
+app.get('/credits.html', function (req, res) {
+   res.sendFile('index.html', { root: './client/views' });
+});
+
 //Listen on specified port
 app.listen(port, () => console.log(`Maze Escape is running on port: ${port}`))
