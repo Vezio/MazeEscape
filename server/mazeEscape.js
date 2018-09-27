@@ -24,7 +24,7 @@ app.get('/about', function (req, res) {
 });
 
 app.get('/leaders', function (req, res) {
-   res.sendFile('index.html', { root: './client/views' });
+   res.sendFile('leaders.html', { root: './client/views' });
 });
 
 app.get('/credits', function (req, res) {
