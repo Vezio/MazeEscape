@@ -41,7 +41,7 @@
 
       //Return to title screen
       function exitGame() {
-        window.location.href = "index.html";
+        window.location.href = "menu";
       }
 
       //Mouse actions: fwd, bwd, lft, rht
@@ -63,7 +63,7 @@
 
       //Keyboard actions: fwd, bwd, lft, rht
       document.body.addEventListener("keyup",function(e) {
-        if (e.key == "Escape")
+        if ((e.key == "Escape") || (e.key == " "))
             exitGame();
         else if (e.key == "ArrowLeft")
             left();
