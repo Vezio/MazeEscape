@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="css/leaders.css">
 </head>
 <body onload=populateLeaders()>
-
   <h1>Leaderboards</h1>
     <center><div id="leadersbox">
      <table id="table" border="1">
@@ -21,6 +20,7 @@
      <div></center>
 
      <script>
+     //Load remade leaderboard
       function populateLeaders(){
          var array = [["XxVoltextXx","9-20-18","4:14","18:0:00"],
                       ["Bill90","9-22-18","18:12","27:03:22"],
@@ -28,13 +28,10 @@
                       ["CGIYUP","9-27-18","14:45","30:36:56"],
                       ["FortniteGod","9-30-108","10:55","32:18:09"]],
              table = document.getElementById("table");
-
-        for(var i = 0; i < array.length; i++)
-        {
+        for(var i = 0; i < array.length; i++){
             // create a new row
             var newRow = table.insertRow(table.length);
-            for(var j = 0; j < array[i].length; j++)
-            {
+            for(var j = 0; j < array[i].length; j++){
                 // create a new cell
                 var cell = newRow.insertCell(j);
 
@@ -55,3 +52,5 @@
         });
 
      </script>
+</body>
+</html>

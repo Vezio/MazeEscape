@@ -33,7 +33,7 @@ html, body {
 
 button.link { background:none;border:none; }
 
-button{
+button,a{
   font-family: Vademecu, sans-serif;
   font-size:180%;
   color: white;

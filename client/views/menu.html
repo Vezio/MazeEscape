@@ -8,6 +8,9 @@
 <body>
   <h1>Main Menu</h1>
 
+<!--Temporary sound, sorry -->
+  <audio id="myAudio" src="http://www.sousound.com/music/healing/healing_01.mp3" preload="auto">
+  </audio>
   <!-- menu selector box -->
 <center><div id="menubox">
   <button class="link">[1] New Game: Start a new session </button>
@@ -36,7 +39,7 @@
                leaderboard();
                break;
           case "5":
-               audioToggle();
+               togglePlay();
                break;
           case "6":
                credits();
@@ -45,28 +48,6 @@
         //       alert("An invalid choice has been selected!")
       }
   });
-
-
-
-
-
-    // //Spacebar trigger the above function
-    // document.body.addEventListener("keyup",function(e) {
-    //   if (e.key == "1")
-    //       newGame();
-    //       else if (e.key == "2")
-    //                launchedSavedGame();
-    //                else if (e.key == "3")
-    //                        howToPlay();
-    //                        else if (e.key == "4")
-    //                                 leaderboard();
-    //                                 else if (e.key == "5")
-    //                                         audioToggle();
-    //                                         else if (e.key == "6")
-    //                                                  credits();
-    //
-    // });
-
 
     //This function will cause the browser to load the in-game view
     function newGame() {
@@ -85,9 +66,11 @@
         window.location.href = "leaders";
     }
 
-    function audioToggle() {
-      // JS
-    }
+    var myAudio = document.getElementById("myAudio");
+
+    function togglePlay() {
+      return myAudio.paused ? myAudio.play() : myAudio.pause();
+    };
 
     function credits() {
         window.location.href = "credits";
@@ -95,6 +78,8 @@
 
         // var element = document.getElementsByClassName('link')[0]; // grab a reference to your element
         // element.addEventListener('click', newGame());
+
+
 
   </script>
 </body>
