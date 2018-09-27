@@ -7,18 +7,18 @@
   </head>
   <body>
     <h1>Lights Out</h1>
-    <p>Press space to continue...</p>
+    <p class="pulsate">Press space to continue!</p>
     <script>
 
       //This function will cause the browser to load the in-game view
-      function startGame() {
+      function goToMenu() {
           window.location.href = "menu.html";
       }
 
       //Spacebar trigger the above function
       document.body.addEventListener("keyup",function(e) {
         if (e.key == " ")
-            startGame();
+            goToMenu();
       });
 
     </script>

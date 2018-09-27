@@ -8,17 +8,78 @@
   <p>Menu screen</p>
 
   <script>
+  document.body.addEventListener("keyup",function(e){
+      switch(e.key ) {
+          case "1":
+              newGame();
+              break;
+          case "2":
+               claunchedSavedGame();
+               break;
+          case "3":
+               howToPlay();
+               break;
+          case "4":
+               leaderboard();
+               break;
+          case "5":
+               audioToggle();
+               break;
+          case "6":
+               credits();
+               break;
+          default:
+               alert("An invalid choice has been selected!")
+      }
+  });
 
-    //This function will cause the browser to load the in-game view
-    function startGame() {
-        window.location.href = "maze.html";
-    }
+
+
+
 
     //Spacebar trigger the above function
     document.body.addEventListener("keyup",function(e) {
-      if (e.key == " ")
-          startGame();
+      if (e.key == "1")
+          newGame();
+          else if (e.key == "2")
+                   launchedSavedGame();
+                   else if (e.key == "3")
+                           howToPlay();
+                           else if (e.key == "4")
+                                    leaderboard();
+                                    else if (e.key == "5")
+                                            audioToggle();
+                                            else if (e.key == "6")
+                                                     credits();
+
     });
+
+
+
+    //This function will cause the browser to load the in-game view
+    function newGame() {
+        window.location.href = "maze.html";
+    }
+
+    function launchSavedGame() {
+        window.location.href = "maze.html";
+    }
+
+    function howToPlay() {
+        window.location.href = "about.html";
+    }
+
+    function leaderboard() {
+        window.location.href = "leaders.html";
+    }
+
+    function audioToggle() {
+      // JS
+    }
+
+    function credits() {
+        window.location.href = "credits.html";
+    }
 
   </script>
 </body>

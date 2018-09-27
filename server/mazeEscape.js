@@ -11,28 +11,23 @@ app.get('/', function (req, res) {
    res.sendFile('index.html', { root: './client/views' });
 });
 
-//Route localhost:3000/index.html to index.html
-app.get('/index.html', function (req, res) {
-   res.sendFile('index.html', { root: './client/views' });
-});
-
-app.get('/menu.html', function (req, res) {
+app.get('/menu', function (req, res) {
    res.sendFile('menu.html', { root: './client/views' });
 });
 
-app.get('/maze.html', function (req, res) {
+app.get('/maze', function (req, res) {
    res.sendFile('maze.html', { root: './client/views' });
 });
 
-app.get('/about.html', function (req, res) {
+app.get('/about', function (req, res) {
    res.sendFile('index.html', { root: './client/views' });
 });
 
-app.get('/leaders.html', function (req, res) {
+app.get('/leaders', function (req, res) {
    res.sendFile('index.html', { root: './client/views' });
 });
 
-app.get('/credits.html', function (req, res) {
+app.get('/credits', function (req, res) {
    res.sendFile('index.html', { root: './client/views' });
 });
 
