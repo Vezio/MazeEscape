@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Maze Game</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/credits.css">
+</head>
+<body>
+  <h1>Credits</h1>
+
+  <!-- menu selector box -->
+<center><div id="creditsbox">
+<p>Project assignment issued Professor Johnson, Marist College Computer Science</p>
+<p>All current work belongs to Tyler Rimaldi and Brett Mooney.</p>
+<p>Development Tools: HTML & CSS, JavaScript, NodeJS
+</div></center>
+
+  <script>
+
+  function goToMenu() {
+      window.location.href = "menu";
+  }
+
+  //Spacebar trigger the above function
+  document.body.addEventListener("keyup",function(e) {
+    if (e.key == " ")
+        goToMenu();
+  });
+
+  </script>
+</body>
+</html>
