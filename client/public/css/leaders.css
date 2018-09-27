@@ -11,7 +11,7 @@
 }
 
 table, td {
-    border: 1px solid black;
+    border: 1px solid black ;
 }
 
 html, body {
@@ -27,22 +27,20 @@ html, body {
   text-align: center;
 }
 
-#aboutbox{
+#leadersbox{
   background-color: rgba(31, 36, 36, 0.5);
-  width:80%;
+  width: 60%;
   border-radius: 25px;
   border: 2px solid black;
   overflow:auto;
 }
 
 
-p{
+p,tr{
   font-family: Vademecu, sans-serif;
-  font-size:160%;
+  font-size:100%;
   color: white;
-  padding-top:.5em;
-  padding-left:.5em;
-  text-align: left;
+  text-align: center;
 }
 
 h1 {
