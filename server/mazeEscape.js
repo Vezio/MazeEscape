@@ -20,7 +20,7 @@ app.get('/maze', function (req, res) {
 });
 
 app.get('/about', function (req, res) {
-   res.sendFile('index.html', { root: './client/views' });
+   res.sendFile('about.html', { root: './client/views' });
 });
 
 app.get('/leaders', function (req, res) {
