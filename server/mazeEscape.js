@@ -28,7 +28,7 @@ app.get('/leaders', function (req, res) {
 });
 
 app.get('/credits', function (req, res) {
-   res.sendFile('index.html', { root: './client/views' });
+   res.sendFile('credits.html', { root: './client/views' });
 });
 
 //Listen on specified port
