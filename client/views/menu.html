@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>Maze Game</title>
+</head>
+<body>
+  <h1>Welcome to the maze!</h1>
+  <p>Menu screen</p>
+
+  <script>
+
+    //This function will cause the browser to load the in-game view
+    function startGame() {
+        window.location.href = "maze.html";
+    }
+
+    //Spacebar trigger the above function
+    document.body.addEventListener("keyup",function(e) {
+      if (e.key == " ")
+          startGame();
+    });
+
+  </script>
+</body>
+</html>
