@@ -1,5 +1,4 @@
-/* Tyler Rimaldi
-   Brett Mooney
+/* All Current Work: Tyler Rimaldi
 
    Title Screen Image Credits:
    http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html
@@ -23,24 +22,6 @@ html, body {
   text-align: center;
 }
 
-#menubox{
-  background-color: rgba(31, 36, 36, 0.5);
-  width:43%;
-  border-radius: 25px;
-  border: 2px solid black;
-  overflow:auto;
-}
-
-button.link { background:none;border:none; }
-
-button,a{
-  font-family: Vademecu, sans-serif;
-  font-size:180%;
-  color: white;
-  padding-top:.5em;
-  float: left;
-}
-
 h1 {
   margin: 0;
   font-size: 500%;
@@ -58,3 +39,44 @@ p {
   font-style: italic;
   font-weight: bold;
 } */
+
+#menubox {
+  background-color: rgba(31, 36, 36, 0.5);
+  width:43%;
+  border-radius: 25px;
+  border: 2px solid black;
+  overflow:auto;
+}
+
+button.link {
+   background:none;
+   border:none;
+}
+
+button, a, li {
+  font-family: Vademecu, sans-serif;
+  font-size:120%;
+  color: white;
+  padding-top:.5em;
+  float:left;
+}
+
+/* Suggested to use by Prof. Johnson, makes things abit easier
+   https://css-tricks.com/custom-list-number-styling/       */
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+}
+
+ol li::before {
+  content: "[" counter(my-awesome-counter) "]";
+  color: white;
+  font-weight: bold;
+  float:left;
+  padding-top:.6em;
+}

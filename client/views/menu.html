@@ -16,14 +16,15 @@
   </audio>
 
   <!-- menu selector box -->
-  <!--TODO Make buttons into a cohesive list -->
   <center><div id="menubox">
-    <button class="link">[1] New Game: Start a new session </button>
-    <button class="link">[2] Resume: Start from your last session</button>
-    <button class="link">[3] About: Learn about the game </button>
-    <button class="link">[4] Leaderboard: See where you rank</button>
-    <button class="link">[5] Toggle Audio: On or Off </button>
-    <button class="link">[6] Credits: Learn about the creators </button>
+    <ol>
+      <li><button onclick="newGame()" class="link">New Game: Start a new session </button></li>
+      <li><button onclick="launchSavedGame()" class="link">Resume: Start from your last session</button></li>
+      <li><button onclick="howToPlay()" class="link">About: Learn about the game </button></li>
+      <li><button onclick="leaderboard()" class="link">Leaderboard: See where you rank</button></li>
+      <li><button onclick="togglePlay()" class="link">Toggle Audio: On or Off </button></li>
+      <li><button onclick="credits()" class="link">Credits: Learn about the creators </button></li>
+    </ol>
   </div></center>
 
   <script>
