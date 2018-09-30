@@ -79,8 +79,8 @@ aside {
   transform: translate(0, -50%); /* move the element back up by half of its size */
 }
 
-aside fieldset{
-    border-radius: 25px;
+aside fieldset {
+  border-radius: 25px;
 }
 
 aside input {

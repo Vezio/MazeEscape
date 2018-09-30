@@ -23,7 +23,7 @@ html, body {
   text-align: center;
 }
 
-#aboutbox{
+#aboutbox {
   background-color: rgba(31, 36, 36, 0.5);
   width:80%;
   border-radius: 25px;
@@ -32,7 +32,7 @@ html, body {
 }
 
 
-p{
+p {
   font-family: Vademecu, sans-serif;
   font-size:130%;
   color: white;

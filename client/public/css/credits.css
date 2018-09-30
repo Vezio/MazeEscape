@@ -23,7 +23,7 @@ html, body {
   text-align: center;
 }
 
-#creditsbox{
+#creditsbox {
   background-color: rgba(31, 36, 36, 0.5);
   width:80%;
   border-radius: 25px;
@@ -32,9 +32,9 @@ html, body {
 }
 
 
-p{
+li {
   font-family: Vademecu, sans-serif;
-  font-size:180%;
+  font-size:130%;
   color: white;
   padding-top:.5em;
   padding-left:.5em;
@@ -48,6 +48,15 @@ h1 {
   text-shadow: 0.05em 0.05em rgb(0,0,0);
   font-family: Vademecu, sans-serif;
   color: rgb(34,102,102);
+  opacity: 1;
+}
+
+h2 {
+  margin: 0;
+  font-size: 200%;
+  font-weight: normal;
+  font-family: Vademecu, sans-serif;
+  color: white;
   opacity: 1;
 }
 
