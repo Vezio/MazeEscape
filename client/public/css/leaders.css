@@ -27,7 +27,7 @@ html, body {
   text-align: center;
 }
 
-#leadersbox{
+#leadersbox {
   background-color: rgba(31, 36, 36, 0.5);
   width: 60%;
   border-radius: 25px;
@@ -36,7 +36,7 @@ html, body {
 }
 
 
-p,tr{
+p,tr {
   font-family: Vademecu, sans-serif;
   font-size:100%;
   color: white;
