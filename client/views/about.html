@@ -9,28 +9,37 @@
   <h1>About</h1>
 
   <!-- menu selector box -->
-<center><div id="aboutbox">
-<p>
-STORY BOARD: You wake up on the floor of a dark cellar. You don't remember your name, where you are, or how you got there. </p>
-<p>OBJECTIVE: Escape alive, don't get killed by any of the traps or monsters. Find out who you really are and why the
-   maze will not ever let you leave this dark mess!</p>
-<p>PLAY: Navigate to the main menu by pressing the spacebar on your keyboard, if you are new, select the "1" key to start a new
-   game. If you are returning and want to resume your session, press the "2" key. When you have started the session, you may
-   use the onscreen controls, or your keyboard to navigate. Along the course of the game there will be clues and items to find.
-   By piecing them together, you may be able to defeat the maze!</p>
-</div></center>
+  <center><div id="aboutbox">
+    <h2>Story Board:</h2>
+    <p>You wake up on the floor of a dark cellar. You don't remember your name,
+       where you are, or how you got there. </p>
+
+    <h2>OBJECTIVE:</h2>
+    <p>Escape alive, don't get killed by any of the traps or monsters. Find out
+       who you really are and why the maze will not ever let you leave this dark
+       mess!</p>
+
+    <h2>Plays:</h2>
+    <p>Navigate to the main menu by pressing the spacebar on your keyboard, if
+       you are new, select the "1" key to start a new game. If you are returning
+       and want to resume your session, press the "2" key. When you have started
+       the session, you may use the onscreen controls, or your keyboard to
+       navigate. Along the course of the game there will be clues and items to find.
+       By piecing them together, you may be able to defeat the maze!</p>
+  </div></center>
 
   <script>
 
-  function goToMenu() {
-      window.location.href = "menu";
-  }
+    //Go back to main menu
+    function goToMenu() {
+        window.location.href = "menu";
+    }
 
-  //Spacebar trigger the above function
-  document.body.addEventListener("keyup",function(e) {
-    if (e.key == " ")
-        goToMenu();
-  });
+    //Spacebar trigger the above function
+    document.body.addEventListener("keyup",function(e) {
+      if (e.key == " ")
+          goToMenu();
+    });
 
   </script>
 </body>
