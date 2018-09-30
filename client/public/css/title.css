@@ -1,5 +1,4 @@
-/* Tyler Rimaldi
-   Brett Mooney
+/* All Current Work: Tyler Rimaldi
 
    Title Screen Image Credits:
    http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html
@@ -41,7 +40,7 @@ p {
   font-weight: bold;
 }
 
-.pulsate {
+/* .pulsate {
     -webkit-animation: pulsate 1.25s ease-out;
     -webkit-animation-iteration-count: infinite;
     opacity: 0.5;
@@ -57,4 +56,22 @@ p {
     100% {
         opacity: 0.25;
     }
+} */
+
+/* Create an animatation that lasts .95sec on infinite loop */
+.pulsate {
+    animation:pulsate .95s infinite;
+}
+
+/* Customize the animation such that it pusaltes */
+@keyframes pulsate {
+  0% {
+      color: white;
+  }
+  50% {
+       color: rgba(92,192,192,0);
+  }
+  100% {
+        color: white;
+  }
 }

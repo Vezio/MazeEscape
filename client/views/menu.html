@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- All Current Work: Tyler Rimaldi -->
+
 <html>
 <head>
   <title>Lights Out</title>
@@ -8,18 +10,21 @@
 <body>
   <h1>Main Menu</h1>
 
-<!--Temporary sound, sorry -->
-  <audio id="myAudio" src="http://www.sousound.com/music/healing/healing_01.mp3" preload="auto">
+  <!--Temporary sound, sorry -->
+  <audio id="myAudio"
+    src="http://www.sousound.com/music/healing/healing_01.mp3" preload="auto">
   </audio>
+
   <!-- menu selector box -->
-<center><div id="menubox">
-  <button class="link">[1] New Game: Start a new session </button>
-  <button class="link">[2] Resume: Start from your last session</button>
-  <button class="link">[3] About: Learn about the game </button>
-  <button class="link">[4] Leaderboard: See where you rank</button>
-  <button class="link">[5] Toggle Audio: On or Off </button>
-  <button class="link">[6] Credits: Learn about the creators </button>
-</div></center>
+  <!--TODO Make buttons into a cohesive list -->
+  <center><div id="menubox">
+    <button class="link">[1] New Game: Start a new session </button>
+    <button class="link">[2] Resume: Start from your last session</button>
+    <button class="link">[3] About: Learn about the game </button>
+    <button class="link">[4] Leaderboard: See where you rank</button>
+    <button class="link">[5] Toggle Audio: On or Off </button>
+    <button class="link">[6] Credits: Learn about the creators </button>
+  </div></center>
 
   <script>
 
@@ -44,8 +49,9 @@
           case "6":
                credits();
                break;
-      //    default:
-        //       alert("An invalid choice has been selected!")
+      //TODO: Catch user mistakes
+        //default:
+            //alert("An invalid choice has been selected!")
       }
   });
 
@@ -66,20 +72,16 @@
         window.location.href = "leaders";
     }
 
-    var myAudio = document.getElementById("myAudio");
-
+    //Grab audio element, if it is clicked and is paused, then play.
+    //If it is clicked and is playing, then pause
     function togglePlay() {
-      return myAudio.paused ? myAudio.play() : myAudio.pause();
+        var myAudio = document.getElementById("myAudio");
+        return myAudio.paused ? myAudio.play() : myAudio.pause();
     };
 
     function credits() {
         window.location.href = "credits";
     }
-
-        // var element = document.getElementsByClassName('link')[0]; // grab a reference to your element
-        // element.addEventListener('click', newGame());
-
-
 
   </script>
 </body>
