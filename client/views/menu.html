@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/menu.css">
 </head>
-<body>
+<body onload=togglePlay()>
   <h1>Main Menu</h1>
 
   <!--Temporary sound, sorry -->
@@ -16,6 +16,7 @@
   </audio>
 
   <!-- menu selector box -->
+  <!-- TODO: update css when toggle play is activated -->
   <center><div id="menubox">
     <ol>
       <li><button onclick="newGame()" class="link">New Game: Start a new session </button></li>
