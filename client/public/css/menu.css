@@ -1,7 +1,7 @@
-/* All Current Work: Tyler Rimaldi
+/*
 
-   Title Screen Image Credits:
-   http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html
+All Current Work: Tyler Rimaldi
+
 */
 
 @font-face {
@@ -61,7 +61,7 @@ button, a, li {
   float:left;
 }
 
-/* Suggested to use by Prof. Johnson, makes things abit easier
+/* Below was suggested by Prof. Johnson, makes things abit easier
    https://css-tricks.com/custom-list-number-styling/       */
 
 ol {

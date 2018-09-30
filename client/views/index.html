@@ -1,28 +1,32 @@
 <!doctype html>
-<!-- All Current Work: Tyler Rimaldi -->
+
+<!--
+
+All Current Work: Tyler Rimaldi
+
+-->
 
 <html lang="en">
-  <head>
-    <title>Lights Out</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/title.css">
-  </head>
-  <body>
-    <h1>Lights Out</h1>
-    <span class="pulsate"><p>Press space to continue!</p></span>
-    <script>
+<head>
+  <title>Lights Out</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/title.css">
+</head>
+<body>
+  <h1>Lights Out</h1>
+  <span class="pulsate"><p>Press space to continue!</p></span>
+  <script>
+    //Go to main menu
+    function goToMenu() {
+        window.location.href = "menu";
+    }
 
-      //This function will cause the browser to load the in-game view
-      function goToMenu() {
-          window.location.href = "menu";
-      }
-
-      //Spacebar trigger the above function
-      document.body.addEventListener("keyup",function(e) {
+    //Spacebar trigger the above function
+    document.body.addEventListener("keyup",function(e) {
         if (e.key == " ")
             goToMenu();
-      });
+    });
 
-    </script>
-  </body>
+  </script>
+</body>
 </html>

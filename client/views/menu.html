@@ -1,7 +1,12 @@
 <!doctype html>
-<!-- All Current Work: Tyler Rimaldi -->
 
-<html>
+<!--
+
+All Current Work: Tyler Rimaldi
+
+-->
+
+<html lang="en">
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
@@ -29,35 +34,33 @@
   </div></center>
 
   <script>
+    // Menu Selector
+    document.body.addEventListener("keyup",function(e){
+        switch(e.key ) {
+            case "1":
+                newGame();
+                break;
+            case "2":
+                 launchSavedGame();
+                 break;
+            case "3":
+                 howToPlay();
+                 break;
+            case "4":
+                 leaderboard();
+                 break;
+            case "5":
+                 togglePlay();
+                 break;
+            case "6":
+                 credits();
+                 break;
+        //TODO: Catch user mistakes
+          //default:
+              //alert("An invalid choice has been selected!")
+        }
+    });
 
-  // Menu Selector
-  document.body.addEventListener("keyup",function(e){
-      switch(e.key ) {
-          case "1":
-              newGame();
-              break;
-          case "2":
-               launchSavedGame();
-               break;
-          case "3":
-               howToPlay();
-               break;
-          case "4":
-               leaderboard();
-               break;
-          case "5":
-               togglePlay();
-               break;
-          case "6":
-               credits();
-               break;
-      //TODO: Catch user mistakes
-        //default:
-            //alert("An invalid choice has been selected!")
-      }
-  });
-
-    //This function will cause the browser to load the in-game view
     function newGame() {
         window.location.href = "maze";
     }
@@ -79,7 +82,7 @@
     function togglePlay() {
         var myAudio = document.getElementById("myAudio");
         return myAudio.paused ? myAudio.play() : myAudio.pause();
-    };
+    }
 
     function credits() {
         window.location.href = "credits";

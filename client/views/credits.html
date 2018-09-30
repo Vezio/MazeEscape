@@ -1,5 +1,12 @@
 <!doctype html>
-<html>
+
+<!--
+
+All Current Work: Tyler Rimaldi
+
+-->
+
+<html lang="en">
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
@@ -23,20 +30,19 @@
       <li>Background music can be found <a href="http://www.sousound.com/music/healing/healing_01.mp3">here</a> </li>
       <li>Background image can be found <a href= "http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html">here</a> </li>
     </ul>
-
-</div></center>
+  </div></center>
 
   <script>
+    //Go back to main menu
+    function goToMenu() {
+        window.location.href = "menu";
+    }
 
-  function goToMenu() {
-      window.location.href = "menu";
-  }
-
-  //Spacebar trigger the above function
-  document.body.addEventListener("keyup",function(e) {
-    if (e.key == " ")
-        goToMenu();
-  });
+    //Spacebar trigger the above function
+    document.body.addEventListener("keyup",function(e) {
+      if (e.key == " ")
+          goToMenu();
+    });
 
   </script>
 </body>

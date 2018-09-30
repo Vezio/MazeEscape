@@ -1,17 +1,26 @@
 <!doctype html>
+
+<!--
+
+All Current Work: Tyler Rimaldi
+
+-->
+
 <html lang="en">
-  <head>
-    <title>Lights Out</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/maze.css">
-  </head>
-  <body>
-    <main>
-      <img src="images/wall-left.png" alt="wall to left">
-      <img src="images/wall-ahead.png" alt="wall ahead">
-      <img src="images/wall-right.png" alt="wall to right">
-      <input name="rope" type="image" src="images/rope.png" alt="rope">
-    </main>
+<head>
+  <title>Lights Out</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/maze.css">
+</head>
+<body>
+
+  <main>
+    <img src="images/wall-left.png" alt="wall to left">
+    <img src="images/wall-ahead.png" alt="wall ahead">
+    <img src="images/wall-right.png" alt="wall to right">
+    <input name="rope" type="image" src="images/rope.png" alt="rope">
+  </main>
+
     <nav>
       <form onsubmit="return false;">
         <fieldset>
@@ -22,105 +31,113 @@
         </fieldset>
       </form>
     </nav>
-    <aside id="inventory">
-      <h1>Items</h1>
-      <form onsubmit="return false;">
-        <fieldset>
-          <input name="chalk" type="image" src="images/chalk.png" alt="chalk">
-          <input name="plank" type="image" src="images/plank.png" alt="plank">
-        </fieldset>
-      </form>
-    </aside>
 
-    <!-- Background music, autoplays on load -->
-    <audio id="t-rex-roar" controls autoplay src="music/In Pursuit.mp3">
-      Your browser does not support the <code>audio</code> element.
-    </audio>
+  <aside id="inventory">
+    <h1>Items</h1>
+    <form onsubmit="return false;">
+      <fieldset>
+        <input name="chalk" type="image" src="images/chalk.png" alt="chalk">
+        <input name="plank" type="image" src="images/plank.png" alt="plank">
+      </fieldset>
+    </form>
+  </aside>
 
-    <script>
+  <!-- Background music, autoplays on load -->
+  <audio id="t-rex-roar" controls autoplay src="music/In Pursuit.mp3">
+   Your browser does not support the <code>audio</code> element.
+  </audio>
 
-      //Return to title screen
-      function exitGame() {
+  <script>
+    //Return to title screen
+    function exitGame() {
         window.location.href = "menu";
-      }
+    }
 
-      //Mouse actions: fwd, bwd, lft, rht
-      var fwd = document.getElementById("forward").addEventListener("click",function() {
-          forward();
-      });
+    //Mouse actions: fwd, bwd, lft, rht
+    var fwd = document.getElementById("forward").addEventListener("click",function() {
+        forward();
+    });
 
-      var bwd = document.getElementById("backward").addEventListener("click",function() {
-          backward();
-      });
+    var bwd = document.getElementById("backward").addEventListener("click",function() {
+        backward();
+    });
 
-      var lft = document.getElementById("left").addEventListener("click",function() {
-          left();
-      });
+    var lft = document.getElementById("left").addEventListener("click",function() {
+        left();
+    });
 
-      var rht = document.getElementById("right").addEventListener("click",function() {
-          right();
-      });
+    var rht = document.getElementById("right").addEventListener("click",function() {
+        right();
+    });
 
-      //Keyboard actions: fwd, bwd, lft, rht
-      document.body.addEventListener("keyup",function(e) {
-        if ((e.key == "Escape") || (e.key == " "))
-            exitGame();
-        else if (e.key == "ArrowLeft")
-            left();
-            else if (e.key == "ArrowUp")
-                forward();
-                else if (e.key == "ArrowRight")
-                    right();
-                    else if (e.key == "ArrowDown")
-                        backward();
-      });
+    //Keyboard actions: fwd, bwd, lft, rht
+    document.body.addEventListener("keyup",function(e){
+        switch(e.key ) {
+            case "Escape":
+            case " ":
+                 exitGame();
+                 break;
+            case "ArrowLeft":
+                 left();
+                 break;
+            case "ArrowUp":
+                 forward();
+                 break;
+            case "ArrowRight":
+                 right();
+                 break;
+            case "ArrowDown":
+                 backward();
+                 break;
+        }
+    });
 
-      //Use item in game and remove from list of items
-      function useItem(e) {
+    //Use item in game and remove from list of items
+    function useItem(e) {
         var item = e.target;
         inventory.removeChild(item);
         console.log("use", item.name);
-      }
+    }
 
-      //Get the item in inventory that the user requested and pass it to useItem()
-      var inventory = document.querySelector("#inventory fieldset");
-      var myItems = inventory.querySelectorAll("input");
-          myItems.forEach(function(item) {
-              item.addEventListener("click", useItem);
-          });
+    //Get the item in inventory that the user requested and pass it to useItem()
+    var inventory = document.querySelector("#inventory fieldset");
+    var myItems = inventory.querySelectorAll("input");
+        myItems.forEach(function(item) {
+        item.addEventListener("click", useItem);
+        });
 
-      //Take item from main screen and pass it to the inventory
-      function takeItem(e) {
+    //Take item from main screen and pass it to the inventory
+    function takeItem(e) {
         var item = e.target;
         console.log("take", item.name)
         inventory.appendChild(item);
         item.addEventListener("click", useItem);
-      }
+    }
 
-      //Select the item on the main screen and pass it to takeItem()
-      var mainItem = document.querySelector("main");
-      var mainTotItems = mainItem.querySelectorAll("input");
-          mainTotItems.forEach(function(item) {
-              item.addEventListener("click", takeItem);
-          });
+    //Select the item on the main screen and pass it to takeItem()
+    var mainItem = document.querySelector("main");
+    var mainTotItems = mainItem.querySelectorAll("input");
+        mainTotItems.forEach(function(item) {
+        item.addEventListener("click", takeItem);
+        });
 
-      //Console messages
-      function forward() {
-          console.log("Move forward");
-      }
+    //Console messages
+    function forward() {
+        console.log("Move forward");
+    }
 
-      function backward() {
-          console.log("Move backward");
-      }
+    function backward() {
+         console.log("Move backward");
+    }
 
-      function right() {
-          console.log("Move rightward");
-      }
+    function right() {
+         console.log("Move rightward");
+    }
 
-      function left() {
-          console.log("Move leftward");
-      }
+    function left() {
+        console.log("Move leftward");
+    }
 
-    </script>
-  </body>
+  </script>
+</body>
 </html>
