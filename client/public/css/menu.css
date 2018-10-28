@@ -42,10 +42,12 @@ p {
 
 #menubox {
   background-color: rgba(31, 36, 36, 0.5);
-  width:43%;
+  width:50%;
   border-radius: 25px;
   border: 2px solid black;
   overflow:auto;
+  text-align: center;
+  display: inline-block;
 }
 
 button.link {
@@ -58,7 +60,6 @@ button, a, li {
   font-size:120%;
   color: white;
   padding-top:.5em;
-  float:left;
 }
 
 /* Below was suggested by Prof. Johnson, makes things abit easier
@@ -77,6 +78,6 @@ ol li::before {
   content: "[" counter(my-awesome-counter) "]";
   color: white;
   font-weight: bold;
-  float:left;
   padding-top:.6em;
+  float: left;
 }
