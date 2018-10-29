@@ -2,7 +2,7 @@
   "name": "mazeprojectsd2",
   "version": "8.12.0",
   "description": "build a persistent multi-user web-based maze game",
-  "main": "lightsout.js",
+  "main": "mazeEscape.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/CMPT221L113-F18/trimaldi-bmooney-project.git"
   },
-  "author": "Tyler Rimaldi",
+  "author": "Tyler Rimaldi, Brett Mooney",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CMPT221L113-F18/trimaldi-bmooney-project/issues"
