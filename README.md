@@ -34,6 +34,10 @@ PATCH - Update a player attribute
 
 DELETE - Delete a specific player
 
+### /player/:player/item/:item
+
+POST - Item usage --> registers item used and will deduct its usage respectively 
+
 ## /player/:id/step/:direction (To Be Implemented)
 
 ### /items
