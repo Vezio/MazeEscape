@@ -1,8 +1,9 @@
 item = require("../models/items.js");
-acc = require("../models/player.js");
+acc  = require("../models/player.js");
 cell = require("../models/cell.js");
 
 //-----------------Item------------------------------------------------------------------
+
 //Retrieve a list of all items in the game
 exports.listItems = (req, res) => res.send(item.list());
 
@@ -15,16 +16,7 @@ exports.getItem = (req, res) => {
     res.send(data);
 };
 
-// //Create an Item
-// exports.createItem = (req,res) => {
-//   console.log(req.body);
-//   if (req.body)
-//     res.status(201).send(item.create(req.body.name, req.body.owner).toString());
-//   else
-//     res.status(400).send("Item name may not be empty.");
-// };
-
-//Update a single attribute within an item
+//Update an attribute within an item
 exports.updateItem = (req, res) => {
   if (req.body){
     if (typeof item.update(req.params.id, req.body.atrib, req.body.value) === 'undefined'){
@@ -37,13 +29,31 @@ exports.updateItem = (req, res) => {
     res.status(400).send("Atribute name may not be empty.");
 };
 
-//Delete an Item
+//Delete an entire item
 exports.deleteItem = (req, res) => {
-  if (typeof item.delete(req.params.id) === 'undefined')
-    res.sendStatus(404);
-  else
+  if (item.delete(req.params.id))
     res.sendStatus(204);
+  else
+    res.sendStatus(404);
 };
+
+//Take an item
+exports.grabItem = (req, res) => {
+  res.send(cell.delete(req.params.id, req.params.name));
+};
+
+// exports.storeItem = (req, res) => {
+//   res.send(item.update(req.params.id, req.body.atrib, req.body.value) );
+// };
+//
+// {
+//   "atrib":"owner"
+//   "value":"Blanks"
+// }
+
+
+
+
 //---------Player------------------------------------------------------------------------
 
 // Player can take an item, item needs location updated
@@ -93,6 +103,16 @@ exports.deleteItem = (req, res) => {
 //     else
 //       res.sendStatus(204);
 //   }
+//   else
+//     res.status(400).send("Item name may not be empty.");
+// };
+
+
+// //Create an Item
+// exports.createItem = (req,res) => {
+//   console.log(req.body);
+//   if (req.body)
+//     res.status(201).send(item.create(req.body.name, req.body.owner).toString());
 //   else
 //     res.status(400).send("Item name may not be empty.");
 // };
