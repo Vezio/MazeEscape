@@ -1,8 +1,6 @@
 cell = require("../models/cell.js");
 item = require("../models/items.js");
 
-//---------------------Cell-----------------------------------------------------
-
 //List all Cells
 exports.listCells = (req,res) => res.send(cell.list());
 
@@ -41,8 +39,3 @@ exports.deleteItem = (req, res) => {
   else
     res.sendStatus(404);
 };
-
-//---------------------Cell-----------------------------------------------------
-
-// TODO: Delete an item from maze and from item list
-//

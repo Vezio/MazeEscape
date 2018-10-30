@@ -2,8 +2,6 @@ item = require("../models/items.js");
 acc  = require("../models/player.js");
 cell = require("../models/cell.js");
 
-//-----------------Item------------------------------------------------------------------
-
 //Retrieve a list of all items in the game
 exports.listItems = (req, res) => res.send(item.list());
 
@@ -67,29 +65,13 @@ exports.useItem = (req, res) => {
     res.status(400).send("Item name may not be empty");
 };
 
-
-
-// {
-//   "atrib":"owner"
-//   "value":"Blanks"
-// }
-// req.body.atrib, req.body.value
-
-
-
-//---------Player------------------------------------------------------------------------
-
-// Player can take an item, item needs location updated
-// exports.takeItem = (req,res) => {
-//   let data = item[1].inventory;
-//   player.update(0, inventory, data);
-// }
-
-// Player can remove an item, item needs location updated
-
-// Player can use an item (same as remove, but slightly difference -- I suppose), item location is "null"
-
 // Player can walk around,
+
+/*
+
+Player Movements
+
+*/
 
 
 
