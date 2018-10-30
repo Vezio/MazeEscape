@@ -6,17 +6,17 @@ GET - Returns a list of a players
 
 POST - Creates a player 
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"Name":"Example"
+			"Name":"Example"
 
-​			,"Thirst": Some Integer
+			,"Thirst": Some Integer
 
-​			,"Steps":Some Integer
+			,"Steps":Some Integer
 
-​		`}`
+		`}`
 
 ### /players/:id
 
