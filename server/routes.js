@@ -28,7 +28,12 @@ router.route("/cells")
   .get(gameCtlr.listCells);
 
 router.route('/cells/:id')
-  .get(gameCtlr.getCell);
+  .get(gameCtlr.getCell)
+  .post(gameCtlr.addAnItem)
+  .delete(gameCtlr.deleteItem);
+
+  router.route('/cells/:id/items')
+    .get(gameCtlr.seeItems);
 
 
 module.exports = router;
