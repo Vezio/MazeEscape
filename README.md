@@ -56,6 +56,10 @@ PATCH - Update a player attribute
 
 DELETE - Delete a specific player
 
+### /player/:player/item/:item
+
+POST - Updates how many uses are left on the object before it becomes useless
+
 
 
 ### /items
