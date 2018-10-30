@@ -5,6 +5,7 @@ accCtlr = require("./controllers/accountController");
 
 router = express.Router();
 
+//--Player Routes--\\
 router.route("/players")
   .get(accCtlr.listPlayers)
   .post(accCtlr.createPlayer);
@@ -14,25 +15,24 @@ router.route("/players/:id")
   .patch(accCtlr.updatePlayer)
   .delete(accCtlr.deletePlayer);
 
+router.route('/player/:player/item/:item')
+  .post(playCtlr.useItem);
+
+//--Item Routes--\\
 router.route("/items")
   .get(playCtlr.listItems)
-  // .post(playCtlr.createItem);
 
 router.route('/items/:id')
   .get(playCtlr.getItem)
   .patch(playCtlr.updateItem)
-  // .patch(playCtlr.takeItem)
   .delete(playCtlr.deleteItem);
 
-  router.route('/cells/:id/item/:name')
+//--Cell Routes--\\
+router.route('/cells/:id/item/:name')
   .delete(playCtlr.grabItem)
 
-  router.route('/cells/:id')
+router.route('/cells/:id')
   .patch(playCtlr.storeItem);
-
-  router.route('/player/:player/item/:item')
-  .post(playCtlr.useItem);
-
 
 router.route("/cells")
   .get(gameCtlr.listCells);
@@ -44,6 +44,5 @@ router.route('/cells/:id')
 
 router.route('/cells/:id/items')
   .get(gameCtlr.seeAllCellItems);
-
 
 module.exports = router;
