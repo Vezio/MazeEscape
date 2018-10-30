@@ -8,7 +8,7 @@ POST - Creates a player
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"Name":"Example"
 
@@ -16,7 +16,7 @@ POST - Creates a player
 
 ​			,"Steps":Some Integer
 
-​		}
+​		`}`
 
 ### /players/:id
 
@@ -26,11 +26,11 @@ PATCH - Update a player attribute
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"atrib":"value"
 
-​		}
+​		`}`
 
 DELETE - Delete a specific player
 
@@ -48,11 +48,11 @@ PATCH  - Update an item attribute
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"atrib":"value"
 
-​		}
+​		`}`
 
 DELETE - Delete a specific item 
 
@@ -70,7 +70,7 @@ POST - Add an item to the game and to a specific cell
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"name":"value"
 
@@ -78,29 +78,29 @@ POST - Add an item to the game and to a specific cell
 
 ​			,"description": "brief description of item"
 
-​		}
+​		`}`
 
 PATCH - User may store an item from that cell
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"atrib":"owner"
 
 ​			"value":"UserName"
 
-​		}
+​		`}`
 
 DELETE - Delete an item from a specific cell
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"name":"value"
 
-​		}
+​		`}`
 
 ### /cells/:id/items
 
@@ -120,7 +120,7 @@ POST - Add an obstacle to the game
 
 ​	Request Body Example:
 
-​		{
+​		`{`
 
 ​			"owner":"value"
 
@@ -132,7 +132,7 @@ POST - Add an obstacle to the game
 
 ​                      , "description":"value"
 
-​		}
+​		`}`
 
 ### /obstacles/:id
 
@@ -143,5 +143,7 @@ PATCH - Update a specific attribute in an obstacle
 DELETE - Delete a obstacle from the entire game
 
 ### /obstacles/:id/spawn (To Be Implemented)
+
+
 
 
