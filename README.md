@@ -124,10 +124,10 @@ DELETE - Delete an item from a specific cell
 
 		}
 
-/cells/:id/items
+### /cells/:id/items
 
 GET - Get all items in a specific cell
 
-/cells/:id/item/:name
+### /cells/:id/item/:name
 
 DELETE - Grab a specific item from a specific cell and remove it
