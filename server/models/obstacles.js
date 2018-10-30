@@ -28,7 +28,7 @@ exports.list = ()  => obstacles;
 exports.read = (i) => obstacles[i];
 
 //Add an obstacle to the game
-exports.addObstacle = (owner, name, damage, description) => obstacles.push(new Obstacle(owner, name, damage, description)) - 1;
+exports.addObstacle = (owner, name, damage, onCourse, description) => obstacles.push(new Obstacle(owner, name, damage, onCourse, description)) - 1;
 
 //Update a single attribute of the obstacle
 exports.update = (i, atrib, value) =>
