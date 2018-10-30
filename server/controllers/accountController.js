@@ -21,19 +21,6 @@ exports.createPlayer = (req, res) => {
     res.status(400).send("Player name may not be empty.");
 };
 
-/*
- exports.updatePlayer = (req, res) => { //update an entire players object
-   if (req.body)
-     if (typeof acc.update(req.params.id, req.body.name,
-           req.body.thirst, req.body.steps, req.body.inventory) === 'undefined')
-       res.sendStatus(404);
-     else
-       res.sendStatus(204);
-   else
-     res.status(400).send("Player information may not be empty.");
- };
-*/
-
 //Updates a single attribute of a specific player
 exports.updatePlayer = (req, res) => {
   if (req.body){
@@ -44,7 +31,7 @@ exports.updatePlayer = (req, res) => {
   }
   else
     res.status(400).send("Atribute name may not be empty.");
-}
+};
 
 //Deletes a single player
 exports.deletePlayer = (req, res) => {
