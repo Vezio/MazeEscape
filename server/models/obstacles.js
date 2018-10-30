@@ -17,3 +17,19 @@ let obstacles = [
     - Each obstacle has a random spawn time
     - Each obstacle can be defeated
 */
+
+//List Obstacles
+exports.list = ()  => obstacles;
+
+//List a specific obstacle
+exports.read = (i) => obstacles[i];
+
+//Add an obstacle to the game
+exports.addObstacle = (owner, name, damage, description) => obstacles.push(new Obstacle(owner, name, damage, description)) - 1;
+
+//Update a single attribute of the obstacle
+exports.update = (i, atrib, value) =>
+ exists(obstacles[i]) && exists(obstacles[i][atrib]) ? (obstacles[i][atrib] = value) : undefined;
+
+//Delete an entire obstacle
+exports.delete = (i) => exists(i) ? delete obstacles[i] : undefined;
