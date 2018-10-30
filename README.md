@@ -20,7 +20,7 @@ From there you will be able to access the web application via `localhost:3000`.
 
 Development should proceed as normal, commit often. 
 
-# REST API Documentation (Subject to change...Still developing)
+REST API Documentation
 
 ### /players
 
@@ -28,17 +28,17 @@ GET - Returns a list of a players
 
 POST - Creates a player 
 
-​	Request Body Example:
+	Request Body Example:
 
-​		{
+		{
 
-​			"Name":"Example"
+			"Name":"Example"
 
-​			,"Thirst": Some Integer
+			,"Thirst": Some Integer
 
-​			,"Steps":Some Integer
+			,"Steps":Some Integer
 
-​		}
+		}
 
 ### /players/:id
 
@@ -46,17 +46,17 @@ GET - Return a specific player
 
 PATCH - Update a player attribute 
 
-​	Request Body Example:
+	Request Body Example:
 
-​		{
+		{
 
-​			"atrib":"value"
+			"atrib":"value"
 
-​		}
+		}
 
 DELETE - Delete a specific player
 
-## 
+
 
 ### /items
 
@@ -68,17 +68,17 @@ GET - Return a specific item
 
 PATCH  - Update an item attribute
 
-​	Request Body Example:
+	Request Body Example:
 
-​		{
+		{
 
-​			"atrib":"value"
+			"atrib":"value"
 
-​		}
+		}
 
 DELETE - Delete a specific item 
 
-## 
+
 
 ### /cells
 
@@ -90,30 +90,44 @@ GET - Return a specific cell
 
 POST - Add an item to the game and to a specific cell
 
-​	Request Body Example:
+	Request Body Example:
 
-​		{
+		{
 
-​			"name":"value"
+			"name":"value"
 
-​			,"uses": Integer Denoting Uses
+			,"uses": Integer Denoting Uses
 
-​			,"description": "brief description of item"
+			,"description": "brief description of item"
 
-​		}
+		}
+
+PATCH - User may store an item from that cell
+
+	Request Body Example:
+
+		{
+
+			"atrib":"owner"
+
+			"value":"UserName"
+
+		}
 
 DELETE - Delete an item from a specific cell
 
-​	Request Body Example:
+	Request Body Example:
 
-​		{
+		{
 
-​			"name":"value"
+			"name":"value"
 
-​		}
+		}
 
 ### /cells/:id/items
 
 GET - Get all items in a specific cell
 
-## 
+### /cells/:id/item/:name
+
+DELETE - Grab a specific item from a specific cell and remove it
