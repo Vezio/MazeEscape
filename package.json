@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CMPT221L113-F18/trimaldi-bmooney-project.git"
+    "url": "git+https://github.com/CMPT221L113-F18/trimaldi-project.git"
   },
-  "author": "Tyler Rimaldi, Brett Mooney",
+  "author": "Tyler Rimaldi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CMPT221L113-F18/trimaldi-bmooney-project/issues"
+    "url": "https://github.com/CMPT221L113-F18/trimaldi-project/issues"
   },
-  "homepage": "https://github.com/CMPT221L113-F18/trimaldi-bmooney-project#readme",
+  "homepage": "https://github.com/CMPT221L113-F18/trimaldi-project#readme",
   "dependencies": {
     "express": "^4.16.3"
   }
