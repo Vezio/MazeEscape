@@ -13,9 +13,18 @@ let players = [
 
 let exists = (x) => typeof x !== 'undefined'
 
-     exports.list = () => players;
-     exports.read = (i) => players[i];
-     exports.create = (name, thirst, steps) => players.push(new Player(name, thirst, steps)) - 1;
-     exports.update = (i, atrib, value) =>
-       exists(players[i]) && exists(players[i][atrib]) ? (players[i][atrib] = value) : undefined;
-     exports.delete = (i) => exists(i) ? delete players[i] : undefined;
+//List all players in the game
+exports.list = () => players;
+
+//List a specific player in the game
+exports.read = (i) => players[i];
+
+//Create a new player
+exports.create = (name, thirst, steps) => players.push(new Player(name, thirst, steps)) - 1;
+
+//Update a single attribute of the player
+exports.update = (i, atrib, value) =>
+ exists(players[i]) && exists(players[i][atrib]) ? (players[i][atrib] = value) : undefined;
+
+//Delete an entire player 
+exports.delete = (i) => exists(i) ? delete players[i] : undefined;
