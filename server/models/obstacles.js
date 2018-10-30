@@ -1,15 +1,16 @@
-function Obstacle(owner, name, damage, description) {
-  this.owner   = owner;
-  this.name    = name;
-  this.damage    = uses;
+function Obstacle(owner, name, damage, onCourse, description) {
+  this.owner       = owner;
+  this.name        = name;
+  this.damage      = damage;
+  this.onCourse    = onCourse;
   this.description = description;
 }
 
 let obstacles = [
-    new Obstacle(0, "hole", 100, "Hole of emptyness -- you're dead")
-  , new Obstacle(1, "No light", 0, "Ridicoulessly hard to see")
-  , new Obstacle(2, "Bees", 2, "Stinging Bee")
-  , new Obstacle(3, "Poison", 25, "Poison is in the air")
+    new Obstacle(0, "hole", 100, false, "Hole of emptyness -- you're dead")
+  , new Obstacle(1, "No light", 0, false, "Ridicoulessly hard to see")
+  , new Obstacle(2, "Bees", 2, false, "Stinging Bee")
+  , new Obstacle(3, "Poison", 25, false, "Poison is in the air")
 ];
 
 /*
@@ -17,6 +18,8 @@ let obstacles = [
     - Each obstacle has a random spawn time
     - Each obstacle can be defeated
 */
+
+let exists = (x) => x !== 'undefined'
 
 //List Obstacles
 exports.list = ()  => obstacles;
@@ -33,3 +36,14 @@ exports.update = (i, atrib, value) =>
 
 //Delete an entire obstacle
 exports.delete = (i) => exists(i) ? delete obstacles[i] : undefined;
+
+//Random occurence of an object being on course
+exports.randomSpawn = (i, atrib, value) => {
+  let chance = Math.floor(Math.random() * 10) + 1;
+  let occur  = 5;
+  if(chance === occur){
+    //obstacle in some room will be turned on or continue
+    //to be off on random number selector 1-10
+    obstacles[i][atrib] = value;
+  }
+}
