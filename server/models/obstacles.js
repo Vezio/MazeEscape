@@ -1,9 +1,3 @@
-/*
-    - Need an obstacle for each room
-    - Each obstacle has a random spawn time
-    - Each obstacle can be defeated
-*/
-
 function Obstacle(owner, name, damage, description) {
   this.owner   = owner;
   this.name    = name;
@@ -17,3 +11,9 @@ let obstacles = [
   , new Obstacle(2, "Bees", 2, "Stinging Bee")
   , new Obstacle(3, "Poison", 25, "Poison is in the air")
 ];
+
+/*
+    - Need an obstacle for each room
+    - Each obstacle has a random spawn time
+    - Each obstacle can be defeated
+*/
