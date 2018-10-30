@@ -15,22 +15,17 @@ exports.getItem = (req, res) => {
     res.send(data);
 };
 
-//Create an Item
-exports.createItem = (req,res) => {
-  console.log(req.body);
-  if (req.body)
-    res.status(201).send(item.create(req.body.name, req.body.owner).toString());
-  else
-    res.status(400).send("Item name may not be empty.");
-};
+// //Create an Item
+// exports.createItem = (req,res) => {
+//   console.log(req.body);
+//   if (req.body)
+//     res.status(201).send(item.create(req.body.name, req.body.owner).toString());
+//   else
+//     res.status(400).send("Item name may not be empty.");
+// };
 
 //Update a single attribute within an item
 exports.updateItem = (req, res) => {
-  // let num = req.params.id;
-  // // let atrib = {theThing: req.body.atrib};
-  // let value = req.body.value;
-  // console.log(atrib.theThing);
-  // console.log(value);
   if (req.body){
     if (typeof item.update(req.params.id, req.body.atrib, req.body.value) === 'undefined'){
       res.sendStatus(404);
