@@ -42,10 +42,6 @@ exports.grabItem = (req, res) => {
   res.send(cell.delete(req.params.id, req.params.name));
 };
 
-// exports.storeItem = (req, res) => {
-//   res.send(item.take(req.params.id, req.body.atrib, req.body.value) );
-// };
-
 //store the item in a player
 exports.storeItem = (req, res) => {
   if (req.body){
@@ -58,6 +54,19 @@ exports.storeItem = (req, res) => {
   else
     res.status(400).send("Atribute name may not be empty.");
 };
+
+exports.useItem = (req, res) => {
+  if (req.body){
+    if (typeof item.use(req.params.player, req.params.item) === 'undefined'){
+      res.sendStatus(404);
+    }
+    else
+      res.sendStatus(204);
+  }
+  else
+    res.status(400).send("Item name may not be empty");
+};
+
 
 
 // {

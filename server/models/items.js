@@ -29,3 +29,14 @@ exports.take = (i, atrib, value) => {
       items[j][atrib] = value.toString();
   }
 }
+
+exports.use = (player, item) => {
+   for (let j = 0; j < items.length; j++){
+     if(items[j].owner === parseInt(player) && items[j].name === item.toString())
+        var loc = j;
+   }
+    if(items[loc].uses > 0)
+      items[loc].uses = items[loc].uses - 1;
+    else
+      console.log("You are out of uses for this item");
+}
