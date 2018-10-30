@@ -22,7 +22,7 @@ Development should proceed as normal, commit often.
 
 REST API Documentation
 
-###/players
+### /players
 
 GET - Returns a list of a players
 
@@ -40,7 +40,7 @@ POST - Creates a player
 
 		}
 
-###/players/:id
+### /players/:id
 
 GET - Return a specific player
 
@@ -58,11 +58,11 @@ DELETE - Delete a specific player
 
 
 
-###/items
+### /items
 
 GET - Return a list of all items in the game
 
-###/items/:id
+### /items/:id
 
 GET - Return a specific item
 
@@ -80,11 +80,11 @@ DELETE - Delete a specific item
 
 
 
-###/cells
+### /cells
 
 GET - Return a list of all cells in the game
 
-###/cells/:id
+### /cells/:id
 
 GET - Return a specific cell
 
