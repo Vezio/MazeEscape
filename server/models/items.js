@@ -1,8 +1,8 @@
-function Item(owner, name, uses, descript) {
+function Item(owner, name, uses, description) {
   this.owner   = owner;
   this.name    = name;
   this.uses    = uses;
-  this.description = descript;
+  this.description = description;
 }
 
 let items = [
