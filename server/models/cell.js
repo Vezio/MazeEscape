@@ -12,10 +12,10 @@ function Cell(x, y, fwd, bwd, lft, rht, obstacles, messages, items) {
 }
 
 let cells = [
-    new Cell(0,0, false, true, true, true, "Hole", "Think about who you are", "Chalk")
-  , new Cell(1,0, true, true, true, true, "No light", "WHAT HAVE YOU DONE", "Chalk")
-  , new Cell(2,0, true, true, true, true, "Bees", "Lets see if you can hang", "Rope")
-  , new Cell(1,1, true, true, true, true, "Posion", "Only the brave can make accross" ,"plank")
+    new Cell(0, 0, false, true, true, true, "Hole", "Think about who you are", "Chalk")
+  , new Cell(1, 0, true, true, true, true, "No light", "WHAT HAVE YOU DONE", "Chalk")
+  , new Cell(2, 0, true, true, true, true, "Bees", "Lets see if you can hang", "Rope")
+  , new Cell(3, 1, true, true, true, true, "Poison", "Only the brave can make accross" ,"plank")
 ];
 
 exports.list = ()  => cells;
