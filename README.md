@@ -20,7 +20,7 @@ From there you will be able to access the web application via `localhost:3000`.
 
 Development should proceed as normal, commit often. 
 
-# REST API Documentation
+# REST API Documentation (Subject to change...Still developing)
 
 ### /players
 
