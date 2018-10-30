@@ -53,6 +53,7 @@ exports.storeItem = (req, res) => {
     res.status(400).send("Atribute name may not be empty.");
 };
 
+//Use the item in game
 exports.useItem = (req, res) => {
   if (req.body){
     if (typeof item.use(req.params.player, req.params.item) === 'undefined'){
@@ -65,36 +66,15 @@ exports.useItem = (req, res) => {
     res.status(400).send("Item name may not be empty");
 };
 
-// Player can walk around,
 
 /*
 
-Player Movements
+Player moevements
+ --> base on boolean values
+Random obstacles
+  --> Use math.random(1-10) to decide "randomness"
 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //---------------------------------------------------------------------------------------
