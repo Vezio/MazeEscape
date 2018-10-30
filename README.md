@@ -24,13 +24,13 @@ GET - Return a specific player
 
 PATCH - Update a player attribute 
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"atrib":"value"
+			"atrib":"value"
 
-​		`}`
+		`}`
 
 DELETE - Delete a specific player
 
@@ -46,13 +46,13 @@ GET - Return a specific item
 
 PATCH  - Update an item attribute
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"atrib":"value"
+			"atrib":"value"
 
-​		`}`
+		`}`
 
 DELETE - Delete a specific item 
 
@@ -68,39 +68,39 @@ GET - Return a specific cell
 
 POST - Add an item to the game and to a specific cell
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"name":"value"
+			"name":"value"
 
-​			,"uses": Integer Denoting Uses
+			,"uses": Integer Denoting Uses
 
-​			,"description": "brief description of item"
+			,"description": "brief description of item"
 
-​		`}`
+		`}`
 
 PATCH - User may store an item from that cell
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"atrib":"owner"
+			"atrib":"owner"
 
-​			"value":"UserName"
+			"value":"UserName"
 
-​		`}`
+		`}`
 
 DELETE - Delete an item from a specific cell
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"name":"value"
+			"name":"value"
 
-​		`}`
+		`}`
 
 ### /cells/:id/items
 
@@ -118,21 +118,21 @@ GET - Get all obstacles in the game
 
 POST - Add an obstacle to the game
 
-​	Request Body Example:
+	Request Body Example:
 
-​		`{`
+		`{`
 
-​			"owner":"value"
+			"owner":"value"
 
-​		      , "name":"value"
+		      , "name":"value"
 
-​		      , "damage":Integer
+		      , "damage":Integer
 
-​                      , "onCourse" :boolean
+                      , "onCourse" :boolean
 
-​                      , "description":"value"
+                      , "description":"value"
 
-​		`}`
+		`}`
 
 ### /obstacles/:id
 
