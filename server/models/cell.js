@@ -18,13 +18,22 @@ let cells = [
   , new Cell(3, 1, true, true, true, true, "Poison", "Only the brave can make accross" ,"plank")
 ];
 
+//List all cells
 exports.list = ()  => cells;
+
+//List a specific cell
 exports.read = (i) => cells[i];
+
+//List all items in a specific cell
 exports.readItems = (i) => cells[i].items;
+
+//Add an item to a cell
 exports.addItems = (i, name) => cells[i]["items"].push(name);
+
+//Remove an item from a cell
 exports.delete = (i, name) =>{
   for(let j = 0; j < cells[i]["items"].length; j++){
-    if (cells[i]["items"][j].toLowerCase() === name.toLowerCase())
+    if(cells[i]["items"][j].toLowerCase() === name.toLowerCase())
       cells[i]["items"][j] = null;
   }
 }
