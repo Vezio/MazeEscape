@@ -16,7 +16,7 @@ exports.getPlayer = (req, res) => { //works
 exports.createPlayer = (req, res) => {
   console.log(req.body);
   if (req.body)
-    res.status(201).send(acc.create(req.body.name, req.body.thirst, req.body.steps, req.body.inventory).toString());
+    res.status(201).send(acc.create(req.body.name, req.body.thirst, req.body.steps).toString());
   else
     res.status(400).send("Player name may not be empty.");
 };
