@@ -16,13 +16,18 @@ router.route("/players/:id")
 
 router.route("/items")
   .get(playCtlr.listItems)
-  .post(playCtlr.createItem);
+  // .post(playCtlr.createItem);
 
 router.route('/items/:id')
   .get(playCtlr.getItem)
   .patch(playCtlr.updateItem)
   // .patch(playCtlr.takeItem)
   .delete(playCtlr.deleteItem);
+
+  router.route('/cells/:id/item/:name/player/:pid')
+  .delete(playCtlr.grabItem)
+  .post(playCtlr.storeItem);
+
 
 router.route("/cells")
   .get(gameCtlr.listCells);
@@ -32,8 +37,8 @@ router.route('/cells/:id')
   .post(gameCtlr.addAnItem)
   .delete(gameCtlr.deleteItem);
 
-  router.route('/cells/:id/items')
-    .get(gameCtlr.seeItems);
+router.route('/cells/:id/items')
+  .get(gameCtlr.seeAllCellItems);
 
 
 module.exports = router;
