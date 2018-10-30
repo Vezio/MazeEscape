@@ -37,20 +37,34 @@ exports.deleteItem = (req, res) => {
     res.sendStatus(404);
 };
 
-//Take an item
+//Take Item from the maze
 exports.grabItem = (req, res) => {
   res.send(cell.delete(req.params.id, req.params.name));
 };
 
 // exports.storeItem = (req, res) => {
-//   res.send(item.update(req.params.id, req.body.atrib, req.body.value) );
+//   res.send(item.take(req.params.id, req.body.atrib, req.body.value) );
 // };
-//
+
+//store the item in a player
+exports.storeItem = (req, res) => {
+  if (req.body){
+    if (typeof item.take(req.params.id, req.body.atrib, req.body.value) === 'undefined'){
+      res.sendStatus(404);
+    }
+    else
+      res.sendStatus(204);
+  }
+  else
+    res.status(400).send("Atribute name may not be empty.");
+};
+
+
 // {
 //   "atrib":"owner"
 //   "value":"Blanks"
 // }
-
+// req.body.atrib, req.body.value
 
 
 

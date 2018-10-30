@@ -24,9 +24,11 @@ router.route('/items/:id')
   // .patch(playCtlr.takeItem)
   .delete(playCtlr.deleteItem);
 
-  router.route('/cells/:id/item/:name/player/:pid')
+  router.route('/cells/:id/item/:name')
   .delete(playCtlr.grabItem)
-  .post(playCtlr.storeItem);
+
+  router.route('cells/:id')
+  .patch(playCtlr.storeItem);
 
 
 router.route("/cells")

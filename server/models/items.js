@@ -21,13 +21,11 @@ exports.update = (i, atrib, value) =>
   exists(items[i]) && exists(items[i][atrib]) ? (items[i][atrib] = value) : undefined;
 exports.delete = (i) => exists(i) ? delete items[i] : undefined
 
-
-
-
-
-// exports.take = (cell,name,newowner) => {
-//   for(let x = 0; x < items.length; x++){
-//     if (items[x].owner === cell && items[x].name === name)
-//       items[x].owner = newowner;
-//   }
-// }
+exports.take = (i, atrib, value) => {
+  let location = parseInt(i)
+  console.log(i);
+  for(let j = 0; j < items.length; j++){
+    if(items[j][atrib] === (location))
+      items[j][atrib] = value.toString();
+  }
+}
