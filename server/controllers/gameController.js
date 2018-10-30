@@ -16,13 +16,13 @@ exports.getCell = (req,res) => {
 //List the items in the cell
 exports.seeAllCellItems = (req, res) => {
   res.send(cell.readItems(req.params.id))
-}
+};
 
 //Create a new item in the cell and add it to the list of items
 exports.addAnItem = (req, res) => {
   if (req.body){
-    if (typeof cell.addItems(req.params.id, req.body.name)
-        && typeof item.create(req.params.id, req.body.name, req.body.uses, req.body.description) === 'undefined'){
+    if(typeof cell.addItems(req.params.id, req.body.name) &&
+       typeof item.create(req.params.id, req.body.name, req.body.uses, req.body.description) === 'undefined'){
       res.sendStatus(404);
     }
     else
