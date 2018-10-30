@@ -37,7 +37,7 @@ exports.update = (i, atrib, value) =>
 //Delete an entire obstacle
 exports.delete = (i) => exists(i) ? delete obstacles[i] : undefined;
 
-//Random occurence of an object being on course
+//Random occurence of an object being on course --> Need to implement
 exports.randomSpawn = (i, atrib, value) => {
   let chance = Math.floor(Math.random() * 10) + 1;
   let occur  = 5;
