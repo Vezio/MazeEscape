@@ -113,6 +113,17 @@ GET - Get all items in a specific cell
 ### /cells/:id/item/:name
 
 DELETE - Grab a specific item from a specific cell and remove it
+PATCH  - Get an item from a specific cell, then change the owner to the item to the player
+         that is making the request. Then make sure that the cell no longer has the item
+         by setting the item value to null
+	 
+	Request Body Example:
+
+	`{`
+
+		"owner":"playername"
+
+	`}`
 
 ## 
 
