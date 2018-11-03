@@ -70,6 +70,8 @@ GET - Return a list of all cells in the game
 
 GET - Return a specific cell
 
+DELETE - Removes an entire cell from the game
+
 POST - Add an item to the game and to a specific cell
 
 	Request Body Example:
@@ -89,8 +91,6 @@ POST - Add an item to the game and to a specific cell
 GET - Get all items in a specific cell
 
 ### /cells/:id/item/:name
-
-DELETE - Grab a specific item from a specific cell and remove it
 
 PATCH  - Get an item from a specific cell, then change the owner to the item to the player
          that is making the request. Then make sure that the cell no longer has the item
