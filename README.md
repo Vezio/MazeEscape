@@ -24,7 +24,7 @@ From there you will be able to access the web application via `localhost:3000`.
 - Player spawn point
 - Player direction --> currently in progress on the side
 
-### Current State
+### Current State:
 - Implemented a "sub resource" like routing system
 - Created starting functionality 
 - Created neccessary objects and data 
