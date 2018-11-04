@@ -37,7 +37,7 @@ Request Body Example:
 
 		 "Name":"Example",
 		 "Thirst": Some Integer,
-          "Steps": Some Integer
+                 "Steps": Some Integer
 
 	}
 ```
@@ -184,13 +184,13 @@ Request Body Example:
 
 		"owner":"value",
 
-	     "name":"value",
+	        "name":"value",
+  
+	        "damage":Integer,
 
-	     "damage":Integer,
+                "onCourse":boolean,
 
-         "onCourse":boolean,
-
-         "description":"value"
+                "description":"value"
 
 	}
 ```
