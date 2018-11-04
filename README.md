@@ -203,6 +203,8 @@ Request Body Example:
 	        "damage":Integer,
 
                 "onCourse":boolean,
+		
+		"icon":"someIconPath.filetype",
 
                 "description":"value"
 
