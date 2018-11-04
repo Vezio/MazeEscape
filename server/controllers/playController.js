@@ -36,15 +36,14 @@ exports.deleteItem = (req, res) => {
     res.sendStatus(404);
 };
 
-//Take Item from the maze
-exports.grabItem = (req, res) => {
-  res.send(cell.delete(req.params.id, req.params.name));
-};
 
-//store the item in a player
-exports.storeItem = (req, res) => {
+//Get an item from a specific cell, then change the owner to the item to the player
+//that is making the request. Then make sure that the cell no longer has the item
+//by setting the item value to null
+exports.takeItem = (req, res) => {
   if (req.body){
-    if (typeof item.take(req.params.id, req.body.atrib, req.body.value) === 'undefined'){
+    if (typeof cell.take(req.params.id, req.params.name) &&
+        typeof item.take(req.params.id, req.params.name, req.body.owner) === 'undefined'){
       res.sendStatus(404);
     }
     else
@@ -100,6 +99,14 @@ exports.deleteObstacle = (req, res) => {
     res.sendStatus(404);
 };
 
+
+/*
+
+
+Add Obstacles
+
+
+*/
 
 /*
 
