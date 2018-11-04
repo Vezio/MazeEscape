@@ -47,10 +47,6 @@ exports.createObstacle = (req, res) => {
     res.status(400).send("Obstacle information may not be empty");
 };
 
-// exports.addObstacleToMaze = (req, res) => {
-//
-// }
-
 //Remove a cell --> Need to also add remove all items from the cell in the future
 exports.deleteCell = (req, res) => {
   if (cell.delete(req.params.id))
