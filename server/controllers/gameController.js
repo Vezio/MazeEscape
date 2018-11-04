@@ -33,10 +33,9 @@ exports.addAnItem = (req, res) => {
     res.status(400).send("Item name may not be empty");
 };
 
-//Remove an item from a cell. Does not remove the item from the item list
-exports.deleteItem = (req, res) => {
-  if (cell.delete(req.params.id, req.body.name))
-    res.sendStatus(202)
+exports.deleteCell = (req, res) => {
+  if (cell.delete(req.params.id))
+    res.sendStatus(204);
   else
     res.sendStatus(404);
-};
+}
