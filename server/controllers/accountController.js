@@ -18,7 +18,7 @@ exports.createPlayer = (req, res) => {
   if (req.body)
     res.status(201).send(acc.create(req.body.name, req.body.thirst, req.body.steps).toString());
   else
-    res.status(400).send("Player name may not be empty.");
+    res.status(400).send("Incorrect Instructions");
 };
 
 //Updates a single attribute of a specific player
