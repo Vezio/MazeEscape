@@ -49,9 +49,9 @@ Request Body Example:
 
 	{
 
-		 "Name":"Example",
-		 "Thirst": Some Integer,
-                 "Steps": Some Integer
+		 "name":"Example",
+		 "thirst": Some Integer,
+                 "steps": Some Integer
 
 	}
 ```
