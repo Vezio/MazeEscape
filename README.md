@@ -219,6 +219,18 @@ GET - Get a specific obstacle | Success: 200, return a player object as JSON|Err
 
 PATCH - Update a specific attribute in an obstacle | Success: 204 Empty|Error: 400 explains invalid input or 404 Empty
 
+```
+Request Body Example:
+
+	{
+
+		"atrib":"SomeAtribute",
+		"value":"SomeAtribute"
+
+	}
+```
+
+
 DELETE - Delete a obstacle from the entire game|Success: 204 Empty | Error: 404 Empty
 
 #### /obstacles/:id/spawn (To Be Implemented)
