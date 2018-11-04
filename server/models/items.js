@@ -1,15 +1,17 @@
-function Item(owner, name, uses, description) {
+function Item(owner, name, uses, icon, description) {
   this.owner   = owner;
   this.name    = name;
   this.uses    = uses;
+  this.icon    = icon;
   this.description = description;
 }
 
 let items = [
-    new Item(0, "chalk", 5, "Leave messages on walls")
-  , new Item(1, "chalk", 5, "Leave messages on walls")
-  , new Item(2, "rope", 1, "Tie, swing uses")
-  , new Item(3, "plank", 1, "Place down to cross")
+    new Item(0, "chalk", 5, "chalk.jpg", "Leave messages on walls")
+  , new Item(1, "chalk", 5, "chalk.jpg", "Leave messages on walls")
+  , new Item(2, "rope", 1, "rope.jpg", "Tie, swing uses")
+  , new Item(3, "plank", 1, "plank.jpg", "Place down to cross")
+  , new Item("John", "Hat", 1, "Hat.jpg", "Hat to keep your head warm")
 ];
 
 let exists = (x) => typeof x !== 'undefined'
@@ -21,7 +23,7 @@ exports.list = () => items;
 exports.read = (i) => items[i];
 
 //Create an item
-exports.create = (owner, name, uses, description) => items.push(new Item(parseInt(owner), name, uses, description)) - 1;
+exports.create = (owner, name, uses, icon, description) => items.push(new Item(parseInt(owner), name, uses, icon, description)) - 1;
 
 //Updates Single Attribute
 exports.update = (i, atrib, value) =>
@@ -50,7 +52,7 @@ exports.take = (i, itemName, newOwner) => {
 //Utlize the item by updating and expressing how much usage is left
 exports.use = (player, item) => {
   for (let j = 0; j < items.length; j++){
-    if(items[j].owner === parseInt(player) && items[j].name === item.toString()){
+    if(items[j].owner === player.toString() && items[j].name === item.toString()){
       if(items[j].uses > 0)
         items[j].uses = items[j].uses - 1;
       else {

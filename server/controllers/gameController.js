@@ -24,7 +24,7 @@ exports.seeAllCellItems = (req, res) => {
 exports.addAnItem = (req, res) => {
   if (req.body){
     if(typeof cell.addItems(req.params.id, req.body.name) &&
-       typeof item.create(req.params.id, req.body.name, req.body.uses, req.body.description) === 'undefined'){
+       typeof item.create(req.params.id, req.body.name, req.body.uses, req.body.icon, req.body.description) === 'undefined'){
       res.sendStatus(404);
     }
     else
@@ -33,9 +33,6 @@ exports.addAnItem = (req, res) => {
   else
     res.status(400).send("Item name may not be empty");
 };
-
-
-// exports.addObstacle = (owner, name, damage, onCourse, description) => obstacles.push(new Obstacle(owner, name, damage, onCourse, description)) - 1;
 
 //Create a new Obstacle in a cell
 exports.createObstacle = (req, res) => {
@@ -50,6 +47,11 @@ exports.createObstacle = (req, res) => {
     res.status(400).send("Item name may not be empty");
 };
 
+// exports.addObstacleToMaze = (req, res) => {
+//
+// }
+
+//Remove a cell --> Need to also add remove all items from the cell in the future
 exports.deleteCell = (req, res) => {
   if (cell.delete(req.params.id))
     res.sendStatus(204);

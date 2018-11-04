@@ -1,4 +1,4 @@
-function Player(name, thirst, steps, inventory) {
+function Player(name, thirst, steps) {
   this.name = name;
   this.thirst = thirst;
   this.steps = steps;
@@ -9,6 +9,7 @@ let players = [
     new Player("Tyler", 98, 5)
   , new Player("Nicholas", 100, 1)
   , new Player("Vezio", 50, 20)
+  , new Player("John", 100, 0)
 ];
 
 let exists = (x) => typeof x !== 'undefined'
@@ -26,5 +27,5 @@ exports.create = (name, thirst, steps) => players.push(new Player(name, thirst, 
 exports.update = (i, atrib, value) =>
  exists(players[i]) && exists(players[i][atrib]) ? (players[i][atrib] = value) : undefined;
 
-//Delete an entire player 
+//Delete an entire player
 exports.delete = (i) => exists(i) ? delete players[i] : undefined;

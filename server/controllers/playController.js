@@ -41,31 +41,39 @@ exports.deleteItem = (req, res) => {
 //that is making the request. Then make sure that the cell no longer has the item
 //by setting the item value to null
 exports.takeItem = (req, res) => {
-  if (req.body){
-    if (typeof cell.take(req.params.id, req.params.name) &&
-        typeof item.take(req.params.id, req.params.name, req.body.owner) === 'undefined'){
+
+  try {
+    let cellResult = cell.take(req.params.id, req.params.name);
+    let itemResult = item.take(req.params.id, req.params.name, req.body.owner);
+    if (cellResult === 'undefined' && itemResult === 'undefined')
       res.sendStatus(404);
-    }
-    else
-      res.sendStatus(204);
+    else res.sendStatus(204);
+  } catch(e) {
+    res.status(400).send("Invalid instructions.");
   }
-  else
-    res.status(400).send("Atribute name may not be empty.");
 };
+
 
 //Use the item in game
 exports.useItem = (req, res) => {
-  if (req.body){
-    if (typeof item.use(req.params.player, req.params.item) === 'undefined'){
-      res.sendStatus(404);
-    }
-    else
-      res.sendStatus(204);
+  try {
+    let result = item.use(req.params.player, req.params.item);
+    if (result === 'undefined') res.sendStatus(404);
+    else res.sendStatus(204);
+  } catch(e) {
+    res.status(400).send("Invalid use");
   }
-  else
-    res.status(400).send("Item name may not be empty");
 };
 
+
+// try {
+//   let result = item.use(req.params.player, req.params.item);
+//   if (result === 'undefined') res.sendStatus(404);
+//   else res.sendStatus(204);
+// } catch(e) {
+//   res.status(400).send("Invalid update instructions.");
+// }
+// }
 //Retrieve a list of all obstacles in the game
 exports.listObstacles = (req, res) => res.send(obs.list());
 
