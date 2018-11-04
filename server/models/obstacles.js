@@ -9,7 +9,7 @@ function Obstacle(owner, name, damage, onCourse, icon, description) {
 
 let obstacles = [
     new Obstacle(0, "hole", 100, false,"/hole.jpg", "Hole of emptyness -- you're dead")
-  , new Obstacle(1, "No light", 0, false, "/darknessoverlay.jpg", "Ridicoulessly hard to see")
+  , new Obstacle(1, "No light", 0, false, "/darknessoverlay.jpg", "No light, Ridicoulessly hard to see")
   , new Obstacle(2, "Bees", 2, false, "/bee.jpg", "Stinging Bee")
   , new Obstacle(3, "Poison", 25, false,"/fog.jpg", "Poison is in the air")
 ];

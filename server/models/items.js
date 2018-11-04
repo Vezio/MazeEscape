@@ -7,10 +7,10 @@ function Item(owner, name, uses, icon, description) {
 }
 
 let items = [
-    new Item(0, "chalk", 5, "chalk.jpg", "Leave messages on walls")
-  , new Item(1, "chalk", 5, "chalk.jpg", "Leave messages on walls")
-  , new Item(2, "rope", 1, "rope.jpg", "Tie, swing uses")
-  , new Item(3, "plank", 1, "plank.jpg", "Place down to cross")
+    new Item(0, "chalk", 5, "chalk.jpg", "Chalk - Leave messages on walls")
+  , new Item(1, "chalk", 5, "chalk.jpg", "Chalk - Leave messages on walls")
+  , new Item(2, "rope", 1, "rope.jpg", "Rope, swing uses")
+  , new Item(3, "plank", 1, "plank.jpg", "Plank, Place down to cross")
   , new Item("John", "Hat", 1, "Hat.jpg", "Hat to keep your head warm")
 ];
 
