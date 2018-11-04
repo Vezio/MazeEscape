@@ -152,6 +152,8 @@ Request Body Example:
 		"name":"value",
 
 		"uses": Integer Denoting Uses,
+		
+		"icon":"someFilePath.filetype",
 
 		"description": "brief description of item"
 
