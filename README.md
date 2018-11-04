@@ -14,6 +14,14 @@ You wake up on the floor of a dark cellar. You don't remember your name, where y
 
 Start by cloning this repository and by setting up Node Express / ExpressJS. Install the necessary dependencies. Once these steps have been completed, from the command prompt, run node `server/lightsout.js`. Be sure to be in the **root directory.** For example, C:\Users\Tyler Rimaldi\Documents\SD2SemesterProj> would be where I would run: `server/lightsout.js` 
 
+##Development
+###Things to be completed in the future:
+- Random spawning obstacles --> already have some algorithm in mind in the obstacle.js file
+- Delete an item from the ENTIRE game including removing from current player inventory or maze
+- Player death & Thirst monitor to decrease
+- Player spawn point
+- Player direction --> currently in progress on the side
+
 
 
 From there you will be able to access the web application via `localhost:3000`. 
