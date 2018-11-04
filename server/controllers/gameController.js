@@ -1,5 +1,6 @@
 cell = require("../models/cell.js");
 item = require("../models/items.js");
+obstacle = require("../models/obstacles.js")
 
 
 //List all Cells
@@ -24,6 +25,22 @@ exports.addAnItem = (req, res) => {
   if (req.body){
     if(typeof cell.addItems(req.params.id, req.body.name) &&
        typeof item.create(req.params.id, req.body.name, req.body.uses, req.body.description) === 'undefined'){
+      res.sendStatus(404);
+    }
+    else
+      res.sendStatus(204);
+  }
+  else
+    res.status(400).send("Item name may not be empty");
+};
+
+
+// exports.addObstacle = (owner, name, damage, onCourse, description) => obstacles.push(new Obstacle(owner, name, damage, onCourse, description)) - 1;
+
+//Create a new Obstacle in a cell
+exports.createObstacle = (req, res) => {
+  if (req.body){
+    if(typeof obstacle.addObstacle(req.body.owner, req.body.name, req.body.damage, req.body.onCourse, req.body.icon, req.body.description) === 'undefined'){
       res.sendStatus(404);
     }
     else

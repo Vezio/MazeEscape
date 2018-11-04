@@ -30,19 +30,19 @@ router.route('/items/:id')
 //--Obstacle Routes--\\
 router.route('/obstacles')
   .get(playCtlr.listObstacles)
-  .post(playCtlr.addObstacle);
+  .post(gameCtlr.createObstacle)
 
 router.route('/obstacles/:id')
-  .get(playCtlr.getObstacle);
+  .get(playCtlr.getObstacle)
   .patch(playCtlr.updateObstacle)
   .delete(playCtlr.deleteObstacle);
 
 //--Cell Routes--\\
 router.route('/cells/:id/item/:name')
-  .delete(playCtlr.grabItem)
+  .patch(playCtlr.takeItem)
 
-router.route('/cells/:id')
-  .patch(playCtlr.storeItem);
+router.route('/cells/:id/items')
+  .get(gameCtlr.seeAllCellItems);
 
 router.route('/cells')
   .get(gameCtlr.listCells);
@@ -50,9 +50,6 @@ router.route('/cells')
 router.route('/cells/:id')
   .get(gameCtlr.getCell)
   .post(gameCtlr.addAnItem)
-  .delete(gameCtlr.deleteItem);
-
-router.route('/cells/:id/items')
-  .get(gameCtlr.seeAllCellItems);
+  .delete(gameCtlr.deleteCell);
 
 module.exports = router;
