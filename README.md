@@ -83,7 +83,7 @@ POST - Use Item | Success: 204 Empty|Error: 400 explains invalid input or 404 Em
 
 #### /items
 
-GET - Return a list of all items in the game| Success 200, lists all player objects as JSON
+GET - Return a list of all items in the game| Success 200, lists all items objects as JSON
 
 
 
@@ -116,9 +116,9 @@ DELETE - Delete a specific item | Success: 204 Empty | Error: 404 Empty
 
 #### /cells
 
-GET - Return a list of all cells in the game| Success 200, lists all player objects as JSON
+GET - Return a list of all cells in the game| Success 200, lists all cells objects as JSON
 
-#### /cells/:id
+#### /cells/:id | id =[int]
 
 GET - Return a specific cell|Success: 200, return a player object as JSON|Error: 404 empty
 
@@ -146,27 +146,25 @@ Request Body Example:
 
 
 
-#### /cells/:id/items
+#### /cells/:id/items | id = [int]
 
-GET - Get all items in a specific cell
+GET - Get all items in a specific cell  | Success 200, lists all cell items objects as JSON
 
-
-
-#### /cells/:id/item/:name
+#### /cells/:id/item/:name | id = [int], name = [str]
 
 PATCH  - (Take an Item) Get an item from a specific cell, then change the owner to the item to the player
          that is making the request. Then make sure that the cell no longer has the item
-         by setting the item value to null
+         by setting the item value to null | Success: 204 Empty|Error: 400 explains invalid input or 404 Empty
 	 
 
 ```
 Request Body Example:
 
-`{`
+	{
 
-	"owner":"playername"
+		"owner":"playername"
 
-`}`
+	}
 ```
 
 ------
@@ -175,35 +173,35 @@ Request Body Example:
 
 #### /obstacles
 
-GET - Get all obstacles in the game
+GET - Get all obstacles in the game | Success 200, lists all obstacles objects as JSON
 
-POST - Add an obstacle to the game
+POST - Add an obstacle to the game | Success: 204 Empty|Error: 400 explains invalid input or 404 Empty
 
 ```
 Request Body Example:
 
-	`{`
+	{
 
-		"owner":"value"
+		"owner":"value",
 
-	      , "name":"value"
+	     "name":"value",
 
-	      , "damage":Integer
+	     "damage":Integer,
 
-                  , "onCourse" :boolean
+         "onCourse":boolean,
 
-                  , "description":"value"
+         "description":"value"
 
-	`}`
+	}
 ```
 
-#### /obstacles/:id
+#### /obstacles/:id | id = [int]
 
-GET - Get a specific obstacle
+GET - Get a specific obstacle | Success: 200, return a player object as JSON|Error: 404 empty
 
-PATCH - Update a specific attribute in an obstacle
+PATCH - Update a specific attribute in an obstacle | Success: 204 Empty|Error: 400 explains invalid input or 404 Empty
 
-DELETE - Delete a obstacle from the entire game
+DELETE - Delete a obstacle from the entire game|Success: 204 Empty | Error: 404 Empty
 
 #### /obstacles/:id/spawn (To Be Implemented)
 
