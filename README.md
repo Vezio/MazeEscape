@@ -92,7 +92,7 @@ GET - Get all items in a specific cell
 
 ### /cells/:id/item/:name
 
-PATCH  - Get an item from a specific cell, then change the owner to the item to the player
+PATCH  - (Take an Item) Get an item from a specific cell, then change the owner to the item to the player
          that is making the request. Then make sure that the cell no longer has the item
          by setting the item value to null
 	 
