@@ -25,7 +25,7 @@ exports.updateItem = (req, res) => {
       res.sendStatus(204);
   }
   else
-    res.status(400).send("Atribute name may not be empty.");
+    res.status(400).send("Atribute may not be empty.");
 };
 
 //Delete an entire item
@@ -41,13 +41,13 @@ exports.deleteItem = (req, res) => {
 //that is making the request. Then make sure that the cell no longer has the item
 //by setting the item value to null
 exports.takeItem = (req, res) => {
-
   try {
     let cellResult = cell.take(req.params.id, req.params.name);
     let itemResult = item.take(req.params.id, req.params.name, req.body.owner);
     if (cellResult === 'undefined' && itemResult === 'undefined')
       res.sendStatus(404);
-    else res.sendStatus(204);
+    else
+      res.sendStatus(204);
   } catch(e) {
     res.status(400).send("Invalid instructions.");
   }
@@ -58,22 +58,15 @@ exports.takeItem = (req, res) => {
 exports.useItem = (req, res) => {
   try {
     let result = item.use(req.params.player, req.params.item);
-    if (result === 'undefined') res.sendStatus(404);
-    else res.sendStatus(204);
+    if (result === 'undefined')
+      res.sendStatus(404);
+    else
+      res.sendStatus(204);
   } catch(e) {
     res.status(400).send("Invalid use");
   }
 };
 
-
-// try {
-//   let result = item.use(req.params.player, req.params.item);
-//   if (result === 'undefined') res.sendStatus(404);
-//   else res.sendStatus(204);
-// } catch(e) {
-//   res.status(400).send("Invalid update instructions.");
-// }
-// }
 //Retrieve a list of all obstacles in the game
 exports.listObstacles = (req, res) => res.send(obs.list());
 
@@ -108,45 +101,12 @@ exports.deleteObstacle = (req, res) => {
 };
 
 
-/*
-
-
-Add Obstacles
-
-
-*/
 
 /*
-
-Player moevements
+Player movements
  --> base on boolean values
+
+
 Random obstacles
   --> Use math.random(1-10) to decide "randomness"
-
 */
-
-
-//---------------------------------------------------------------------------------------
-//update entire item works
-// exports.updateItem = (req,res) => {
-//     // console.log(req.body);
-//   if (req.body){
-//     if (typeof item.update(req.params.id, req.body.name, req.body.owner) === 'undefined'){
-//         res.sendStatus(404);
-//     }
-//     else
-//       res.sendStatus(204);
-//   }
-//   else
-//     res.status(400).send("Item name may not be empty.");
-// };
-
-
-// //Create an Item
-// exports.createItem = (req,res) => {
-//   console.log(req.body);
-//   if (req.body)
-//     res.status(201).send(item.create(req.body.name, req.body.owner).toString());
-//   else
-//     res.status(400).send("Item name may not be empty.");
-// };

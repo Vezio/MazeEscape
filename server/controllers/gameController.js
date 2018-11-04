@@ -31,7 +31,7 @@ exports.addAnItem = (req, res) => {
       res.sendStatus(204);
   }
   else
-    res.status(400).send("Item name may not be empty");
+    res.status(400).send("Item information may not be empty");
 };
 
 //Create a new Obstacle in a cell
@@ -44,7 +44,7 @@ exports.createObstacle = (req, res) => {
       res.sendStatus(204);
   }
   else
-    res.status(400).send("Item name may not be empty");
+    res.status(400).send("Obstacle information may not be empty");
 };
 
 // exports.addObstacleToMaze = (req, res) => {

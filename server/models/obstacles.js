@@ -14,12 +14,6 @@ let obstacles = [
   , new Obstacle(3, "Poison", 25, false,"/fog.jpg", "Poison is in the air")
 ];
 
-/*
-    - Need an obstacle for each room
-    - Each obstacle has a random spawn time
-    - Each obstacle can be defeated
-*/
-
 let exists = (x) => x !== 'undefined'
 
 //List Obstacles
@@ -38,13 +32,20 @@ exports.update = (i, atrib, value) =>
 //Delete an entire obstacle
 exports.delete = (i) => exists(i) ? delete obstacles[i] : undefined;
 
-//Random occurence of an object being on course --> Need to implement
-// exports.randomSpawn = (i, atrib, value) => {
-//   let chance = Math.floor(Math.random() * 10) + 1;
-//   let occur  = 5;
-//   if(chance === occur){
-//     //obstacle in some room will be turned on or continue
-//     //to be off on random number selector 1-10
-//     obstacles[i][atrib] = value;
-//   }
-// }
+/*
+Random occurence of an object being on course --> Need to implement
+exports.randomSpawn = (i, atrib, value) => {
+  let chance = Math.floor(Math.random() * 10) + 1;
+  let occur  = 5;
+  if(chance === occur){
+    //obstacle in some room will be turned on or continue
+    //to be off on random number selector 1-10
+    obstacles[i][atrib] = value;
+  }
+}
+
+
+    - Need an obstacle for each room
+    - Each obstacle has a random spawn time
+    - Each obstacle can be defeated
+*/
