@@ -25,7 +25,7 @@ From there you will be able to access the web application via `localhost:3000`.
 - Player direction --> currently in progress on the side
 
 ### Current State
-- Implement a "sub resource" like routing system
+- Implemented a "sub resource" like routing system
 - Created starting functionality 
 - Created neccessary objects and data 
 - File structure
