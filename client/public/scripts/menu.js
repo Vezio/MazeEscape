@@ -1,8 +1,3 @@
-
-    // Initialize Variables
-    var userName = " ";
-    var playerId = "";
-
     // Menu Selector
     document.body.addEventListener("keyup",function(e){
         switch(e.key ) {
@@ -32,6 +27,8 @@
 
     //Creates a new player based on the user name the user gives at start.
     function newGame() {
+      let userName = " ";
+      let playerId = "";
       let player; //all players
       let found = false;
         userName = prompt("What would you like as your user name?");
@@ -64,7 +61,6 @@
                   })
                  .then(function(res){
                    console.log(res.status);
-
                    sessionStorage.setItem("playerName", userName);
                    window.location.href = "maze";
                   });
@@ -79,8 +75,35 @@
     }
 
     function launchSavedGame() {
-        window.location.href = "maze";
-    }
+      let userName = " ";
+      let playerId = "";
+      let player; //all players
+      let found = false;
+      userName = prompt("Back for more huh? Enter your user name to continue where you left off!");
+      //Check for user name with all spaces
+          fetch("http://localhost:3000/api/players")
+            .then((res) => res.json())
+            .then(function(json){
+              player = json;
+              console.log(player);
+              //Check if the name exists
+              for(let i = 0; i < player.length; i++){
+                if (player[i]["name"] === userName.toString()){
+                  found = true;
+                  // console.log(player[i]["name"]);
+                }
+              }
+              //If the name is available, create the account and pass to maze.
+              if (found === true){
+                alert("Good luck to you, " + userName);
+                 sessionStorage.setItem("playerName", userName);
+                 window.location.href = "maze";
+              }else{
+                alert("You entered: " + userName + ". Sorry, we couldn't find you. Double check your spelling!");
+              }
+            });
+        //Feedback for all other uncaught exceptions, if any
+        }
 
     function howToPlay() {
         window.location.href = "about";
