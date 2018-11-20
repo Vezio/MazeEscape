@@ -70,14 +70,14 @@ All Current Work: Tyler Rimaldi
        .then((res) => res.json())
        .then(function(json){
          player = json;
-         // console.log(player);
+         console.log(playerId);
          fetch("http://localhost:3000/api/"+player.loc)
            .then((res) => res.json())
            .then(loadCell);
        });
      });
    }
-   
+
    function loadCell(json) {
      // console.log("TE")
      cell = json;
@@ -183,7 +183,7 @@ All Current Work: Tyler Rimaldi
   function moveFwd() {
     switch (player.dir) {
       case "north": if(cell.north){
-                      // console.log(player.loc + "HERE");
+                      console.log(player.loc + "HERE");
                       let newY = cell.y + 1;
                       let currentX = cell.x;
                       player.loc = "/cells/"+currentX+"/"+newY;
@@ -244,19 +244,19 @@ All Current Work: Tyler Rimaldi
 
     //Mouse actions: fwd, bwd, lft, rht
     var fwd = document.getElementById("forward").addEventListener("click",function() {
-        forward();
+        moveFwd();
     });
 
     var bwd = document.getElementById("backward").addEventListener("click",function() {
-        backward();
+        turnAround();
     });
 
     var lft = document.getElementById("left").addEventListener("click",function() {
-        left();
+        turnLeft();
     });
 
     var rht = document.getElementById("right").addEventListener("click",function() {
-        right();
+        turnRight();
     });
 
     //Keyboard actions: fwd, bwd, lft, rht
@@ -267,16 +267,16 @@ All Current Work: Tyler Rimaldi
                  exitGame();
                  break;
             case "ArrowLeft":
-                 left();
+                 turnLeft();
                  break;
             case "ArrowUp":
-                 forward();
+                 moveFwd();
                  break;
             case "ArrowRight":
-                 right();
+                 turnRight();
                  break;
             case "ArrowDown":
-                 backward();
+                 turnAround();
                  break;
         }
     });
@@ -311,21 +311,21 @@ All Current Work: Tyler Rimaldi
         });
 
     //Console messages
-    function forward() {
-        console.log("Move forward");
-    }
-
-    function backward() {
-         console.log("Move backward");
-    }
-
-    function right() {
-         console.log("Move rightward");
-    }
-
-    function left() {
-        console.log("Move leftward");
-    }
+    // function forward() {
+    //     console.log("Move forward");
+    // }
+    //
+    // function backward() {
+    //      console.log("Move backward");
+    // }
+    //
+    // function right() {
+    //      console.log("Move rightward");
+    // }
+    //
+    // function left() {
+    //     console.log("Move leftward");
+    // }
 
   </script>
 </body>
