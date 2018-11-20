@@ -13,25 +13,24 @@ All Current Work: Tyler Rimaldi
   <link rel="stylesheet" href="css/maze.css">
 </head>
 <body>
-
   <main>
-    <img src="images/wall-left.png" alt="wall to left">
-    <img src="images/wall-ahead.png" alt="wall ahead">
-    <img src="images/wall-right.png" alt="wall to right">
-    <input name="rope" type="image" src="images/rope.png" alt="rope">
+    <img src="images/no-wall.png" alt="wall to left">
+    <img src="images/no-wall.png" alt="wall ahead">
+    <img src="images/no-wall.png" alt="wall to right">
+    <form onsubmit="return false;">
+      <fieldset id="items"></fieldset>
+    </form>
   </main>
-
   <nav>
     <form onsubmit="return false;">
       <fieldset>
-        <input id="forward" name="fwd" type="image" src="images/arrow.png" alt="move forward">
-        <input id="right" name="right" type="image" src="images/arrow.png" alt="turn right">
-        <input id="backward" name="bwd" type="image" src="images/arrow.png" alt="turn around">
-        <input id="left" name="left" type="image" src="images/arrow.png" alt="turn left">
+        <input id="forward" name="fwd" type="image" src="images/arrow.png" alt="move forward" onclick="moveFWD()">
+        <input id="right" name="right" type="image" src="images/arrow.png" alt="turn right" onclick="turnRight()">
+        <input id="backward" name="bwd" type="image" src="images/arrow.png" alt="turn around" onclick="turnAround()">
+        <input id="left" name="left" type="image" src="images/arrow.png" alt="turn left" onclick="turnLeft()">
       </fieldset>
     </form>
   </nav>
-
   <aside id="inventory">
     <h1>Items</h1>
     <form onsubmit="return false;">
@@ -47,7 +46,63 @@ All Current Work: Tyler Rimaldi
    Your browser does not support the <code>audio</code> element.
   </audio>
 
+<!-- <script type="text/javascript" src="scripts/menu.js"></script> -->
   <script>
+
+   var playerId = 0;
+   var player, cell, items, inventory;
+
+   window.onload = function() {
+     fetch("http://localhost:3000/api/players/"+playerId)
+       .then((res) => res.json())
+       .then(function(json){
+         player = json;
+         console.log(player);
+         fetch("http://localhost:3000/api/"+player.loc)
+           .then((res) => res.json())
+           .then(loadCell);
+       });
+   }
+
+
+         function loadCell(json) {
+           console.log("TE")
+           cell = json;
+           renderRoom(cell);
+         }
+
+         function renderRoom(room) {
+           console.log("TE")
+           let walls = document.querySelectorAll("main img");
+           switch (player.dir) {
+           case "north":
+           console.log("TE")
+             walls[0].src = cell.west  ? "images/no-wall.png" : "images/wall-left.png";
+             walls[1].src = cell.north ? "images/no-wall.png" : "images/wall-ahead.png";
+             walls[2].src = cell.east  ? "images/no-wall.png" : "images/wall-right.png";
+             break;
+           case "south":
+           console.log("TE")
+             walls[0].src = cell.east  ? "images/no-wall.png" : "images/wall-left.png";
+             walls[1].src = cell.south ? "images/no-wall.png" : "images/wall-ahead.png";
+             walls[2].src = cell.west  ? "images/no-wall.png" : "images/wall-right.png";
+             break;
+           case "east":
+           console.log("TE")
+             walls[0].src = cell.north ? "images/no-wall.png" : "images/wall-left.png";
+             walls[1].src = cell.east  ? "images/no-wall.png" : "images/wall-ahead.png";
+             walls[2].src = cell.south ? "images/no-wall.png" : "images/wall-right.png";
+             break;
+           case "west":
+           console.log("TE")
+             walls[0].src = cell.south ? "images/no-wall.png" : "images/wall-left.png";
+             walls[1].src = cell.west  ? "images/no-wall.png" : "images/wall-ahead.png";
+             walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
+             break;
+           }
+         }
+
+
     //Return to title screen
     function exitGame() {
         window.location.href = "menu";
