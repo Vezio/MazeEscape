@@ -1,7 +1,7 @@
 function Player(name) {
   this.name = name;
   this.thirst = 100;
-  this.loc = "/rooms/0/1";
+  this.loc = "/cells/0/1";
   this.dir = "north";
   // this.inventory.push(this.inventory); //We are going to need to make this an array
 }
@@ -24,6 +24,13 @@ exports.list = () => players;
 
 //List a specific player in the game
 exports.read = (i) => players[i];
+
+// exports.read = (name) => {
+//   for(let i = 0; i<players.length; i++){
+//     if (players[i].name === name.toString())
+//       players[i];
+//   }
+// }
 
 //Create a new player
 exports.create = (name) => players.push(new Player(name)) - 1;
