@@ -24,7 +24,7 @@ All Current Work: Tyler Rimaldi
   <nav>
     <form onsubmit="return false;">
       <fieldset>
-        <input id="forward" name="fwd" type="image" src="images/arrow.png" alt="move forward" onclick="moveFWD()">
+        <input id="forward" name="fwd" type="image" src="images/arrow.png" alt="move forward" onclick="moveFwd()">
         <input id="right" name="right" type="image" src="images/arrow.png" alt="turn right" onclick="turnRight()">
         <input id="backward" name="bwd" type="image" src="images/arrow.png" alt="turn around" onclick="turnAround()">
         <input id="left" name="left" type="image" src="images/arrow.png" alt="turn left" onclick="turnLeft()">
@@ -48,59 +48,193 @@ All Current Work: Tyler Rimaldi
 
 <!-- <script type="text/javascript" src="scripts/menu.js"></script> -->
   <script>
-
-   var playerId = 0;
-   var player, cell, items, inventory;
+   var playerName = sessionStorage.getItem("playerName"); //player name
+   var playerId; //the target player location in the array of players
+   var player; //the target player
+   var cell;
+   var items;
+   var inventory;
+   var allPlayers; // all players in the game
 
    window.onload = function() {
-     fetch("http://localhost:3000/api/players/"+playerId)
+     fetch("http://localhost:3000/api/players/")
+      .then((res) => res.json())
+      .then(function(json){
+        allPlayers = json;
+        for(let i = 0; i < allPlayers.length; i++){
+          if (allPlayers[i]["name"] === playerName.toString()){
+            playerId = i;
+          }
+        }
+      fetch("http://localhost:3000/api/players/"+playerId)
        .then((res) => res.json())
        .then(function(json){
          player = json;
-         console.log(player);
+         // console.log(player);
          fetch("http://localhost:3000/api/"+player.loc)
            .then((res) => res.json())
            .then(loadCell);
        });
+     });
+   }
+   
+   function loadCell(json) {
+     // console.log("TE")
+     cell = json;
+     renderCell(cell);
    }
 
+   function renderCell(cell) {
+     // console.log("TE")
+     let walls = document.querySelectorAll("main img");
+     switch (player.dir) {
+     case "north":
+       walls[0].src = cell.west  ? "images/no-wall.png" : "images/wall-left.png";
+       walls[1].src = cell.north ? "images/no-wall.png" : "images/wall-ahead.png";
+       walls[2].src = cell.east  ? "images/no-wall.png" : "images/wall-right.png";
+       break;
+     case "south":
+       walls[0].src = cell.east  ? "images/no-wall.png" : "images/wall-left.png";
+       walls[1].src = cell.south ? "images/no-wall.png" : "images/wall-ahead.png";
+       walls[2].src = cell.west  ? "images/no-wall.png" : "images/wall-right.png";
+       break;
+     case "east":
+       walls[0].src = cell.north ? "images/no-wall.png" : "images/wall-left.png";
+       walls[1].src = cell.east  ? "images/no-wall.png" : "images/wall-ahead.png";
+       walls[2].src = cell.south ? "images/no-wall.png" : "images/wall-right.png";
+       break;
+     case "west":
+       walls[0].src = cell.south ? "images/no-wall.png" : "images/wall-left.png";
+       walls[1].src = cell.west  ? "images/no-wall.png" : "images/wall-ahead.png";
+       walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
+       break;
+     }
+   }
 
-         function loadCell(json) {
-           console.log("TE")
-           cell = json;
-           renderRoom(cell);
-         }
+   function turnLeft() {
+    switch (player.dir) {
+      case "north": player.dir = "west";
+      break;
+      case  "west": player.dir = "south";
+      break;
+      case "south": player.dir = "east";
+      break;
+      case  "east": player.dir = "north";
+      break;
+    }
+    fetch("http://localhost:3000/api/players/"+playerId, {
+          method:"PATCH",
+          body: '{"attrib":"dir","value":"'+player.dir+'"}',
+          headers: {
+            "Content-type": "application/json"
+    }})
+      .then(function(res){
+        console.log(res.status);
+      });
+    renderCell(cell);
+  }
 
-         function renderRoom(room) {
-           console.log("TE")
-           let walls = document.querySelectorAll("main img");
-           switch (player.dir) {
-           case "north":
-           console.log("TE")
-             walls[0].src = cell.west  ? "images/no-wall.png" : "images/wall-left.png";
-             walls[1].src = cell.north ? "images/no-wall.png" : "images/wall-ahead.png";
-             walls[2].src = cell.east  ? "images/no-wall.png" : "images/wall-right.png";
-             break;
-           case "south":
-           console.log("TE")
-             walls[0].src = cell.east  ? "images/no-wall.png" : "images/wall-left.png";
-             walls[1].src = cell.south ? "images/no-wall.png" : "images/wall-ahead.png";
-             walls[2].src = cell.west  ? "images/no-wall.png" : "images/wall-right.png";
-             break;
-           case "east":
-           console.log("TE")
-             walls[0].src = cell.north ? "images/no-wall.png" : "images/wall-left.png";
-             walls[1].src = cell.east  ? "images/no-wall.png" : "images/wall-ahead.png";
-             walls[2].src = cell.south ? "images/no-wall.png" : "images/wall-right.png";
-             break;
-           case "west":
-           console.log("TE")
-             walls[0].src = cell.south ? "images/no-wall.png" : "images/wall-left.png";
-             walls[1].src = cell.west  ? "images/no-wall.png" : "images/wall-ahead.png";
-             walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
-             break;
-           }
-         }
+  function turnRight() {
+    switch (player.dir) {
+      case "north": player.dir = "east";
+      break;
+      case  "east": player.dir = "south";
+      break;
+      case "south": player.dir = "west";
+      break;
+      case  "west": player.dir = "north";
+      break;
+    }
+    fetch("http://localhost:3000/api/players/"+playerId, {
+          method:"PATCH",
+          body: '{"attrib":"dir","value":"'+player.dir+'"}',
+          headers: {
+            "Content-type": "application/json"
+    }})
+      .then(function(res){
+        console.log(res.status);
+      });
+    renderCell(cell);
+  }
+
+  function turnAround() {
+    switch (player.dir) {
+      case "north": player.dir = "south";
+      break;
+      case  "south": player.dir = "north";
+      break;
+      case "east": player.dir = "west";
+      break;
+      case  "west": player.dir = "east";
+      break;
+    }
+    fetch("http://localhost:3000/api/players/"+playerId, {
+          method:"PATCH",
+          body: '{"attrib":"dir","value":"'+player.dir+'"}',
+          headers: {
+            "Content-type": "application/json"
+    }})
+      .then(function(res){
+        console.log(res.status);
+      });
+    renderCell(cell);
+  }
+
+  function moveFwd() {
+    switch (player.dir) {
+      case "north": if(cell.north){
+                      // console.log(player.loc + "HERE");
+                      let newY = cell.y + 1;
+                      let currentX = cell.x;
+                      player.loc = "/cells/"+currentX+"/"+newY;
+                      console.log(player.loc + "HERE");
+                    }else
+                      alert("There's a wall, you cannot go this way!");
+      break;
+      case  "south": if(cell.south){
+                        let newY = cell.y - 1;
+                        let currentX = cell.x;
+                        player.loc = "/cells/"+currentX+"/"+newY;
+                      }else
+                        alert("There's a wall, you cannot go this way!");
+      break;
+      case "west":  if(cell.west){
+                        // console.log(player.loc + "HERE");
+                        let currentY = cell.y;
+                        let newX = cell.x - 1;
+                        player.loc = "/cells/"+newX+"/"+currentY;
+                        console.log(player.loc + "HERE");
+                      }else
+                        alert("There's a wall, you cannot go this way!");
+      break;
+      case  "east": if(cell.east){
+                      // console.log(player.loc + "HERE");
+                      let currentY = cell.y;
+                      let newX = cell.x + 1;
+                      player.loc = "/cells/"+newX+"/"+currentY;
+                      console.log(player.loc + "HERE");
+                    }else
+                      alert("There's a wall, you cannot go this way!");
+      break;
+    }
+
+    fetch("http://localhost:3000/api/players/"+playerId, {
+          method:"PATCH",
+          body: '{"attrib":"loc","value":"'+player.loc+'"}',
+          headers: {
+            "Content-type": "application/json"
+    }})
+
+    .then(function(res){
+      console.log(res.status);
+    });
+
+    fetch("http://localhost:3000/api/"+player.loc)
+      .then((res) => res.json())
+      .then(loadCell);
+
+    renderCell(cell);
+  }
 
 
     //Return to title screen
