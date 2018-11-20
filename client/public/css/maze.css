@@ -60,6 +60,11 @@ nav input[name=fwd] {
   transform: translate(-50%, -200%);
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
 nav input[name=bwd] {
   transform: translate(-50%, -75%) rotate(180deg);
 }
