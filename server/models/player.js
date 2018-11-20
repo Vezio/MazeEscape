@@ -1,16 +1,21 @@
-function Player(name, thirst, steps) {
+function Player(name) {
   this.name = name;
-  this.thirst = thirst;
-  this.steps = steps;
+  this.thirst = 100;
+  this.loc = "/rooms/0/1";
+  this.dir = "north";
   // this.inventory.push(this.inventory); //We are going to need to make this an array
 }
 
 let players = [
-    new Player("Tyler", 98, 5)
-  , new Player("Nicholas", 100, 1)
-  , new Player("Vezio", 50, 20)
-  , new Player("John", 100, 0)
+    new Player("Tyler")
+  , new Player("Nicholas")
+  , new Player("Vezio")
+  , new Player("John")
 ];
+
+//
+// players.forEach((pla, idx) => pla.id = idx);
+
 
 let exists = (x) => typeof x !== 'undefined'
 
@@ -21,7 +26,7 @@ exports.list = () => players;
 exports.read = (i) => players[i];
 
 //Create a new player
-exports.create = (name, thirst, steps) => players.push(new Player(name, thirst, steps)) - 1;
+exports.create = (name) => players.push(new Player(name)) - 1;
 
 //Update a single attribute of the player
 exports.update = (i, atrib, value) =>
