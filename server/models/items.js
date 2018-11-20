@@ -43,7 +43,7 @@ exports.take = (i, itemName, newOwner) => {
   // let location = null;
   for(let j = 0; j < items.length; j++){
     if(items[j].owner === currentOwner && items[j].name === item)
-        items[j].owner = (updateOwner);
+      items[j].owner = (updateOwner);
   }
   // if (typeof location !== null)
   //     items[j]["owner"] = updateOwner;
