@@ -1,20 +1,21 @@
-function Item(owner, name, uses, icon, description) {
-  this.owner   = owner;
+function Item(name, owner, uses, description) {
   this.name    = name;
+  this.owner   = owner;
   this.uses    = uses;
-  this.icon    = icon;
   this.description = description;
 }
 
 let items = [
-    new Item(0, "chalk", 5, "chalk.jpg", "Chalk - Leave messages on walls")
-  , new Item(1, "chalk", 5, "chalk.jpg", "Chalk - Leave messages on walls")
-  , new Item(2, "rope", 1, "rope.jpg", "Rope, swing uses")
-  , new Item(3, "plank", 1, "plank.jpg", "Plank, Place down to cross")
-  , new Item("John", "Hat", 1, "Hat.jpg", "Hat to keep your head warm")
+    new Item("chalk",   "/cells/0/1", 1, "a piece of chalk")
+  , new Item("rope",    "/cells/0/0", 1, "a coil of rope")
+  , new Item("plank",   "/cells/2/0", 1, "a wooden plank")
+  , new Item("water",   "/cells/2/2", 1, "a canteen")
 ];
 
+
 let exists = (x) => typeof x !== 'undefined'
+
+items.forEach((itm, idx) => itm.id = idx);
 
 //List all items in the game
 exports.list = () => items;
@@ -23,7 +24,7 @@ exports.list = () => items;
 exports.read = (i) => items[i];
 
 //Create an item
-exports.create = (owner, name, uses, icon, description) => items.push(new Item(parseInt(owner), name, uses, icon, description)) - 1;
+exports.create = (name, owner, uses, icon, description) => items.push(new Item(parseInt(owner), name, uses, icon, description)) - 1;
 
 //Updates Single Attribute
 exports.update = (i, atrib, value) =>
