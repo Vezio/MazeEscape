@@ -4,7 +4,15 @@ cell = require("../models/cell.js");
 obs  = require("../models/obstacles.js");
 
 //Retrieve a list of all items in the game
-exports.listItems = (req, res) => res.send(item.list());
+exports.listItems = (req, res) => {
+  let items = item.list();
+  console.log(items);
+  if (req.query.owner)
+    items = items.filter((i) => i.owner == req.query.owner);
+  res.send(items);
+}
+
+
 
 //Retrieve an Item
 exports.getItem = (req, res) => {
