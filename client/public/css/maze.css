@@ -84,6 +84,7 @@ aside {
   transform: translate(0, -50%);
   background-color: rgba(128,128,128,0.5);
   padding: 1em;
+  background-image: url("../images/connectwork.png");
 }
 
 aside input {

@@ -34,29 +34,6 @@ window.onload = function() {
         });
     });
 }
-          //
-          //
-          // fetch("http://localhost:3000/api/items/")
-          //   .then((res) => res.json())
-          //   .then(function(json) {
-          //     allItems = json;
-          //     for (let j = 0; j < allItems.length; j++) {
-          //       if (allItems[j]["loc"] === player.loc) {
-          //         itemId = j;
-          //       }
-          //     }
-          //     fetch("http://localhost:3000/api/items/" + itemId)
-          //       .then((res) => res.json())
-          //       .then(function(json) {
-          //         item = json;
-          //         console.log(itemId);
-          //         fetch("http://localhost:3000/api/" + item.loc)
-          //           .then((res) => res.json())
-          //           .then(loadItems);
-          //           console.log(item.loc);
-          //         });
-          //       });
-
 
 function loadCell(json) {
   // console.log("TE")
@@ -106,6 +83,9 @@ function turnLeft() {
       player.dir = "north";
       break;
   }
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -134,6 +114,9 @@ function turnRight() {
       player.dir = "north";
       break;
   }
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -162,6 +145,9 @@ function turnAround() {
       player.dir = "east";
       break;
   }
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -228,7 +214,9 @@ function moveFwd() {
     .then(function(res) {
       console.log(res.status);
     });
-
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
   fetch("http://localhost:3000/api/" + player.loc)
     .then((res) => res.json())
     .then(loadCell);
@@ -350,8 +338,17 @@ function takeItem(e) {
 }
 
 function useItem(e) {
- // future work - interesting logic goes here...
  var item = e.target;
- //inventory.removeChild(item);
- console.log("used", item.name);
+var inventory = document.querySelector("#inventory");
+ fetch("http://localhost:3000/api/items/"+item.json.id, {
+   method: "PATCH",
+   body: '{"atrib":"owner","value":"used"}',
+   headers: {
+     "Content-type": "application/json"
+   }})
+   .then(function(res){
+     console.log(res.status);
+     inventory.removeChild(item);
+     console.log("used", item.name);
+ })
 }
