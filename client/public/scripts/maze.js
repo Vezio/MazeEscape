@@ -28,12 +28,35 @@ window.onload = function() {
           fetch("http://localhost:3000/api/items?owner="+player.loc)
             .then((res) => res.json())
             .then(loadItems);
+          fetch("http://localhost:3000/api/items?owner=/players/"+playerId)
+            .then((res) => res.json())
+            .then(loadInventory);
         });
     });
-  // fetch("http://localhost:3000/api/items?owner=/actors/"+playerId)
-  //   .then((res) => res.json())
-  //   .then(loadInventory);
 }
+          //
+          //
+          // fetch("http://localhost:3000/api/items/")
+          //   .then((res) => res.json())
+          //   .then(function(json) {
+          //     allItems = json;
+          //     for (let j = 0; j < allItems.length; j++) {
+          //       if (allItems[j]["loc"] === player.loc) {
+          //         itemId = j;
+          //       }
+          //     }
+          //     fetch("http://localhost:3000/api/items/" + itemId)
+          //       .then((res) => res.json())
+          //       .then(function(json) {
+          //         item = json;
+          //         console.log(itemId);
+          //         fetch("http://localhost:3000/api/" + item.loc)
+          //           .then((res) => res.json())
+          //           .then(loadItems);
+          //           console.log(item.loc);
+          //         });
+          //       });
+
 
 function loadCell(json) {
   // console.log("TE")
@@ -293,7 +316,6 @@ function populateItems(items, container, listener) {
  }
  // add new children for each item
  items.forEach(function(itm){
-   if (itm.owner = player.loc){
    var elem = document.createElement("input");
    elem.type = "image";
    elem.name = itm.name;
@@ -302,7 +324,6 @@ function populateItems(items, container, listener) {
    elem.json = itm;
    elem.addEventListener("click", listener);
    container.appendChild(elem);
- }
  });
 }
 
