@@ -1,15 +1,15 @@
 function Item(name, owner, uses, description) {
-  this.name    = name;
-  this.owner   = owner;
-  this.uses    = uses;
+  this.name        = name;
+  this.owner       = owner;
+  this.uses        = uses;
   this.description = description;
 }
 
 let items = [
-    new Item("chalk",   "/cells/0/1", 1, "a piece of chalk")
-  , new Item("rope",    "/cells/0/0", 1, "a coil of rope")
-  , new Item("plank",   "/cells/2/0", 1, "a wooden plank")
-  , new Item("water",   "/cells/2/2", 1, "a canteen")
+    new Item("Chalk",   "/cells/0/1", 1, "a piece of chalk")
+  , new Item("Rope",    "/cells/0/0", 1, "a coil of rope")
+  , new Item("Plank",   "/cells/2/0", 1, "a wooden plank")
+  , new Item("Water",   "/cells/2/2", 1, "a canteen")
 ];
 
 
