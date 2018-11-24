@@ -25,14 +25,14 @@ window.onload = function() {
             .then((res) => res.json())
             .then(loadCell);
             console.log(player.loc);
-            //Load user name into info pop up (modal) and Load user location on game screen
-            loadUserNameAndLoc(player);
           fetch("http://localhost:3000/api/items?owner="+player.loc)
             .then((res) => res.json())
             .then(loadItems);
           fetch("http://localhost:3000/api/items?owner=/players/"+playerId)
             .then((res) => res.json())
             .then(loadInventory);
+          //Load user name into info pop up (modal) and Load user location on game screen
+          loadUserNameAndLoc(player);
         });
     });
 }
@@ -224,8 +224,20 @@ function moveFwd() {
   fetch("http://localhost:3000/api/items?owner="+player.loc)
     .then((res) => res.json())
     .then(loadItems);
-  //update player location
-  loadUserNameAndLoc(player);
+    fetch("http://localhost:3000/api/players/" + playerId, {
+        method: "PATCH",
+        //Increase player steps by 1 is (having hard time passing numbers through json)
+        //Works, but I will find a better fix soon.
+        body: '{"attrib":"steps","value":" "}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(function(res) {
+        //update player location and steps
+        loadUserNameAndLoc(player);
+      });
+
   renderCell(cell);
 }
 
@@ -363,7 +375,8 @@ window.onclick = function(event) {
     }
 }
 
-
+// Loads in player name and location onto the information modal
 function loadUserNameAndLoc(player) {
   document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc;
+  document.getElementById("steps").innerHTML = player.steps;
 }
