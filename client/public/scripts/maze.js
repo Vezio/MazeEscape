@@ -21,12 +21,12 @@ window.onload = function() {
         .then(function(json) {
           player = json;
           console.log(playerId);
-          //Load user name into info pop up (modal)
-          loadUserName(player);
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
             .then(loadCell);
             console.log(player.loc);
+            //Load user name into info pop up (modal) and Load user location on game screen
+            loadUserNameAndLoc(player);
           fetch("http://localhost:3000/api/items?owner="+player.loc)
             .then((res) => res.json())
             .then(loadItems);
@@ -224,7 +224,8 @@ function moveFwd() {
   fetch("http://localhost:3000/api/items?owner="+player.loc)
     .then((res) => res.json())
     .then(loadItems);
-
+  //update player location
+  loadUserNameAndLoc(player);
   renderCell(cell);
 }
 
@@ -363,7 +364,6 @@ window.onclick = function(event) {
 }
 
 
-function loadUserName(player) {
-  document.getElementById("userName").innerHTML = "Hi, " + player.name;
-  console.log(player.name);
+function loadUserNameAndLoc(player) {
+  document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc;
 }
