@@ -21,6 +21,8 @@ window.onload = function() {
         .then(function(json) {
           player = json;
           console.log(playerId);
+          //Load user name into info pop up (modal)
+          loadUserName(player);
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
             .then(loadCell);
@@ -83,9 +85,6 @@ function turnLeft() {
       player.dir = "north";
       break;
   }
-  fetch("http://localhost:3000/api/items?owner="+player.loc)
-    .then((res) => res.json())
-    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -96,6 +95,10 @@ function turnLeft() {
     .then(function(res) {
       console.log(res.status);
     });
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
+
   renderCell(cell);
 }
 
@@ -114,9 +117,6 @@ function turnRight() {
       player.dir = "north";
       break;
   }
-  fetch("http://localhost:3000/api/items?owner="+player.loc)
-    .then((res) => res.json())
-    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -127,6 +127,10 @@ function turnRight() {
     .then(function(res) {
       console.log(res.status);
     });
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
+
   renderCell(cell);
 }
 
@@ -145,9 +149,6 @@ function turnAround() {
       player.dir = "east";
       break;
   }
-  fetch("http://localhost:3000/api/items?owner="+player.loc)
-    .then((res) => res.json())
-    .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
       method: "PATCH",
       body: '{"attrib":"dir","value":"' + player.dir + '"}',
@@ -158,6 +159,10 @@ function turnAround() {
     .then(function(res) {
       console.log(res.status);
     });
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
+
   renderCell(cell);
 }
 
@@ -210,16 +215,15 @@ function moveFwd() {
         "Content-type": "application/json"
       }
     })
-
     .then(function(res) {
       console.log(res.status);
     });
-  fetch("http://localhost:3000/api/items?owner="+player.loc)
-    .then((res) => res.json())
-    .then(loadItems);
   fetch("http://localhost:3000/api/" + player.loc)
     .then((res) => res.json())
     .then(loadCell);
+  fetch("http://localhost:3000/api/items?owner="+player.loc)
+    .then((res) => res.json())
+    .then(loadItems);
 
   renderCell(cell);
 }
@@ -250,44 +254,6 @@ document.body.addEventListener("keyup", function(e) {
       break;
   }
 });
-
-//Use item in game and remove from list of items
-// function useItem(e) {
-//   var item = e.target;
-//   inventory.removeChild(item);
-//   console.log("use", item.name);
-// }
-//
-// //Get the item in inventory that the user requested and pass it to useItem()
-// var inventory = document.querySelector("#inventory fieldset");
-// var myItems = inventory.querySelectorAll("input");
-// myItems.forEach(function(item) {
-//   item.addEventListener("click", useItem);
-// });
-//
-// //Take item from main screen and pass it to the inventory
-// function takeItem(e) {
-//   var item = e.target;
-//   console.log("take", item.name)
-//   inventory.appendChild(item);
-//   item.addEventListener("click", useItem);
-// }
-//
-// //Select the item on the main screen and pass it to takeItem()
-// var mainItem = document.querySelector("main");
-// var mainTotItems = mainItem.querySelectorAll("input");
-// mainTotItems.forEach(function(item) {
-//   item.addEventListener("click", takeItem);
-// });
-//
-
-
-
-
-
-
-
-
 
 function loadItems(json) {
  populateItems(json, document.querySelector("#items"), takeItem);
@@ -339,7 +305,7 @@ function takeItem(e) {
 
 function useItem(e) {
  var item = e.target;
-var inventory = document.querySelector("#inventory");
+ var inventory = document.querySelector("#inventory");
  fetch("http://localhost:3000/api/items/"+item.json.id, {
    method: "PATCH",
    body: '{"atrib":"owner","value":"used"}',
@@ -351,4 +317,53 @@ var inventory = document.querySelector("#inventory");
      inventory.removeChild(item);
      console.log("used", item.name);
  })
+}
+
+// function drawMessage(){
+//   alert("yessir");
+//   let items;
+//   fetch("http://localhost:3000/api/items/", {
+//     .then((res) => res.json())
+//     .then(function(json) {
+//       items = json;
+//       for (let i = 0; i < items.length; i++) {
+//         if (items[i]["name"] === "Chalk" && items[i]["owner"] === "/players/"+playerId {
+//           playerId = i;
+//         }
+//       }
+//   )}
+
+
+// MODAL
+
+// Get the modal
+var information = document.getElementById('information');
+
+// Get the button that opens the modal
+var infoButton = document.getElementById("infoButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+infoButton.onclick = function() {
+    information.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    information.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == information) {
+        information.style.display = "none";
+    }
+}
+
+
+function loadUserName(player) {
+  document.getElementById("userName").innerHTML = "Hi, " + player.name;
+  console.log(player.name);
 }
