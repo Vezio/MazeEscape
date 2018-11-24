@@ -34,6 +34,16 @@ h1 {
   color: rgb(34,102,102);
 }
 
+.descrip{
+  padding-bottom: 0.5em;
+  margin: 0;
+  font-size: 300%;
+  text-shadow: 0.05em 0.05em rgb(0,0,0);
+  font-family: Vademecu, sans-serif;
+  color: rgb(34,102,102);
+  text-decoration: underline;
+}
+
 main img {
   width: 100%;
   height: 98%;
@@ -110,6 +120,7 @@ nav input[name=right] {
   padding: 1em;
   background-image: url("../images/connectwork.png");
   border:3px solid #FFFFFF;
+  text-align: center;
 }
 
 
@@ -151,7 +162,7 @@ audio {
 /* Modal Content/Box */
 .modal-content {
     background-color: rgba(31, 36, 36, 0.7);
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px rgba(31, 36, 36, 0.8);
     border-radius: 25px;
@@ -166,16 +177,25 @@ audio {
     font-weight: bold;
 }
 
-p {
+.info {
   font-family: Vademecu, sans-serif;
   font-size:130%;
   color: rgb(34,102,102);
   padding-left:.5em;
   text-align: left;
+  padding-bottom: -1em;
+}
+
+#infoButtonText {
+  font-family: Vademecu, sans-serif;
+  font-size:130%;
+  color: rgb(34,102,102);
+  text-align: center;
 }
 
 h2 {
   margin: 0;
+  padding-top:1em;
   font-size: 200%;
   font-weight: normal;
   font-family: Vademecu, sans-serif;
@@ -183,9 +203,49 @@ h2 {
   opacity: 1;
 }
 
+
 .close:hover,
 .close:focus {
     color: red;
     text-decoration: none;
     cursor: pointer;
+}
+
+button {
+    background-color: #e7e7e7;
+    cursor: pointer;
+    border-radius: 1em;
+}
+
+input[name=fwd] {
+  height: 4em; 
+  transform: translate(-180%, -140%) rotate(270deg);
+  border-radius: 25px;
+  border: 3px solid black;
+  box-shadow: 4px 2px 2px grey;
+}
+
+input[name=bwd] {
+  border-radius: 25px;
+  border: 3px solid black;
+  height: 4em;
+  transform: translate(-50%, -75%) rotate(180deg);
+  box-shadow: 4px 2px 2px grey;
+}
+
+
+input[name=left] {
+  border-radius: 25px;
+  border: 3px solid black;
+  height: 4em;
+  transform: translate(-180%, -140%) rotate(270deg);
+  box-shadow: 4px 2px 2px grey;
+}
+
+input[name=right] {
+  border-radius: 25px;
+  border: 2px solid black;
+  height: 4em;
+  transform: translate(-180%, -140%) rotate(270deg);
+  box-shadow: 4px 2px 2px grey;
 }
