@@ -4,6 +4,11 @@ All Current Work: Tyler Rimaldi
 
 */
 
+@font-face {
+    font-family: Vademecu;
+    src: url(../fonts/vademecu.ttf);
+}
+
 html, body {
   position: absolute;
   width: 100%;
@@ -19,6 +24,14 @@ main {
   height: 98%;
   column-count: 3;
   column-gap: 2px;
+}
+
+h1 {
+  margin: 0;
+  text-shadow: 0.05em 0.05em rgb(0,0,0);
+  font-family: Vademecu, sans-serif;
+  color: rgb(34,102,102);
+  text-decoration: underline;
 }
 
 main img {
@@ -85,6 +98,10 @@ aside {
   background-color: rgba(128,128,128,0.5);
   padding: 1em;
   background-image: url("../images/connectwork.png");
+  border:3px solid #FFFFFF;
+}
+#forward, #right, #backward, #left {
+  border:3px solid #FFFFFF;
 }
 
 aside input {
