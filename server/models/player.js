@@ -1,6 +1,6 @@
 function Player(name) {
   this.name = name;
-  this.thirst = 100;
+  this.steps = 0;
   this.loc = "/cells/0/1";
   this.dir = "north";
   // this.inventory.push(this.inventory); //We are going to need to make this an array
@@ -36,8 +36,12 @@ exports.read = (i) => players[i];
 exports.create = (name) => players.push(new Player(name)) - 1;
 
 //Update a single attribute of the player
-exports.update = (i, atrib, value) =>
+exports.update = (i, atrib, value) =>{
+ if (atrib === "steps"){
+   value = parseInt(players[i].steps +1);
+ }
  exists(players[i]) && exists(players[i][atrib]) ? (players[i][atrib] = value) : undefined;
+}
 
 //Delete an entire player
 exports.delete = (i) => exists(i) ? delete players[i] : undefined;
