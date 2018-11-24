@@ -32,35 +32,33 @@ All Current Work: Tyler Rimaldi
     </form>
   </nav>
   <aside id="itemAside">
-    <h1>Items</h1>
+    <h1 class="descrip">Items</h1>
     <form onsubmit="return false;">
       <fieldset id="inventory"></fieldset>
     </form>
   </aside>
 
   <aside id="stepsAside">
-    <h1>Steps</h1>
+    <h1 class="descrip">Steps</h1>
     <form onsubmit="return false;">
       <fieldset id="steps"></fieldset>
     </form>
+    <button id="infoButton"><p id="infoButtonText">Info</p></button>
   </aside>
 
-<!-- MODAL -->
-  <button id="infoButton">Open Modal</button>
 
   <!-- The Modal -->
   <div id="information" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
       <h1 id ="userName"></h1>
       <h2>OBJECTIVE:</h2>
-      <p>Escape alive, don't get killed by any of the traps or monsters. Find out
+      <p class="info">Escape alive, don't get killed by any of the traps or monsters. Find out
          who you really are and why the maze will not ever let you leave this dark
          mess!</p>
       <h2>Have to exit the game? </h2>
-        <p>Don't worry! To go back to the main menu, press the "escape key" on your keyboard! All progress will be saved. <p>
+        <p class="info">Don't worry! To go back to the main menu, press the "escape key" on your keyboard! All progress will be saved. <p>
     </div>
   </div>
 
