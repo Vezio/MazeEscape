@@ -35,7 +35,7 @@ h1 {
 }
 
 .descrip{
-  padding-bottom: 0.5em;
+  padding-bottom: 0.2em;
   margin: 0;
   font-size: 300%;
   text-shadow: 0.05em 0.05em rgb(0,0,0);
@@ -195,7 +195,7 @@ audio {
 
 h2 {
   margin: 0;
-  padding-top:1em;
+  padding-bottom: 0.4em;
   font-size: 200%;
   font-weight: normal;
   font-family: Vademecu, sans-serif;
@@ -218,7 +218,7 @@ button {
 }
 
 input[name=fwd] {
-  height: 4em; 
+  height: 4em;
   transform: translate(-180%, -140%) rotate(270deg);
   border-radius: 25px;
   border: 3px solid black;
