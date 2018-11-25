@@ -1,3 +1,18 @@
+# Professor, read this before looking any further.
+## From last class, I interpreted the due date to be "before next class". However I believe it was said that you may look at our progress on Sunday. Here is essentially what I have completed and FULLY working as of right now.
+
+## Thus far I have done the follow:
+### - Enabled Players to create new accounts, also added exception catchers
+### - Enabled Players to resume play, also added exception catchers to this as well
+### - The maze loads all walls and items appropriatly as designed
+### - The player can load an information box (modal) during the middle of the game to see which room they're in. This also displays the current users name.
+### - Currently, the game is counting steps, this is outputted on the left side of the screen. (For some reason you must refresh the screen each time you walk forward, will address this soon)
+### - I have added textures to each wall and cleaned up some html & css code
+## Still in progress --> will be finished before next class.
+### - Use item on an obstacle
+### - Allow messages to be displayed on walls (in progress)
+
+
 # Lights Out
 
 A semester project designed to piece together the skills acquired throughout the learning process. 
