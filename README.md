@@ -7,7 +7,7 @@
 ### - The maze loads all walls and items appropriatly as designed
 ### - The player can load an information box (modal) during the middle of the game to see which room they're in. This also displays the current users name. (my explanation isn't doing much justice, but I think its cool)
 ### - Currently, the game is counting steps, this is outputted on the left side of the screen. (For some reason you must refresh the screen each time you walk forward, will address this soon)
-### - I have added textures to each wall and cleaned up some html & css code
+### - I have added textures to each wall and cleaned up some html & css code (keep in mind, the user has a "flashlight" that is why there is a weird circlular texture on the wall directly in front)
 ## Still in progress --> will be finished before next class.
 ### - Use item on an obstacle
 ### - Allow messages to be displayed on walls (in progress)
