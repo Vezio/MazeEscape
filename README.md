@@ -5,7 +5,7 @@
 ### - Enabled Players to create new accounts, also added exception catchers
 ### - Enabled Players to resume play, also added exception catchers to this as well
 ### - The maze loads all walls and items appropriatly as designed
-### - The player can load an information box (modal) during the middle of the game to see which room they're in. This also displays the current users name.
+### - The player can load an information box (modal) during the middle of the game to see which room they're in. This also displays the current users name. (my explanation isn't doing much justice, but I think its cool)
 ### - Currently, the game is counting steps, this is outputted on the left side of the screen. (For some reason you must refresh the screen each time you walk forward, will address this soon)
 ### - I have added textures to each wall and cleaned up some html & css code
 ## Still in progress --> will be finished before next class.
