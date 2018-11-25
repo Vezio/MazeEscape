@@ -28,8 +28,9 @@ main {
 
 h1 {
   margin: 0;
-  font-size: 300%;
+  font-size: 250%;
   text-shadow: 0.05em 0.05em rgb(0,0,0);
+  padding-bottom: 0.5em;
   font-family: Vademecu, sans-serif;
   color: rgb(34,102,102);
 }
@@ -37,7 +38,7 @@ h1 {
 .descrip{
   padding-bottom: 0.2em;
   margin: 0;
-  font-size: 300%;
+  font-size: 250%;
   text-shadow: 0.05em 0.05em rgb(0,0,0);
   font-family: Vademecu, sans-serif;
   color: rgb(34,102,102);
@@ -195,7 +196,7 @@ audio {
 
 h2 {
   margin: 0;
-  padding-bottom: 0.4em;
+  padding-bottom: 0.2em;
   font-size: 200%;
   font-weight: normal;
   font-family: Vademecu, sans-serif;
