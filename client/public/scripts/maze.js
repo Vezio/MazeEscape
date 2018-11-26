@@ -336,62 +336,64 @@ function takeItem(e) {
 function useItem(e) {
   var item = e.target;
   var inventory = document.querySelector("#inventory");
+  var work;
+  var wall;
   //Use below as a template:
   //----
   if (item.name === "Chalk") {
-    let wall = prompt("Enter a wall (north, south, east, west)");
-    let input = prompt("Enter a message!");
-    fetch("http://localhost:3000/api/messages", {
-        method: "POST",
-        body: '{"owner":"' + wall + '","location":"' + player.loc + '","content":"' + input + '"}',
-        headers: {
-          "Content-type": "application/json"
-        }
-      })
-      .then(function(res) {
-        console.log(res.status);
-      })
-    // console.log("fef");
-    // console.log(cell);
-    // console.log(cell.north);
-    // console.log(wall);
-    if (wall === "south") {
-      if (cell.south === false) {
-        alert("Worked");
-      }
-    }
-    if (wall === "north") {
-      if (cell.north === false) {
-        alert("Worked");
-      }
-    }
-    if (wall === "west") {
-      if (cell.west === false) {
-        alert("Worked");
-      }
-    }
-    if (wall === "east") {
-      if (cell.east === false) {
-        alert("Worked");
+    wall = prompt("Enter a wall (north, south, east, west)").toString();
+    work = false;
+    while (work === false) {
+      if (wall.toLowerCase() === "south" && cell.south === false) {
+        work = true;
+      } else if (wall.toLowerCase() === "north" && cell.north === false) {
+        work = true;
+      } else if (wall.toLowerCase() === "west" && cell.west === false) {
+        work = true;
+      } else if (wall.toLowerCase() === "east" && cell.east === false) {
+        work = true;
+      } else if (wall.toLowerCase() !== "north" || wall.toLowerCase() !== "south" || wall.toLowerCase() !== "east" || wall.toLowerCase() !== "west") {
+        wall = prompt("Your wall is not present! Use the direction to help assist which wall to write on. (North, South, East, West)");
+          if(wall === null){
+            work = true; //user clicked cancel
+          }
       }
     }
 
+    let input = prompt("Enter a message within 60 characters, exclusive!");
+    //Check for message with all spaces
+    if (!input.replace(/\s/g, '').length) {
+      alert("Your message must contain information!");
+    //Check for message longer than 60 characters, exclusive
+    } else if (input.length > 60) {
+      alert("Please enter a message within 60 characters." +
+        "Your message, \"" + input + "\" contained " + input.length + " characters");
+    } else {
+      fetch("http://localhost:3000/api/messages", {
+          method: "POST",
+          body: '{"owner":"' + wall.toLowerCase() + '","location":"' + player.loc + '","content":"' + input + '"}',
+          headers: {
+            "Content-type": "application/json"
+          }
+        })
+        .then(function(res) {
+          console.log(res.status);
+        })
+      //Keep this at the end so the item is actually used once all conditions are met
+      fetch("http://localhost:3000/api/items/" + item.json.id, {
+          method: "PATCH",
+          body: '{"atrib":"owner","value":"used"}',
+          headers: {
+            "Content-type": "application/json"
+          }
+        })
+        .then(function(res) {
+          console.log(res.status);
+          inventory.removeChild(item);
+          console.log("used", item.name);
+        })
+    }
   }
-  //----
-
-  //Keep this at the end
-  fetch("http://localhost:3000/api/items/" + item.json.id, {
-      method: "PATCH",
-      body: '{"atrib":"owner","value":"used"}',
-      headers: {
-        "Content-type": "application/json"
-      }
-    })
-    .then(function(res) {
-      console.log(res.status);
-      inventory.removeChild(item);
-      console.log("used", item.name);
-    })
 }
 
 function message() {
@@ -410,39 +412,28 @@ function message() {
     });
 }
 
-
-
-// MODAL
-
-// Get the modal
-var information = document.getElementById('information');
-
-// Get the button that opens the modal
-var infoButton = document.getElementById("infoButton");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-infoButton.onclick = function() {
-  information.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  information.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == information) {
-    information.style.display = "none";
-  }
-}
-
 // Loads in player name and location onto the information modal
 function loadUserNameAndLoc() {
   document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc;
   document.getElementById("steps").innerHTML = player.steps;
   document.getElementById("direction").innerHTML = player.dir;
+}
+
+// Modal information box (Assisted by W3 School examples)
+var information = document.getElementById('information');
+var infoButton = document.getElementById("infoButton");
+var span = document.getElementsByClassName("close")[0];
+
+infoButton.onclick = function() {
+  information.style.display = "block";
+}
+
+span.onclick = function() {
+  information.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == information) {
+    information.style.display = "none";
+  }
 }
