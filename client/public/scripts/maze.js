@@ -396,6 +396,9 @@ function message() {
         }
       }
     });
+}
+
+
 
 // MODAL
 
