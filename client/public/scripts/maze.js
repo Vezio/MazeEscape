@@ -41,12 +41,12 @@ window.onload = function() {
     });
 }
 
-// function loadCell(json) {
-//   cell = json;
-//   console.log(cell);
-//   renderCell(cell);
-//   console.log(cell);
-// }
+function loadCell(json) {
+  cell = json;
+  console.log(cell);
+  renderCell(cell);
+  console.log(cell);
+}
 
 function renderCell(cell) {
   // console.log("TE")
@@ -381,49 +381,21 @@ function useItem(e) {
     })
 }
 
-// function drawMessage(owner,content){
-//   let wall = owner;
-//   let input = content;
-//   let walls = document.querySelectorAll("main img");
-//   switch (wall) {
-//     case "north":
-//       walls[0].src = cell.west ? "images/no-wall.png" : "images/wall-left.png";
-//       walls[1].src = cell.north ? "images/no-wall.png" : "images/wall-ahead.png";
-//       walls[2].src = cell.east ? "images/no-wall.png" : "images/wall-right.png";
-//       break;
-//     case "south":
-//       walls[0].src = cell.east ? "images/no-wall.png" : "images/wall-left.png";
-//       walls[1].src = cell.south ? "images/no-wall.png" : "images/wall-ahead.png";
-//       walls[2].src = cell.west ? "images/no-wall.png" : "images/wall-right.png";
-//       break;
-//     case "east":
-//       walls[0].src = cell.north ? "images/no-wall.png" : "images/wall-left.png";
-//       walls[1].src = cell.east ? "images/no-wall.png" : "images/wall-ahead.png";
-//       walls[2].src = cell.south ? "images/no-wall.png" : "images/wall-right.png";
-//       break;
-//     case "west":
-//       walls[0].src = cell.south ? "images/no-wall.png" : "images/wall-left.png";
-//       walls[1].src = cell.west ? "images/no-wall.png" : "images/wall-ahead.png";
-//       walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
-//       break;
-//   }
-//
-//   // console.log(items);
-//   // console.log(cell);
-//   // // fetch("http://localhost:3000/api/items?owner=" + playerId)
-//   // //   .then((res) => res.json())
-//   // //   .then(function(json) {
-//   // //     items = json;
-//   // // });
-//   // // fetch("http://localhost:3000/api/items?owner=" + playerId)
-//   // // .then(function(json) {
-//   // //   items = json;
-//   //     for (let i = 0; i < items.length; i++) {
-//   //       if (items[i]["name"] === "Chalk")
-//   //         alert("yes");
-//   //       }
-// }
+function message() {
+  let messages;
+  fetch("http://localhost:3000/api/messages/")
+    .then((res) => res.json())
+    .then(function(json) {
+      messages = json;
 
+      for (let i = 0; i < messages.length; i++) {
+        if (messages[i]["location"] === player.loc) {
+          if (player.dir === messages[i]["owner"]){
+            alert(messages[i].content);
+          }
+        }
+      }
+    });
 
 // MODAL
 
