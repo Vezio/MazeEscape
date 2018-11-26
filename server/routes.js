@@ -58,4 +58,12 @@ router.route('/cells/:x/:y')
 //   .post(gameCtlr.addAnItem)
 //   .delete(gameCtlr.deleteCell);
 
+router.route("/messages")
+  .get(playCtlr.listMessages)
+  .post(playCtlr.createMessage);
+
+router.route("/messages/:id")
+  .get(playCtlr.getMessage)
+
+
 module.exports = router;
