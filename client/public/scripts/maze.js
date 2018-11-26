@@ -21,14 +21,14 @@ window.onload = function() {
         .then((res) => res.json())
         .then(function(json) {
           player = json;
-          console.log(playerId);
+          // console.log(playerId);
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
             .then(function(json) {
               cell = json
               renderCell(cell);
             });
-            // console.log(player.loc);
+          // console.log(player.loc);
           fetch("http://localhost:3000/api/items?owner=" + player.loc)
             .then((res) => res.json())
             .then(loadItems);
@@ -36,16 +36,16 @@ window.onload = function() {
             .then((res) => res.json())
             .then(loadInventory);
           //Load user name into info pop up (modal) and Load user location on game screen
-          loadUserNameAndLoc(player);
+          loadUserNameAndLoc();
         });
     });
 }
 
 function loadCell(json) {
   cell = json;
-  console.log(cell);
+  // console.log(cell);
   renderCell(cell);
-  console.log(cell);
+  // console.log(cell);
 }
 
 function renderCell(cell) {
@@ -105,6 +105,7 @@ function turnLeft() {
     .then(loadItems);
 
   renderCell(cell);
+  loadUserNameAndLoc();
 }
 
 function turnRight() {
@@ -137,6 +138,7 @@ function turnRight() {
     .then(loadItems);
 
   renderCell(cell);
+  loadUserNameAndLoc();
 }
 
 function turnAround() {
@@ -169,9 +171,13 @@ function turnAround() {
     .then(loadItems);
 
   renderCell(cell);
+  loadUserNameAndLoc();
 }
 
 function moveFwd() {
+  //must reload page for some reason so that the step counter will refresh... will look into fixing
+  //as it gets annoying
+  location.reload(false);
   switch (player.dir) {
     case "north":
       if (cell.north) {
@@ -230,18 +236,16 @@ function moveFwd() {
     .then((res) => res.json())
     .then(loadItems);
   fetch("http://localhost:3000/api/players/" + playerId, {
-      method: "PATCH",
-      //Increase player steps by 1 is (having hard time passing numbers through json)
-      //Works, but I will find a better fix soon.
-      body: '{"attrib":"steps","value":" "}',
-      headers: {
-        "Content-type": "application/json"
-      }
-    })
-
+    method: "PATCH",
+    //Increase player steps by 1 is (having hard time passing numbers through json)
+    //Works, but I will find a better fix soon.
+    body: '{"attrib":"steps","value":" "}',
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
   renderCell(cell);
   //update player location and steps
-  loadUserNameAndLoc(player);
 }
 
 //Return to title screen
@@ -325,45 +329,45 @@ function useItem(e) {
   var inventory = document.querySelector("#inventory");
   //Use below as a template:
   //----
-  if (item.name === "Chalk"){
+  if (item.name === "Chalk") {
     let wall = prompt("Enter a wall (north, south, east, west)");
     let input = prompt("Enter a message!");
     fetch("http://localhost:3000/api/messages", {
-      method: "POST",
-      body: '{"owner":"' + wall + '","location":"' + player.loc + '","content":"' + input + '"}',
-      headers: {
-        "Content-type": "application/json"
-      }
-    })
+        method: "POST",
+        body: '{"owner":"' + wall + '","location":"' + player.loc + '","content":"' + input + '"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
       .then(function(res) {
         console.log(res.status);
       })
-      // console.log("fef");
-      // console.log(cell);
-      // console.log(cell.north);
-      // console.log(wall);
-      if(wall === "south"){
-        if(cell.south === false){
-          alert("Worked");
-        }
+    // console.log("fef");
+    // console.log(cell);
+    // console.log(cell.north);
+    // console.log(wall);
+    if (wall === "south") {
+      if (cell.south === false) {
+        alert("Worked");
       }
-      if(wall === "north"){
-        if(cell.north === false){
-          alert("Worked");
-        }
-      }
-      if(wall === "west"){
-        if(cell.west === false){
-          alert("Worked");
-        }
-      }
-      if(wall === "east"){
-        if(cell.east === false){
-          alert("Worked");
-        }
-      }
-
     }
+    if (wall === "north") {
+      if (cell.north === false) {
+        alert("Worked");
+      }
+    }
+    if (wall === "west") {
+      if (cell.west === false) {
+        alert("Worked");
+      }
+    }
+    if (wall === "east") {
+      if (cell.east === false) {
+        alert("Worked");
+      }
+    }
+
+  }
   //----
 
   //Keep this at the end
@@ -387,10 +391,9 @@ function message() {
     .then((res) => res.json())
     .then(function(json) {
       messages = json;
-
       for (let i = 0; i < messages.length; i++) {
         if (messages[i]["location"] === player.loc) {
-          if (player.dir === messages[i]["owner"]){
+          if (player.dir === messages[i]["owner"]) {
             alert(messages[i].content);
           }
         }
@@ -429,7 +432,8 @@ window.onclick = function(event) {
 }
 
 // Loads in player name and location onto the information modal
-function loadUserNameAndLoc(player) {
+function loadUserNameAndLoc() {
   document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc;
   document.getElementById("steps").innerHTML = player.steps;
+  document.getElementById("direction").innerHTML = player.dir;
 }
