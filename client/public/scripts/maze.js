@@ -3,6 +3,7 @@ var playerId; //the target player location in the array of players
 var player; //the target player
 var cell;
 var items;
+var lcell;
 var inventory;
 var allPlayers; // all players in the game
 
@@ -23,8 +24,11 @@ window.onload = function() {
           console.log(playerId);
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
-            .then(loadCell);
-          console.log(player.loc);
+            .then(function(json) {
+              cell = json
+              renderCell(cell);
+            });
+            // console.log(player.loc);
           fetch("http://localhost:3000/api/items?owner=" + player.loc)
             .then((res) => res.json())
             .then(loadItems);
@@ -37,11 +41,12 @@ window.onload = function() {
     });
 }
 
-function loadCell(json) {
-  // console.log("TE")
-  cell = json;
-  renderCell(cell);
-}
+// function loadCell(json) {
+//   cell = json;
+//   console.log(cell);
+//   renderCell(cell);
+//   console.log(cell);
+// }
 
 function renderCell(cell) {
   // console.log("TE")
@@ -318,6 +323,50 @@ function takeItem(e) {
 function useItem(e) {
   var item = e.target;
   var inventory = document.querySelector("#inventory");
+  //Use below as a template:
+  //----
+  if (item.name === "Chalk"){
+    let wall = prompt("Enter a wall (north, south, east, west)");
+    let input = prompt("Enter a message!");
+    fetch("http://localhost:3000/api/messages", {
+      method: "POST",
+      body: '{"owner":"' + wall + '","location":"' + player.loc + '","content":"' + input + '"}',
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+      .then(function(res) {
+        console.log(res.status);
+      })
+      // console.log("fef");
+      // console.log(cell);
+      // console.log(cell.north);
+      // console.log(wall);
+      if(wall === "south"){
+        if(cell.south === false){
+          alert("Worked");
+        }
+      }
+      if(wall === "north"){
+        if(cell.north === false){
+          alert("Worked");
+        }
+      }
+      if(wall === "west"){
+        if(cell.west === false){
+          alert("Worked");
+        }
+      }
+      if(wall === "east"){
+        if(cell.east === false){
+          alert("Worked");
+        }
+      }
+
+    }
+  //----
+
+  //Keep this at the end
   fetch("http://localhost:3000/api/items/" + item.json.id, {
       method: "PATCH",
       body: '{"atrib":"owner","value":"used"}',
@@ -332,22 +381,48 @@ function useItem(e) {
     })
 }
 
-function drawMessage(){
-  console.log(items);
-  console.log(cell);
-  // fetch("http://localhost:3000/api/items?owner=" + playerId)
-  //   .then((res) => res.json())
-  //   .then(function(json) {
-  //     items = json;
-  // });
-  // fetch("http://localhost:3000/api/items?owner=" + playerId)
-  // .then(function(json) {
-  //   items = json;
-      for (let i = 0; i < items.length; i++) {
-        if (items[i]["name"] === "Chalk")
-          alert("yes");
-        }
-}
+// function drawMessage(owner,content){
+//   let wall = owner;
+//   let input = content;
+//   let walls = document.querySelectorAll("main img");
+//   switch (wall) {
+//     case "north":
+//       walls[0].src = cell.west ? "images/no-wall.png" : "images/wall-left.png";
+//       walls[1].src = cell.north ? "images/no-wall.png" : "images/wall-ahead.png";
+//       walls[2].src = cell.east ? "images/no-wall.png" : "images/wall-right.png";
+//       break;
+//     case "south":
+//       walls[0].src = cell.east ? "images/no-wall.png" : "images/wall-left.png";
+//       walls[1].src = cell.south ? "images/no-wall.png" : "images/wall-ahead.png";
+//       walls[2].src = cell.west ? "images/no-wall.png" : "images/wall-right.png";
+//       break;
+//     case "east":
+//       walls[0].src = cell.north ? "images/no-wall.png" : "images/wall-left.png";
+//       walls[1].src = cell.east ? "images/no-wall.png" : "images/wall-ahead.png";
+//       walls[2].src = cell.south ? "images/no-wall.png" : "images/wall-right.png";
+//       break;
+//     case "west":
+//       walls[0].src = cell.south ? "images/no-wall.png" : "images/wall-left.png";
+//       walls[1].src = cell.west ? "images/no-wall.png" : "images/wall-ahead.png";
+//       walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
+//       break;
+//   }
+//
+//   // console.log(items);
+//   // console.log(cell);
+//   // // fetch("http://localhost:3000/api/items?owner=" + playerId)
+//   // //   .then((res) => res.json())
+//   // //   .then(function(json) {
+//   // //     items = json;
+//   // // });
+//   // // fetch("http://localhost:3000/api/items?owner=" + playerId)
+//   // // .then(function(json) {
+//   // //   items = json;
+//   //     for (let i = 0; i < items.length; i++) {
+//   //       if (items[i]["name"] === "Chalk")
+//   //         alert("yes");
+//   //       }
+// }
 
 
 // MODAL
