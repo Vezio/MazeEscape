@@ -175,12 +175,12 @@ function turnAround() {
 }
 
 function moveFwd() {
-  //must reload page for some reason so that the step counter will refresh... will look into fixing
-  //as it gets annoying
-  location.reload(false);
   switch (player.dir) {
     case "north":
       if (cell.north) {
+        //must reload page for some reason so that the step counter will refresh... will look into fixing
+        //as it gets annoying
+        location.reload(false);
         console.log(player.loc + "HERE");
         let newY = cell.y + 1;
         let currentX = cell.x;
@@ -191,6 +191,9 @@ function moveFwd() {
       break;
     case "south":
       if (cell.south) {
+        //must reload page for some reason so that the step counter will refresh... will look into fixing
+        //as it gets annoying
+        location.reload(false);
         let newY = cell.y - 1;
         let currentX = cell.x;
         player.loc = "/cells/" + currentX + "/" + newY;
@@ -199,6 +202,9 @@ function moveFwd() {
       break;
     case "west":
       if (cell.west) {
+        //must reload page for some reason so that the step counter will refresh... will look into fixing
+        //as it gets annoying
+        location.reload(false);
         // console.log(player.loc + "HERE");
         let currentY = cell.y;
         let newX = cell.x - 1;
@@ -209,6 +215,9 @@ function moveFwd() {
       break;
     case "east":
       if (cell.east) {
+        //must reload page for some reason so that the step counter will refresh... will look into fixing
+        //as it gets annoying
+        location.reload(false);
         // console.log(player.loc + "HERE");
         let currentY = cell.y;
         let newX = cell.x + 1;
