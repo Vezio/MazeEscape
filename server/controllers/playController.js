@@ -2,6 +2,7 @@ item = require("../models/items.js");
 acc  = require("../models/player.js");
 cell = require("../models/cell.js");
 obs  = require("../models/obstacles.js");
+msg = require("../models/messages.js");
 
 //Retrieve a list of all items in the game
 exports.listItems = (req, res) => {
@@ -11,8 +12,6 @@ exports.listItems = (req, res) => {
     items = items.filter((i) => i.owner == req.query.owner);
   res.send(items);
 }
-
-
 
 //Retrieve an Item
 exports.getItem = (req, res) => {
@@ -106,6 +105,32 @@ exports.deleteObstacle = (req, res) => {
     res.sendStatus(204);
   else
     res.sendStatus(404);
+};
+
+
+exports.listMessages = (req, res) => {
+  let messages = msg.list();
+  console.log(messages);
+  if (req.query.messages)
+    messages = messages.filter((i) => i.location == req.query.location);
+  res.send(messages);
+};
+
+exports.getMessage = (req, res) => {
+  let data = msg.read(req.params.id);
+  if (typeof data === 'undefined')
+    res.sendStatus(404);
+  else
+    res.send(data);
+};
+exports.createMessage = (req, res) => {
+  try {
+    res.status(201).send(
+      msg.create(req.body.owner, req.body.location, req.body.content).toString()
+    );
+  } catch(e) {
+    res.status(400).send("Invalid message data.");
+  }
 };
 
 
