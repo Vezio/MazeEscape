@@ -15,12 +15,9 @@ router.route('/players/:id')
   .patch(accCtlr.updatePlayer)
   .delete(accCtlr.deletePlayer);
 
-router.route('/player/:player/item/:item')
-  .post(playCtlr.useItem);
-
 //--Item Routes--\\
 router.route('/items')
-  .get(playCtlr.listItems)
+  .get(playCtlr.listItems);
 
 router.route('/items/:id')
   .get(playCtlr.getItem)
@@ -30,7 +27,7 @@ router.route('/items/:id')
 //--Obstacle Routes--\\
 router.route('/obstacles')
   .get(playCtlr.listObstacles)
-  .post(gameCtlr.createObstacle)
+  .post(gameCtlr.createObstacle);
 
 router.route('/obstacles/:id')
   .get(playCtlr.getObstacle)
@@ -42,8 +39,22 @@ router.route("/cells")
   .get(gameCtlr.listCells);
 
 router.route('/cells/:x/:y')
-  .get(gameCtlr.getCell);
+  .get(gameCtlr.getCell)
+  .delete(gameCtlr.deleteCell);
 
+//--Message Routes--\\
+router.route("/messages")
+  .get(playCtlr.listMessages)
+  .post(playCtlr.createMessage);
+
+router.route("/messages/:id")
+  .get(playCtlr.getMessage)
+
+
+module.exports = router;
+
+
+//------------------------------------------------------------------------------
 // router.route('/cells/:id/item/:name')
 //   .patch(playCtlr.takeItem)
 //
@@ -57,13 +68,5 @@ router.route('/cells/:x/:y')
 //   .get(gameCtlr.getCell)
 //   .post(gameCtlr.addAnItem)
 //   .delete(gameCtlr.deleteCell);
-
-router.route("/messages")
-  .get(playCtlr.listMessages)
-  .post(playCtlr.createMessage);
-
-router.route("/messages/:id")
-  .get(playCtlr.getMessage)
-
-
-module.exports = router;
+// router.route('/player/:player/item/:item')
+//   .post(playCtlr.useItem);
