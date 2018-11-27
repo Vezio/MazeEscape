@@ -49,7 +49,7 @@ From there you will be able to access the web application via `localhost:3000`.
 - Documented
 - Moving on with more advanced functionality
 
-# REST API Documentation
+# REST API Documentation (Many of these routes have changed and I have not updated the documentation as of yet.)
 
 ## Players
 
@@ -251,4 +251,9 @@ Request Body Example:
 DELETE - Delete a obstacle from the entire game|Success: 204 Empty | Error: 404 Empty
 
 #### /obstacles/:id/spawn (To Be Implemented)
+--------------------------------------------------------------------------------------------------------------------------------
+## Using items:
+### Essentially, a player can use the chalk by picking up the item. Then selecting the chalk in their iventory, they will be brought a prompt screen. Here they can enter the wall (direction) where they want their message posted. Then after they input that information, another prompt screen appears and asks for a message. The user will then enter a message. To access the message in game, the user must be facing the wall in which they want to read, then they will click on the wall. An alert will appear and they can read the message.
+
+### Players can use the anvil, hammer, metal, and the workbench together. If a player collects all 4 items, they may click on the workbench and craft a key. This will use the anvil, hammer, metal, and workbench all at once and spawn a key in the players inventory. To use the key, the player must be in the starting cell. Once they're in the starting cell, they may click the key and escape the maze! I will be working on other things like this in the future. The other items not mentioned currently have no function other than take.
 
