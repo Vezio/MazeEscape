@@ -10,6 +10,11 @@ let items = [
   ,new Item("Rope", "/cells/0/0", 1, "a coil of rope")
   ,new Item("Plank", "/cells/2/0", 1, "a wooden plank")
   ,new Item("Water", "/cells/2/2", 1, "a canteen")
+  ,new Item("Anvil", "/players/0", 1, "an anvil for crafting")
+  ,new Item("Hammer", "/players/0", 1, "a hammer for crafting")
+  ,new Item("Workbench", "/players/0", 1, "a work bench for crafting")
+  ,new Item("Metal", "/players/0", 1, "metal ingots for crafting")
+  ,new Item("Key", "EndGame", 1, "the key to end the game")
 ];
 
 

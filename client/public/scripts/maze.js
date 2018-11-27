@@ -34,7 +34,10 @@ window.onload = function() {
             .then(loadItems);
           fetch("http://localhost:3000/api/items?owner=/players/" + playerId)
             .then((res) => res.json())
-            .then(loadInventory);
+            .then(function(json) {
+              items = json;
+              loadInventory(items);
+            });
           //Load user name into info pop up (modal) and Load user location on game screen
           loadUserNameAndLoc();
         });
@@ -354,9 +357,9 @@ function useItem(e) {
         work = true;
       } else if (wall.toLowerCase() !== "north" || wall.toLowerCase() !== "south" || wall.toLowerCase() !== "east" || wall.toLowerCase() !== "west") {
         wall = prompt("Your wall is not present! Use the direction to help assist which wall to write on. (North, South, East, West)");
-          if(wall === null){
-            work = true; //user clicked cancel
-          }
+        if (wall === null) {
+          work = true; //user clicked cancel
+        }
       }
     }
 
@@ -364,7 +367,7 @@ function useItem(e) {
     //Check for message with all spaces
     if (!input.replace(/\s/g, '').length) {
       alert("Your message must contain information!");
-    //Check for message longer than 60 characters, exclusive
+      //Check for message longer than 60 characters, exclusive
     } else if (input.length > 60) {
       alert("Please enter a message within 60 characters." +
         "Your message, \"" + input + "\" contained " + input.length + " characters");
@@ -380,6 +383,72 @@ function useItem(e) {
           console.log(res.status);
         })
       //Keep this at the end so the item is actually used once all conditions are met
+      fetch("http://localhost:3000/api/items/" + item.json.id, {
+          method: "PATCH",
+          body: '{"atrib":"owner","value":"used"}',
+          headers: {
+            "Content-type": "application/json"
+          }
+        })
+        .then(function(res) {
+          console.log(res.status);
+          inventory.removeChild(item);
+          console.log("used", item.name);
+        })
+    }
+  } else if (item.name === "Workbench") {
+    let hammer = document.getElementsByName("Hammer");
+    let metal = document.getElementsByName("Metal");
+    let anvil = document.getElementsByName("Anvil");
+    let playerLoc = "/players/" + playerId;
+    let inv = [];
+    var allItems;
+    var keyId;
+    var key;
+
+
+    // console.log(metal);
+    if (hammer.length !== 0 && metal.length !== 0 && anvil.length !== 0) {
+      alert("You crafted the key!!")
+      fetch("http://localhost:3000/api/items/")
+        .then((res) => res.json())
+        .then(function(json) {
+          allItems = json;
+          for (let i = 0; i < allItems.length; i++) {
+            if (allItems[i]["name"] === "Key") {
+              keyId = i
+              key = allItems[i];
+              console.log(keyId);
+            }
+
+          }
+          fetch("http://localhost:3000/api/items/" + item.json.id, {
+              method: "PATCH",
+              body: '{"atrib":"owner","value":"used"}',
+              headers: {
+                "Content-type": "application/json"
+              }
+            })
+          fetch("http://localhost:3000/api/items/" + keyId, {
+              method: "PATCH",
+              body: '{"atrib":"owner","value":"/players/' + playerId + '"}',
+              headers: {
+                "Content-type": "application/json"
+              }
+            })
+            .then(function(res) {
+              console.log(res.status);
+              console.log(item)
+              inventory.removeChild(item);
+              console.log("used", item.name);
+            });
+        });
+    } else {
+      alert("You are missing a tool!");
+    }
+  } else if (item.name === "Key") {
+    if (player.loc = "/cells/0/1") {
+      window.location.href = "www.google.com";
       fetch("http://localhost:3000/api/items/" + item.json.id, {
           method: "PATCH",
           body: '{"atrib":"owner","value":"used"}',
