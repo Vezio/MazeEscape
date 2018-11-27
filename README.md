@@ -10,7 +10,7 @@
 ### - I have added textures to each wall and cleaned up some html & css code (keep in mind, the user has a "flashlight" that is why there is a weird circlular texture on the wall directly in front)
 ### - User can use items such as the chalk (to write on one wall), an anvil + hammer + metal + workbench (to craft a key and escape the maze) These will be explained below in the documentation
 ### - Users can leave messages on which ever wall is in  the cell, even if a message exists on it (will not override the previous when viewing) Users can also see what messages are on the wall directly infront of them by clicking the wall
-### - Users can escape the maze
+### - Users can escape the maze -- Explained at the bottom of this document
 
 ## To be completed:
 ### I still need to add in obstacles so that the user can "struggle" and not complete the maze so easily. This is in the works as I am currently thinking of implementations. This will not be in this current milestone.
