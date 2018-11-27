@@ -400,8 +400,6 @@ function useItem(e) {
     let hammer = document.getElementsByName("Hammer");
     let metal = document.getElementsByName("Metal");
     let anvil = document.getElementsByName("Anvil");
-    let playerLoc = "/players/" + playerId;
-    let inv = [];
     var allItems;
     var keyId;
     var key;
@@ -409,8 +407,6 @@ function useItem(e) {
     var hammerId;
     var anvilId;
 
-
-    // console.log(metal);
     if (hammer.length !== 0 && metal.length !== 0 && anvil.length !== 0) {
       alert("You crafted the key!!")
       fetch("http://localhost:3000/api/items/")
@@ -418,12 +414,13 @@ function useItem(e) {
         .then(function(json) {
           allItems = json;
           for (let i = 0; i < allItems.length; i++) {
+            //get key and its location
             if (allItems[i]["name"] === "Key") {
               keyId = i
               key = allItems[i];
               console.log(keyId);
             }
-
+            //get the locations of such
             if (allItems[i]["name"] === "Metal") {
               metalId = i
             } else if (allItems[i]["name"] === "Hammer") {
@@ -431,8 +428,8 @@ function useItem(e) {
             } else if (allItems[i]["name"] === "Anvil") {
               anvilId = i
             }
-
           }
+          //update items
           fetch("http://localhost:3000/api/items/" + item.json.id, {
             method: "PATCH",
             body: '{"atrib":"owner","value":"used"}',
@@ -461,6 +458,7 @@ function useItem(e) {
               "Content-type": "application/json"
             }
           })
+          //Bring key to inv
           fetch("http://localhost:3000/api/items/" + keyId, {
               method: "PATCH",
               body: '{"atrib":"owner","value":"/players/' + playerId + '"}',
