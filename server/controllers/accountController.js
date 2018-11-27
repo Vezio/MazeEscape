@@ -23,13 +23,12 @@ exports.createPlayer = (req, res) => {
 
 //Updates a single attribute of a specific player
 exports.updatePlayer = (req, res) => {
-  if (req.body){
+  if (req.body) {
     if (typeof acc.update(req.params.id, req.body.attrib, req.body.value) === 'undefined')
       res.sendStatus(404)
     else
       res.sendStatus(204)
-  }
-  else
+  } else
     res.status(400).send("Atribute name may not be empty.");
 };
 
