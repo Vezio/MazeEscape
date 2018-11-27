@@ -44,5 +44,9 @@ app.get('/credits', function (req, res) {
    res.sendFile('credits.html', { root: './client/views' });
 });
 
+app.get('/victory', function (req, res) {
+   res.sendFile('victory.html', { root: './client/views' });
+});
+
 //Listen on specified port --> ${variable} gives value of that variable in string
 app.listen(port, () => console.log(`Lights Out is running on port: ${port}`))

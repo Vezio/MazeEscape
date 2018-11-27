@@ -405,6 +405,9 @@ function useItem(e) {
     var allItems;
     var keyId;
     var key;
+    var metalId;
+    var hammerId;
+    var anvilId;
 
 
     // console.log(metal);
@@ -421,14 +424,43 @@ function useItem(e) {
               console.log(keyId);
             }
 
+            if (allItems[i]["name"] === "Metal") {
+              metalId = i
+            } else if (allItems[i]["name"] === "Hammer") {
+              hammerId = i
+            } else if (allItems[i]["name"] === "Anvil") {
+              anvilId = i
+            }
+
           }
           fetch("http://localhost:3000/api/items/" + item.json.id, {
-              method: "PATCH",
-              body: '{"atrib":"owner","value":"used"}',
-              headers: {
-                "Content-type": "application/json"
-              }
-            })
+            method: "PATCH",
+            body: '{"atrib":"owner","value":"used"}',
+            headers: {
+              "Content-type": "application/json"
+            }
+          })
+          fetch("http://localhost:3000/api/items/" + metalId, {
+            method: "PATCH",
+            body: '{"atrib":"owner","value":"used"}',
+            headers: {
+              "Content-type": "application/json"
+            }
+          })
+          fetch("http://localhost:3000/api/items/" + anvilId, {
+            method: "PATCH",
+            body: '{"atrib":"owner","value":"used"}',
+            headers: {
+              "Content-type": "application/json"
+            }
+          })
+          fetch("http://localhost:3000/api/items/" + hammerId, {
+            method: "PATCH",
+            body: '{"atrib":"owner","value":"used"}',
+            headers: {
+              "Content-type": "application/json"
+            }
+          })
           fetch("http://localhost:3000/api/items/" + keyId, {
               method: "PATCH",
               body: '{"atrib":"owner","value":"/players/' + playerId + '"}',
@@ -441,6 +473,7 @@ function useItem(e) {
               console.log(item)
               inventory.removeChild(item);
               console.log("used", item.name);
+              location.reload();
             });
         });
     } else {
@@ -448,7 +481,7 @@ function useItem(e) {
     }
   } else if (item.name === "Key") {
     if (player.loc = "/cells/0/1") {
-      window.location.href = "www.google.com";
+      window.location.href = "victory";
       fetch("http://localhost:3000/api/items/" + item.json.id, {
           method: "PATCH",
           body: '{"atrib":"owner","value":"used"}',
