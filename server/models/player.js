@@ -3,7 +3,6 @@ function Player(name) {
   this.steps = 0;
   this.loc = "/cells/0/1";
   this.dir = "north";
-  // this.inventory.push(this.inventory); //We are going to need to make this an array
 }
 
 let players = [
@@ -13,10 +12,6 @@ let players = [
   , new Player("John")
 ];
 
-//
-// players.forEach((pla, idx) => pla.id = idx);
-
-
 let exists = (x) => typeof x !== 'undefined'
 
 //List all players in the game
@@ -24,13 +19,6 @@ exports.list = () => players;
 
 //List a specific player in the game
 exports.read = (i) => players[i];
-
-// exports.read = (name) => {
-//   for(let i = 0; i<players.length; i++){
-//     if (players[i].name === name.toString())
-//       players[i];
-//   }
-// }
 
 //Create a new player
 exports.create = (name) => players.push(new Player(name)) - 1;
@@ -45,3 +33,10 @@ exports.update = (i, atrib, value) =>{
 
 //Delete an entire player
 exports.delete = (i) => exists(i) ? delete players[i] : undefined;
+
+// exports.read = (name) => {
+//   for(let i = 0; i<players.length; i++){
+//     if (players[i].name === name.toString())
+//       players[i];
+//   }
+// }

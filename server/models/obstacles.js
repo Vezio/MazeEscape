@@ -32,6 +32,8 @@ exports.update = (i, atrib, value) =>
 //Delete an entire obstacle
 exports.delete = (i) => exists(i) ? delete obstacles[i] : undefined;
 
+//------------------------------------------------------------------------------
+
 /*
 Random occurence of an object being on course --> Need to implement
 exports.randomSpawn = (i, atrib, value) => {

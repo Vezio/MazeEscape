@@ -10,12 +10,13 @@ let messages = [
 
 let exists = (x) => typeof x !== 'undefined'
 
-// messages.forEach((msg, idx) => msg.id = idx);
-
-//List all items in the game
+//List all message in the game
 exports.list = () => messages;
 
-//List a specific item in the game
+//List a specific message in the game
 exports.read = (i) => messages[i];
 
+//Create a specific message
 exports.create = (owner, location, content) => messages.push(new Message(owner, location, content)) - 1;
+
+//Messages should not be deleted or modified
