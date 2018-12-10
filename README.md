@@ -1,17 +1,19 @@
 # Professor, read this before looking any further.
 ## From last class, I interpreted the due date to be "before next class". However I believe it was said that you may look at our progress on Sunday. Here is essentially what I have completed and FULLY working as of right now.
 
-## Thus far I have done the follow:
+## Thus far I have done the following
 ### - Enabled Players to create new accounts, also added exception catchers
 ### - Enabled Players to resume play, also added exception catchers to this as well
 ### - The maze loads all walls and items appropriatly as designed
 ### - The player can load an information box (modal) during the middle of the game to see which room they're in. This also displays the current users name. (my explanation isn't doing much justice, but I think its cool)
 ### - Currently, the game is counting steps, this is outputted on the left side of the screen. (For some reason you must refresh the screen each time you walk forward, will address this soon)
 ### - I have added textures to each wall and cleaned up some html & css code (keep in mind, the user has a "flashlight" that is why there is a weird circlular texture on the wall directly in front)
-## Still in progress --> will be finished before next class.
-### - Use item on an obstacle
-### - Allow messages to be displayed on walls (in progress)
+### - User can use items such as the chalk (to write on one wall), an anvil + hammer + metal + workbench (to craft a key and escape the maze) These will be explained below in the documentation
+### - Users can leave messages on which ever wall is in  the cell, even if a message exists on it (will not override the previous when viewing) Users can also see what messages are on the wall directly infront of them by clicking the wall
+### - Users can escape the maze -- Explained at the bottom of this document
 
+## To be completed:
+### I still need to add in obstacles so that the user can "struggle" and not complete the maze so easily. This is in the works as I am currently thinking of implementations. This will not be in this current milestone.
 
 # Lights Out
 
@@ -47,7 +49,7 @@ From there you will be able to access the web application via `localhost:3000`.
 - Documented
 - Moving on with more advanced functionality
 
-# REST API Documentation
+# REST API Documentation (Many of these routes have changed and I have not updated the documentation as of yet.)
 
 ## Players
 
@@ -249,4 +251,9 @@ Request Body Example:
 DELETE - Delete a obstacle from the entire game|Success: 204 Empty | Error: 404 Empty
 
 #### /obstacles/:id/spawn (To Be Implemented)
+--------------------------------------------------------------------------------------------------------------------------------
+## Using items:
+### Essentially, a player can use the chalk by picking up the item. Then selecting the chalk in their iventory, they will be brought a prompt screen. Here they can enter the wall (direction) where they want their message posted. Then after they input that information, another prompt screen appears and asks for a message. The user will then enter a message. To access the message in game, the user must be facing the wall in which they want to read, then they will click on the wall. An alert will appear and they can read the message.
+
+### Players can use the anvil, hammer, metal, and the workbench together. If a player collects all 4 items, they may click on the workbench and craft a key. This will use the anvil, hammer, metal, and workbench all at once and spawn a key in the players inventory. To use the key, the player must be in the starting cell. Once they're in the starting cell, they may click the key and escape the maze! I will be working on other things like this in the future. The other items not mentioned currently have no function other than take.
 
