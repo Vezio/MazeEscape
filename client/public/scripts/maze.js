@@ -492,6 +492,8 @@ function useItem(e) {
           inventory.removeChild(item);
           console.log("used", item.name);
         })
+    } else {
+      alert("Wrong Room!")
     }
   }
 }
