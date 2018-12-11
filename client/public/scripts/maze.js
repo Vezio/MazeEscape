@@ -14,7 +14,7 @@ window.onload = function() {
       allPlayers = json;
       for (let i = 0; i < allPlayers.length; i++) {
         if (allPlayers[i]["name"] === playerName.toString()) {
-          playerId = i;
+          playerId = i + 1;
         }
       }
       fetch("http://localhost:3000/api/players/" + playerId)
@@ -320,7 +320,7 @@ function takeItem(e) {
   console.log("http://localhost:3000/api/items/" + item.json.id);
   fetch("http://localhost:3000/api/items/" + item.json.id, {
       method: "PATCH",
-      body: '{"atrib":"owner","value":"/players/' + playerId + '"}',
+      body: '{"attrib":"owner","value":"/players/' + playerId + '"}',
       headers: {
         "Content-type": "application/json"
       }
@@ -385,7 +385,7 @@ function useItem(e) {
       //Keep this at the end so the item is actually used once all conditions are met
       fetch("http://localhost:3000/api/items/" + item.json.id, {
           method: "PATCH",
-          body: '{"atrib":"owner","value":"used"}',
+          body: '{"attrib":"owner","value":"used"}',
           headers: {
             "Content-type": "application/json"
           }
@@ -432,28 +432,28 @@ function useItem(e) {
           //update items
           fetch("http://localhost:3000/api/items/" + item.json.id, {
             method: "PATCH",
-            body: '{"atrib":"owner","value":"used"}',
+            body: '{"attrib":"owner","value":"used"}',
             headers: {
               "Content-type": "application/json"
             }
           })
           fetch("http://localhost:3000/api/items/" + metalId, {
             method: "PATCH",
-            body: '{"atrib":"owner","value":"used"}',
+            body: '{"attrib":"owner","value":"used"}',
             headers: {
               "Content-type": "application/json"
             }
           })
           fetch("http://localhost:3000/api/items/" + anvilId, {
             method: "PATCH",
-            body: '{"atrib":"owner","value":"used"}',
+            body: '{"attrib":"owner","value":"used"}',
             headers: {
               "Content-type": "application/json"
             }
           })
           fetch("http://localhost:3000/api/items/" + hammerId, {
             method: "PATCH",
-            body: '{"atrib":"owner","value":"used"}',
+            body: '{"attrib":"owner","value":"used"}',
             headers: {
               "Content-type": "application/json"
             }
@@ -461,7 +461,7 @@ function useItem(e) {
           //Bring key to inv
           fetch("http://localhost:3000/api/items/" + keyId, {
               method: "PATCH",
-              body: '{"atrib":"owner","value":"/players/' + playerId + '"}',
+              body: '{"attrib":"owner","value":"/players/' + playerId + '"}',
               headers: {
                 "Content-type": "application/json"
               }
@@ -482,7 +482,7 @@ function useItem(e) {
       window.location.href = "victory";
       fetch("http://localhost:3000/api/items/" + item.json.id, {
           method: "PATCH",
-          body: '{"atrib":"owner","value":"used"}',
+          body: '{"attrib":"owner","value":"used"}',
           headers: {
             "Content-type": "application/json"
           }
