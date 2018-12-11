@@ -10,7 +10,7 @@ var Message = sequelize.define("player", {
 });
 
 sequelize.sync().then(function() {
-  Player.create({ owner: "east", location: "/cells/0/1", content: "You have begun" });
+  Message.create({ owner: "east", location: "/cells/0/1", content: "You have begun" });
 });
 
 module.exports = Message;

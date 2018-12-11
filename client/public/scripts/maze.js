@@ -417,17 +417,17 @@ function useItem(e) {
           for (let i = 0; i < allItems.length; i++) {
             //get key and its location
             if (allItems[i]["name"] === "Key") {
-              keyId = i
+              keyId = i+1;
               key = allItems[i];
               console.log(keyId);
             }
             //get the locations of such
             if (allItems[i]["name"] === "Metal") {
-              metalId = i
+              metalId = i + 1;
             } else if (allItems[i]["name"] === "Hammer") {
-              hammerId = i
+              hammerId = i +1;
             } else if (allItems[i]["name"] === "Anvil") {
-              anvilId = i
+              anvilId = i+1;
             }
           }
           //update items
@@ -479,7 +479,6 @@ function useItem(e) {
       alert("You are missing a tool!");
     }
   } else if (item.name === "Key") {
-    if (player.loc = "/cells/0/1") {
       window.location.href = "victory";
       fetch("http://localhost:3000/api/items/" + item.json.id, {
           method: "PATCH",
@@ -493,9 +492,6 @@ function useItem(e) {
           inventory.removeChild(item);
           console.log("used", item.name);
         })
-    } else {
-      alert("Wrong Room!")
-    }
   }
 }
 
