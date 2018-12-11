@@ -3,7 +3,7 @@ Player = require("../models/player.js");
 //Retrieve a list of all players
 // exports.listPlayers = (req, res) => res.send(acc.list());
 exports.listPlayers = function(req, res) {
-  let options = { attributes: ["name", "steps", "loc", "dir"] };
+  let options = { attributes: ["id", "name", "steps", "loc", "dir"] };
   if (req.query.loc) options.where = { loc: req.query.loc};
   Player.findAll(options)
     .then((players) => res.send(players))
@@ -20,7 +20,7 @@ exports.listPlayers = function(req, res) {
 // };
 
 exports.getPlayer = (req,res) => {
-  Player.findById(req.params.id)
+  Player.findByPk(req.params.id)
     .then((player) => player ? res.send(player) : res.sendStatus(404));
 };
 
@@ -51,7 +51,7 @@ exports.createPlayer = (req, res) => {
 
 exports.updatePlayer = (req, res) => {
   try {
-      Player.findById(req.params.id).then((player) => {
+      Player.findByPk(req.params.id).then((player) => {
         if (player) {
           if (typeof player[req.body.attrib] !== "undefined") {
             if (req.body.attrib === "steps"){
@@ -78,6 +78,6 @@ exports.updatePlayer = (req, res) => {
 
 //Deletes a single player
 exports.deletePlayer = function(req, res) {
-  Player.findById(req.params.id)
+  Player.findByPk(req.params.id)
     .then((player) => player ? player.destroy().then(res.sendStatus(204)) : res.sendStatus(404));
 };
