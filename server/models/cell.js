@@ -1,51 +1,45 @@
-function Cell(x, y, n, s, e, w) {
-  this.x = x;
-  this.y = y;
-  this.north = n;
-  this.south = s;
-  this.east = e;
-  this.west = w;
-}
+var Sequelize = require("sequelize");
+var sequelize = new Sequelize("database", "username", "password", {dialect: "sqlite", storage: "server/db/cells.sqlite"});
 
-let cells = [
-  [ new Cell(0, 0, false, false,  true, false),
-    new Cell(0, 1,  true, false, false, false),
-    new Cell(0, 2, false,  true,  true, false)
-  ],
-  [ new Cell(1, 0,  true, false, false,  true),
-    new Cell(1, 1,  true,  true,  true, false),
-    new Cell(1, 2, false,  true, false,  true)
-  ],
-  [ new Cell(2, 0,  true, false, false, false),
-    new Cell(2, 1,  true,  true, false,  true),
-    new Cell(2, 2, false,  true, false, false)
-  ]
-];
+var Cell = sequelize.define("cell", {
+  x: { type: Sequelize.INTEGER, allowNull: false},
+  y: { type: Sequelize.INTEGER, allowNull: false},
+  north: { type: Sequelize.BOOLEAN},
+  south: { type: Sequelize.BOOLEAN},
+  east: { type: Sequelize.BOOLEAN},
+  west: { type: Sequelize.BOOLEAN},
 
-let exists = (x) => typeof x !== 'undefined'
+  //Temp fix for uniquness issue
+  description: {type: Sequelize.STRING, unique: true}
+});
 
-//List all cells
-exports.list = ()  => cells;
+sequelize.sync().then(function() {
+  Cell.create({ x: 0, y: 0, north: false, south: false, east:  true, west: false, description:"1"});
+  Cell.create({ x: 0, y: 1, north: true, south: false, east:  false, west: false, description:"2" });
+  Cell.create({ x: 0, y: 2, north: false, south: true, east:  true, west: false, description:"3" });
 
-//List a specific cell
-exports.read = (x,y) => cells[x][y];
+  Cell.create({ x: 1, y: 0, north: true, south: false, east:  false, west: true, description:"4" });
+  Cell.create({ x: 1, y: 1, north: true, south: true, east:  true, west: false, description:"5" });
+  Cell.create({ x: 1, y: 2, north: false, south: true, east:  false, west: false, description:"6" });
 
-// Delete a cell
-exports.delete = (x,y) => exists(cells[x][y]) ? delete cells[x][y] : undefined;
+  Cell.create({ x: 2, y: 0, north: true, south: false, east:  false, west: false, description:"7" });
+  Cell.create({ x: 2, y: 1, north: true, south: true, east:  false, west: true, description:"8"});
+  Cell.create({ x: 2, y: 2, north: false, south: true, east:  false, west: false, description:"9" });
+});
+
+module.exports = Cell;
 
 
-//------------------------------------------------------------------------------
-// These need to be modified to be compatible to the new version
-
-// Add an item to a cell
-// exports.addItems = (i, name) => cells[i]["items"].push(name);
 //
-// Remove an item from a cell
-// exports.take = (i, name) =>{
-//   let item = name.toLowerCase();
-//   // console.log(item);
-//   for(let j = 0; j < cells[i]["items"].length; j++){
-//     if(cells[i].items[j].toLowerCase() === item)
-//       cells[i]["items"][j] = " ";
-//   }
-// }
+// Cell.findOrCreate({where:{ x: 0, y: 0, north: false, south: false, east:  true, west: false}, defaults: {}});
+// Cell.findOrCreate({where:{ x: 1, y: 1, north: true, south: false, east:  false, west: false }, defaults: {}});
+// // Cell.findOrCreate({where:{ x: 0, y: 2, north: false, south: true, east:  true, west: false }, default: null});
+// //
+// // Cell.findOrCreate({where:{ x: 1, y: 0, north: true, south: false, east:  false, west: true }, default: null});
+// // Cell.findOrCreate({where:{ x: 1, y: 1, north: true, south: true, east:  true, west: false }, default: null});
+// // Cell.findOrCreate({where:{ x: 1, y: 2, north: false, south: true, east:  false, west: false }, default: null});
+// //
+// // Cell.findOrCreate({where:{ x: 2, y: 0, north: true, south: false, east:  false, west: false }, default: null});
+// // Cell.findOrCreate({where:{ x: 2, y: 1, north: true, south: true, east:  false, west: true }, default: null});
+// // Cell.findOrCreate({where:{ x: 2, y: 2, north: false, south: true, east:  false, west: false }, default: null});
+// });

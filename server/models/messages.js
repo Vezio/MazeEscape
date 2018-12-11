@@ -1,22 +1,16 @@
-function Message(owner, location, content) {
-  this.owner       = owner; //what wall (north wall, south wall etc)
-  this.location    = location; //what cell
-  this.content     = content; //what message says
-}
+var Sequelize = require("sequelize");
+var sequelize = new Sequelize("database", "username", "password", {dialect: "sqlite", storage: "server/db/messages.sqlite"});
 
-let messages = [
-    new Message("east", "/cells/0/1", "Test message info")
-];
+var Message = sequelize.define("player", {
+  owner: { type: Sequelize.STRING, }, //what wall (north wall, south wall etc)
+  location: { type: Sequelize.STRING}, //what cell
 
-let exists = (x) => typeof x !== 'undefined'
+  //need to think about the uniqueness here
+  content: { type: Sequelize.STRING, unique: true} //what message says
+});
 
-//List all message in the game
-exports.list = () => messages;
+sequelize.sync().then(function() {
+  Player.create({ owner: "east", location: "/cells/0/1", content: "You have begun" });
+});
 
-//List a specific message in the game
-exports.read = (i) => messages[i];
-
-//Create a specific message
-exports.create = (owner, location, content) => messages.push(new Message(owner, location, content)) - 1;
-
-//Messages should not be deleted or modified
+module.exports = Message;

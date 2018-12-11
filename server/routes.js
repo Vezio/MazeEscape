@@ -27,7 +27,7 @@ router.route('/items/:id')
 //--Obstacle Routes--\\
 router.route('/obstacles')
   .get(playCtlr.listObstacles)
-  .post(gameCtlr.createObstacle);
+  // .post(gameCtlr.createObstacle);
 
 router.route('/obstacles/:id')
   .get(playCtlr.getObstacle)

@@ -53,6 +53,7 @@ function loadCell(json) {
 
 function renderCell(cell) {
   // console.log("TE")
+  console.log(cell)
   let walls = document.querySelectorAll("main img");
   switch (player.dir) {
     case "north":
