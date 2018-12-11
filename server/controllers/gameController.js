@@ -1,5 +1,4 @@
 cell = require("../models/cell.js");
-item = require("../models/items.js");
 obstacle = require("../models/obstacles.js")
 
 
