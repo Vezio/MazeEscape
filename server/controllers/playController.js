@@ -1,44 +1,45 @@
-item = require("../models/items.js");
+Item = require("../models/items.js");
 acc = require("../models/player.js");
 cell = require("../models/cell.js");
 obs = require("../models/obstacles.js");
 msg = require("../models/messages.js");
 
-//Retrieve a list of all items in the game
-exports.listItems = (req, res) => {
-  let items = item.list();
-  console.log(items);
-  if (req.query.owner)
-    items = items.filter((i) => i.owner == req.query.owner);
-  res.send(items);
+exports.listItems = function(req, res) {
+  let options = { attributes: ["id", "name", "owner", "uses", "description"] };
+  if (req.query.owner) options.where = { owner: req.query.owner};
+  Item.findAll(options)
+    .then((items) => res.send(items))
+    .catch((err) => res.status(400).send(err.message));
 }
 
-//Retrieve an Item
-exports.getItem = (req, res) => {
-  let data = item.read(req.params.id);
-  if (typeof data === 'undefined')
-    res.sendStatus(404);
-  else
-    res.send(data);
+exports.getItem = (req,res) => {
+  Item.findByPk(req.params.id)
+    .then((item) => item ? res.send(item) : res.sendStatus(404));
 };
 
-//Update an attribute within an item
 exports.updateItem = (req, res) => {
-  if (req.body) {
-    if (typeof item.update(req.params.id, req.body.atrib, req.body.value) === 'undefined') {
-      res.sendStatus(404);
-    } else
-      res.sendStatus(204);
-  } else
-    res.status(400).send("Atribute may not be empty.");
+  try {
+      Item.findByPk(req.params.id).then((item) => {
+        if (item) {
+          if (typeof item[req.body.attrib] !== "undefined") {
+            // if (req.body.attrib === "uses"){
+            //   req.body.value = parseInt(item["uses"] -1)
+            // }
+            item[req.body.attrib] = req.body.value;
+            item.save()
+              .then(() => res.sendStatus(204))
+              .catch((err) => res.sendStatus(500));
+          } else res.sendStatus(400);
+        } else res.sendStatus(404);
+      });
+  } catch(e) {
+    res.status(400).send("Invalid update instructions.");
+  }
 };
 
-//Delete an entire item
-exports.deleteItem = (req, res) => {
-  if (item.delete(req.params.id))
-    res.sendStatus(204);
-  else
-    res.sendStatus(404);
+exports.deleteItem = function(req, res) {
+  Item.findByPk(req.params.id)
+    .then((item) => item ? item.destroy().then(res.sendStatus(204)) : res.sendStatus(404));
 };
 
 //Retrieve a list of all obstacles in the game
@@ -103,36 +104,3 @@ exports.createMessage = (req, res) => {
 Random obstacles
   --> Use math.random(1-10) to decide "randomness"
 */
-
-//------------------------------------------------------------------------------
-// Not needed anymore neccessarily
-
-//Get an item from a specific cell, then change the owner to the item to the player
-//that is making the request. Then make sure that the cell no longer has the item
-//by setting the item value to null
-// exports.takeItem = (req, res) => {
-//   try {
-//     let cellResult = cell.take(req.params.id, req.params.name);
-//     let itemResult = item.take(req.params.id, req.params.name, req.body.owner);
-//     if (cellResult === 'undefined' && itemResult === 'undefined')
-//       res.sendStatus(404);
-//     else
-//       res.sendStatus(204);
-//   } catch(e) {
-//     res.status(400).send("Invalid instructions.");
-//   }
-// };
-
-
-//Use the item in game
-// exports.useItem = (req, res) => {
-//   try {
-//     let result = item.use(req.params.player, req.params.item);
-//     if (result === 'undefined')
-//       res.sendStatus(404);
-//     else
-//       res.sendStatus(204);
-//   } catch(e) {
-//     res.status(400).send("Invalid use");
-//   }
-// };
