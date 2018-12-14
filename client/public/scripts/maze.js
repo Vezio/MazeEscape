@@ -513,7 +513,7 @@ function message() {
 
 // Loads in player name and location onto the information modal
 function loadUserNameAndLoc() {
-  document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc;
+  document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc.split('s/',).join(' ').slice(1);
   document.getElementById("steps").innerHTML = player.steps;
   document.getElementById("direction").innerHTML = player.dir;
 }

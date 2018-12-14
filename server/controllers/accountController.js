@@ -1,7 +1,5 @@
 Player = require("../models/player.js");
 
-//Retrieve a list of all players
-// exports.listPlayers = (req, res) => res.send(acc.list());
 exports.listPlayers = function(req, res) {
   let options = { attributes: ["id", "name", "steps", "loc", "dir"] };
   if (req.query.loc) options.where = { loc: req.query.loc};
@@ -10,44 +8,16 @@ exports.listPlayers = function(req, res) {
     .catch((err) => res.status(400).send(err.message));
 }
 
-//Retrieves a specific player
-// exports.getPlayer = (req, res) => { //works
-//   let data = acc.read(req.params.id);
-//   if (typeof data === 'undefined')
-//     res.sendStatus(404);
-//   else
-//     res.send(data);
-// };
-
 exports.getPlayer = (req,res) => {
   Player.findByPk(req.params.id)
     .then((player) => player ? res.send(player) : res.sendStatus(404));
 };
 
-//Creates a player
-// exports.createPlayer = (req, res) => {
-//   console.log(req.body);
-//   if (req.body)
-//     res.status(201).send(acc.create(req.body.name, req.body.thirst, req.body.steps).toString());
-//   else
-//     res.status(400).send("Incorrect Instructions");
-// };
 exports.createPlayer = (req, res) => {
-  Player.create({ name:req.body.name, steps: 0, loc: "/cells/0/1", dir: "north"})
+  Player.create({ name:req.body.name, steps: 0, loc: "/cells/0/1", dir: "north", status: "In progress"})
     .then((player) => res.status(201).send(player.id.toString()))
     .catch((err) => res.status(400).send(err.message))
 }
-
-//Updates a single attribute of a specific player
-// exports.updatePlayer = (req, res) => {
-//   if (req.body) {
-//     if (typeof acc.update(req.params.id, req.body.attrib, req.body.value) === 'undefined')
-//       res.sendStatus(404)
-//     else
-//       res.sendStatus(204)
-//   } else
-//     res.status(400).send("Atribute name may not be empty.");
-// };
 
 exports.updatePlayer = (req, res) => {
   try {
@@ -68,13 +38,6 @@ exports.updatePlayer = (req, res) => {
     res.status(400).send("Invalid update instructions.");
   }
 };
-
-// / exports.update = (i, atrib, value) =>{
-// //  if (atrib === "steps"){
-// //    value = parseInt(players[i].steps +1);
-// //  }
-// //  exists(players[i]) && exists(players[i][atrib]) ? (players[i][atrib] = value) : undefined;
-// // }
 
 //Deletes a single player
 exports.deletePlayer = function(req, res) {
