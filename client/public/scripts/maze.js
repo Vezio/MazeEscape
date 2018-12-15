@@ -22,6 +22,14 @@ window.onload = function() {
         .then(function(json) {
           player = json;
           // console.log(playerId);
+          // fetch("http://localhost:3000/api/players/" + playerId, {
+          //   method: "PATCH",
+          //   // body: '{"attrib":"dir","value":"' + player.dir + '"}',
+          //   body:   '{"attrib":"attempt","value":"' + (player.attempt + 1) + '"}',
+          //   headers: {
+          //     "Content-type": "application/json"
+          //   }
+          // })
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
             .then(function(json) {
@@ -77,6 +85,61 @@ function renderCell(cell) {
       walls[2].src = cell.north ? "images/no-wall.png" : "images/wall-right.png";
       break;
   }
+
+  // If a player spends more than 10 Seconds in a cell, they will be "killed",
+  // all items will be dropped in that room and they will be taken to the main menu
+  // if they wish to play again, they will start from the beginning
+
+  var seconds = 0;
+  var counterTag = document.getElementById('seconds');
+
+  function clock() {
+    seconds += 1;
+    counterTag.innerText = seconds;
+  }
+
+  var increment = setInterval(clock, 1000);
+
+  setTimeout(function() {
+    fetch("http://localhost:3000/api/items?owner=/players/" + playerId)
+      .then((res) => res.json())
+      .then(function(json) {
+        let dropItems = json;
+        for (let j = 0; j < dropItems.length; j++) {
+          fetch("http://localhost:3000/api/items/" + dropItems[j].id, {
+            method: "PATCH",
+            body: '{"attrib":"owner","value":"' + player.loc + '"}',
+            headers: {
+              "Content-type": "application/json"
+            }
+          })
+        }
+      });
+    fetch("http://localhost:3000/api/players/" + playerId, {
+      method: "PATCH",
+      body: '{"attrib":"loc","value":"cells/0/1"}',
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+
+    //Death message
+    let choice = Math.floor(Math.random() * Math.floor(3))
+    switch (choice) {
+      case 0:
+        alert("Too slow, you were captured!");
+        break;
+      case 1:
+        alert("You took too long! They caught up to you and stripped you of your belongings! Better luck next time!");
+        break;
+      case 2:
+        alert("You didn't move fast enough! A giant goblin mouse ate you!");
+        break;
+      default:
+        alert("Ahhh! You died!");
+    }
+    window.location.href = "menu";
+  }, 15000);
 }
 
 function turnLeft() {
@@ -417,7 +480,7 @@ function useItem(e) {
           for (let i = 0; i < allItems.length; i++) {
             //get key and its location
             if (allItems[i]["name"] === "Key") {
-              keyId = i+1;
+              keyId = i + 1;
               key = allItems[i];
               console.log(keyId);
             }
@@ -425,9 +488,9 @@ function useItem(e) {
             if (allItems[i]["name"] === "Metal") {
               metalId = i + 1;
             } else if (allItems[i]["name"] === "Hammer") {
-              hammerId = i +1;
+              hammerId = i + 1;
             } else if (allItems[i]["name"] === "Anvil") {
-              anvilId = i+1;
+              anvilId = i + 1;
             }
           }
           //update items
@@ -479,19 +542,31 @@ function useItem(e) {
       alert("You are missing a tool!");
     }
   } else if (item.name === "Key") {
-      window.location.href = "victory";
-      fetch("http://localhost:3000/api/items/" + item.json.id, {
-          method: "PATCH",
-          body: '{"attrib":"owner","value":"used"}',
-          headers: {
-            "Content-type": "application/json"
-          }
-        })
-        .then(function(res) {
-          console.log(res.status);
-          inventory.removeChild(item);
-          console.log("used", item.name);
-        })
+    window.location.href = "victory";
+    fetch("http://localhost:3000/api/items/" + item.json.id, {
+        method: "PATCH",
+        body: '{"attrib":"owner","value":"used"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(function(res) {
+        console.log(res.status);
+        inventory.removeChild(item);
+        console.log("used", item.name);
+      })
+      fetch("http://localhost:3000/api/players/" + playerId, {
+        method: "PATCH",
+        body: '{"attrib":"progress","value":"Escaped"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      let hammer = document.getElementsByName("Hammer");
+      let metal = document.getElementsByName("Metal");
+      let anvil = document.getElementsByName("Anvil");
+  } else if (item.name === "Hammer" || item.name === "Metal" || item.name === "Anvil"){
+      alert("You need to find the work bench to use this!");
   }
 }
 
@@ -513,7 +588,7 @@ function message() {
 
 // Loads in player name and location onto the information modal
 function loadUserNameAndLoc() {
-  document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc.split('s/',).join(' ').slice(1);
+  document.getElementById("userName").innerHTML = "Hi, " + player.name + ". You are in " + player.loc.split('s/', ).join(' ').slice(1);
   document.getElementById("steps").innerHTML = player.steps;
   document.getElementById("direction").innerHTML = player.dir;
 }
