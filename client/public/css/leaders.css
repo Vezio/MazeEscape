@@ -11,6 +11,12 @@ All Current Work: Tyler Rimaldi
 
 table, td {
     border: 1px solid black ;
+    border-collapse: collapse;
+}
+
+/*Show maximum of 10 players */
+tr:nth-child(n+12) {
+    display:none;
 }
 
 html, body {
@@ -51,11 +57,3 @@ h1 {
   color: rgb(34,102,102);
   opacity: 1;
 }
-
-/*
-p {
-  margin-top: 1em;
-  font-size: 300%;
-  font-style: italic;
-  font-weight: bold;
-} */

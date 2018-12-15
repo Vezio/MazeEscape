@@ -1,4 +1,4 @@
-/* 
+/*
 
 All Current Work: Tyler Rimaldi
 
@@ -30,7 +30,6 @@ html, body {
   overflow:auto;
 }
 
-
 p {
   font-family: Vademecu, sans-serif;
   font-size:130%;
@@ -57,11 +56,3 @@ h2 {
   color: white;
   opacity: 1;
 }
-
-/*
-p {
-  margin-top: 1em;
-  font-size: 300%;
-  font-style: italic;
-  font-weight: bold;
-} */

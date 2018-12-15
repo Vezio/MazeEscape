@@ -20,17 +20,6 @@ html, body {
   font-family: sans-serif;
 }
 
-/* .centered {
-  position: absolute;
-  bottom: 8em;
-  left: 0;
-  right: 25%;
-  width: auto;
-  height: 4em;
-  margin: auto;
-} */
-
-
 main {
   height: 98%;
   column-count: 3;
@@ -215,7 +204,6 @@ h2 {
   opacity: 1;
 }
 
-
 .close:hover,
 .close:focus {
     color: red;
@@ -244,7 +232,6 @@ input[name=bwd] {
   transform: translate(-50%, -75%) rotate(180deg);
   box-shadow: 4px 2px 2px grey;
 }
-
 
 input[name=left] {
   border-radius: 25px;
