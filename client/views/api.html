@@ -1,0 +1,110 @@
+<!doctype html>
+
+<!--
+
+All Current Work: Tyler Rimaldi
+
+-->
+
+<html lang="en">
+<head>
+  <title>Lights Out</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+  <h1>Lights Out API</h1>
+  <h2>API Help</h2>
+  <pre>
+API commands: GET [action], POST [action], PATCH [action], DELETE [action]
+  <hr />
++-- GET     /players                            - collection of all players in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 400
+
++-- GET     /players/:id                        - a specific player resource in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 404
+
++-- GET     /items                              - collection of all items in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 400
+
++-- GET     /items/:id                          - a specific item resource in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 404
+
++-- GET     /cells                              - collection of all cells in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 400
+
++-- GET     /cells/:x/:y                        - a specific cell resource in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 404
+
++-- GET     /messages                           - collection of all messages placed in the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 400
+
++-- GET     /messages/:id                       - a specific message resource placed the game
+                                                  Good   : Expect Success: 200
+                                                  Failure: Expect to see 404
+  <hr />
++-- POST    /players                            - create a new player  {"name":"someNameHere"}
+                                                  Good   : Expect Success: 201
+                                                  Failure: Expect to see 400
+
++-- POST    /items                              - create a new item    {"name":"itemName", "owner":"itemOwner", "description":"someDescription"}
+                                                  Good   : Expect Success: 201
+                                                  Failure: Expect to see 400
+
++-- POST    /cells                              - create a new cell    {"x":"someX", "y":"someY", "north":"someBoolean", "south":"someBoolean",
+                                                                        "east":"someBoolean",     "west":"someBoolean",  "description":"someDescription"}
+                                                  Good   : Expect Success: 201
+                                                  Failure: Expect to see 400
+
++-- POST    /messages                           - create a new message {"owner":"someOwner", "location":"someLocation", "content":"messageContent"}
+                                                  Good   : Expect Success: 201
+                                                  Failure: Expect to see 400
+  <hr />
++-- PATCH   /players/:id                        - update a single attribute for a player resource {"attrib":"attributeName", "value:":"updatedValue"}
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 400,404, or 500 depending on the case
+
++-- PATCH   /items/:id                          - update a single atttribute for an item resource {"attrib":"attributeName", "value:":"updatedValue"}
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 400,404, or 500 depending on the case
+
++-- PATCH   /cells/:x/:y                        - update a single attribute for a cell resource {"attrib":"attributeName", "value:":"updatedValue"}
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 400,404, or 500 depending on the case
+
++-- PATCH   /messages/:id                       - update a single attribute for a message resource {"attrib":"attributeName", "value:":"updatedValue"}
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 400,404, or 500 depending on the case
+  <hr />
++-- DELETE  /player/:id                         - remove a specifc player resource from the game
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 404
+
++-- DELETE  /items/:id                          - remove a specfic item resource from the game
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 404
+
++-- DELETE  /cell/:x/:y                         - remove a specfic cell from the game
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 404
+
++-- DELETE  /messages/:id                       - remove a specfic message from the game
+                                                  Good   : Expect Success: 204
+                                                  Failure: Expect to see 404
+  <hr />
+  </pre>
+  <h3>Game Explanation </h3>
+  <p>The main objective is to escape the maze. To do so, a player must obtain 4 special items: anvil, metal, workbench, and a hammer. <br />
+     When the player obtains all 4 items, they may use the workbench to craft a key (when used, the player escapes). Once escaped,  <br />their
+     username and steps are logged to the leaderboard where it is organized by fewest step count. If the player reaches the end  <br />of the maze,
+     or cell2/2, they're also set free. (This stops the game from continueing indefinitely without a clear winner on each turn)  <br />
+     A time limit has been set to 15 seconds on each cell. If the player doesn't leave the cell in 15 seconds, they are "killed" by <br /> some creature.
+     All player items are dropped in the cell that they were killed in and the player will have to restart from the beggining of the maze, or at 0/1.
+  </body>
+</html>
