@@ -1,7 +1,7 @@
 Player = require("../models/player.js");
 
 exports.listPlayers = function(req, res) {
-  let options = { attributes: ["id", "name", "steps", "loc", "dir"] };
+  let options = { attributes: ["id", "name", "steps", "loc", "dir", "progress"] };
   if (req.query.loc) options.where = { loc: req.query.loc};
   Player.findAll(options)
     .then((players) => res.send(players))
@@ -14,7 +14,7 @@ exports.getPlayer = (req,res) => {
 };
 
 exports.createPlayer = (req, res) => {
-  Player.create({ name:req.body.name, steps: 0, loc: "/cells/0/1", dir: "north", status: "In progress"})
+  Player.create({ name:req.body.name, steps: 0, loc: "/cells/0/1", dir: "north", progress: "In progress"})
     .then((player) => res.status(201).send(player.id.toString()))
     .catch((err) => res.status(400).send(err.message))
 }
