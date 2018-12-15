@@ -19,9 +19,6 @@ document.body.addEventListener("keyup", function(e) {
     case "6":
       credits();
       break;
-      //TODO: Catch user mistakes
-      //default:
-      //alert("An invalid choice has been selected!")
   }
 });
 
@@ -31,9 +28,14 @@ function newGame() {
   let playerId = "";
   let player; //all players
   let found = false;
-  userName = prompt("What would you like as your user name?");
+  var letters = /^[a-zA-Z]+$/;
+  userName = prompt("What would you like as your user name? Please only use letters!");
   //Check for user name with all spaces
-  if (!userName.replace(/\s/g, '').length) {
+  if(!userName.match(letters)){
+    alert("You can only create a user name with letters!")
+  //Check for user name with numbers, I would prefer users to have only letters, but the
+  //the game can work with numbers in username if another person wanted it as such.
+  }else if (!userName.replace(/\s/g, '').length) {
     alert("Your user name only contained spaces! Please enter a valid user name.");
     //Check for nulls
   } else if (userName !== null) {
@@ -41,12 +43,10 @@ function newGame() {
       .then((res) => res.json())
       .then(function(json) {
         player = json;
-        console.log(player);
         //Check if the name is available
         for (let i = 0; i < player.length; i++) {
           if (player[i]["name"] === userName.toString()) {
             found = true;
-            // console.log(player[i]["name"]);
           }
         }
         //If the name is available, create the account and pass to maze.
@@ -85,12 +85,10 @@ function launchSavedGame() {
     .then((res) => res.json())
     .then(function(json) {
       player = json;
-      console.log(player);
       //Check if the name exists
       for (let i = 0; i < player.length; i++) {
         if (player[i]["name"] === userName.toString()) {
           found = true;
-          // console.log(player[i]["name"]);
         }
       }
       //If the name is available, create the account and pass to maze.
