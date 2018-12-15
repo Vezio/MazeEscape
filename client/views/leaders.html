@@ -7,65 +7,102 @@ All Current Work: Tyler Rimaldi
 -->
 
 <html lang="en">
+
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/leaders.css">
 </head>
+
 <body onload=populateLeaders()>
   <h1>Leaderboards</h1>
-    <center><div id="leadersbox">
-    <table id="table" border="1">
-      <tr>
-        <th>User Name:</th>
-        <th>Date Finished (DD-MM-YY)</th>
-        <th>Time Finished (Military)</th>
-        <th>Total Time Spent(HRS:MIN:SEC)</th>
-      </tr>
-    </table>
-    <div></center>
+  <center>
+    <div id="leadersbox">
+      <table id="table" border="1">
+        <tr>
+          <th>User Name</th>
+          <th>Steps</th>
+          <th>Cell</th>
+        </tr>
+      </table>
+      <div>
+  </center>
   <script>
-    //Load premade leaderboard
+    var players;
+    var info
+
     function populateLeaders() {
-        var array = [["XxVoltextXx","9-20-18","4:14","18:0:00"],
-                     ["Bill90","9-22-18","18:12","27:03:22"],
-                     ["HiLo","9-23-18","2:26","29:03:00"],
-                     ["CGIYUP","9-27-18","14:45","30:36:56"],
-                     ["FortniteGod","9-30-108","10:55","32:18:09"]],
-            table = document.getElementById("table");
+      fetch("http://localhost:3000/api/players/")
+        .then((res) => res.json())
+        .then(function(json) {
+          players = json;
 
-        //Go through "array" array and create the appropriate amount of rows
-        for (var i = 0; i < array.length; i++) {
+          var table = document.getElementById("table");
+          for (var i = 0; i < players.length; i++) {
+            if(players[i].progress === "Escaped"){
 
-            // create a new row
+
             var newRow = table.insertRow(table.length);
-
-            //Create cells (I like to think of them as columns)
-            //[1][2] Row 1|
-            //------------| [] denotes a cell
-            //[3][4] Row 2|
-            for (var j = 0; j < array[i].length; j++) {
-
-                // create a new cell
-                var cell = newRow.insertCell(j);
-
-                // add value from "array" array to the cell @ row i cell j
-                cell.innerHTML = array[i][j];
+            for (var j = 0; j < 3; j++) {
+              if (j === 0) {
+                info = players[i].name;
+              } else if (j === 1) {
+                info = players[i].steps;
+              } else if (j === 2) {
+                info = players[i].loc.split('cells/', ).join(' ').slice(1)
+              }
+              var cell = newRow.insertCell(j);
+              cell.innerHTML = info;
             }
+          }
+          }
+          sortTable();
+        });
+    }
+
+    function sortTable() {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("table");
+      switching = true;
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length); i++) {
+          shouldSwitch = false;
+          x = rows[i].cells.item(1).innerHTML
+          y = rows[i + 1].cells.item(1).innerHTML
+          if (Number(x) > Number(y)) {
+            shouldSwitch = true;
+            console.log(rows.length)
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+        if (rows.length > 10){
+          // let difference = rows.length - 5;
+          for (let k = 6; k < rows.length; k++){
+            table.deleteRow(k)
+            console.log("d")
+          }
         }
       }
 
-      //Go back to main menu
-      function goToMenu() {
-          window.location.href = "menu";
-      }
+      console.log(rows.length)
+    }
+    //Go back to main menu
+    function goToMenu() {
+      window.location.href = "menu";
+    }
 
-      //Spacebar trigger the above function
-      document.body.addEventListener("keyup",function(e) {
-        if (e.key == " ")
-            goToMenu();
-      });
-
+    //Spacebar trigger the above function
+    document.body.addEventListener("keyup", function(e) {
+      if (e.key == " ")
+        goToMenu();
+    });
   </script>
 </body>
+
 </html>
