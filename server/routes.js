@@ -1,7 +1,8 @@
-express  = require("express");
+express   = require("express");
 gameCtlr  = require("./controllers/gameController");
-playCtlr = require("./controllers/playController");
-accCtlr = require("./controllers/accountController");
+playCtlr  = require("./controllers/playController");
+accCtlr   = require("./controllers/accountController");
+msgCtlr   = require("./controllers/messageController");
 
 router = express.Router();
 
@@ -17,56 +18,33 @@ router.route('/players/:id')
 
 //--Item Routes--\\
 router.route('/items')
-  .get(playCtlr.listItems);
+  .get(playCtlr.listItems)
+  .post(playCtlr.createItem);
 
 router.route('/items/:id')
   .get(playCtlr.getItem)
   .patch(playCtlr.updateItem)
   .delete(playCtlr.deleteItem);
 
-//--Obstacle Routes--\\
-router.route('/obstacles')
-  .get(playCtlr.listObstacles)
-  // .post(gameCtlr.createObstacle);
-
-router.route('/obstacles/:id')
-  .get(playCtlr.getObstacle)
-  .patch(playCtlr.updateObstacle)
-  .delete(playCtlr.deleteObstacle);
-
 //--Cell Routes--\\
 router.route("/cells")
-  .get(gameCtlr.listCells);
+  .get(gameCtlr.listCells)
+  .post(gameCtlr.createCell);
 
 router.route('/cells/:x/:y')
   .get(gameCtlr.getCell)
-  .delete(gameCtlr.deleteCell);
+  .delete(gameCtlr.deleteCell)
+  .patch(gameCtlr.updateCell);
 
 //--Message Routes--\\
 router.route("/messages")
-  .get(playCtlr.listMessages)
-  .post(playCtlr.createMessage);
+  .get(msgCtlr.listMessages)
+  .post(msgCtlr.createMessage);
 
 router.route("/messages/:id")
-  .get(playCtlr.getMessage)
+  .get(msgCtlr.getMessage)
+  .delete(msgCtlr.deleteMessage)
+  .patch(msgCtlr.updateMessage);
 
 
 module.exports = router;
-
-
-//------------------------------------------------------------------------------
-// router.route('/cells/:id/item/:name')
-//   .patch(playCtlr.takeItem)
-//
-// router.route('/cells/:id/items')
-//   .get(gameCtlr.seeAllCellItems);
-//
-// router.route('/cells')
-//   .get(gameCtlr.listCells);
-//
-// router.route('/cells/:id')
-//   .get(gameCtlr.getCell)
-//   .post(gameCtlr.addAnItem)
-//   .delete(gameCtlr.deleteCell);
-// router.route('/player/:player/item/:item')
-//   .post(playCtlr.useItem);

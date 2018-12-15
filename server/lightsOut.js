@@ -24,6 +24,9 @@ app.get('/menu', function (req, res) {
    res.sendFile('menu.html', { root: './client/views' });
 });
 
+app.get('/api', function (req, res) {
+   res.sendFile('api.html', { root: './client/views' });
+});
 //Get maze when localhost:3000/maze is requested
 app.get('/maze', function (req, res) {
    res.sendFile('maze.html', { root: './client/views' });
