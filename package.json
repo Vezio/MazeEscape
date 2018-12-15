@@ -4,6 +4,7 @@
   "description": "build a persistent multi-user web-based maze game",
   "main": "mazeEscape.js",
   "scripts": {
+    "start": "node ./server/lightsout.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
