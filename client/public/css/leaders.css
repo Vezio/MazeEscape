@@ -28,7 +28,7 @@ html, body {
 
 #leadersbox {
   background-color: rgba(31, 36, 36, 0.5);
-  width: 60%;
+  width: 20%;
   border-radius: 25px;
   border: 2px solid black;
   overflow:auto;
