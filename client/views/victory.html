@@ -7,30 +7,20 @@ All Current Work: Tyler Rimaldi
 -->
 
 <html lang="en">
+
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/victory.css">
 </head>
+
 <body>
   <h1>YOU ESCAPED</h1>
   <div id="foundOut">
     <p>YOU WERE THE ONE WHO MADE THIS MESS! YOU'VE TRAPPED OTHERS, BUT AT LEAST YOU'RE FREE... RIGHT...</p>
     <p>Press the spacebar for main menu</p>
   </div>
-
-  <script>
-    //Go to main menu
-    function goToMenu() {
-        window.location.href = "menu";
-    }
-
-    //Spacebar trigger the above function
-    document.body.addEventListener("keyup",function(e) {
-        if (e.key == " ")
-            goToMenu();
-    });
-
-  </script>
+  <script type="text/javascript" src="scripts/goBack.js"></script>
 </body>
+
 </html>

@@ -7,43 +7,36 @@ All Current Work: Tyler Rimaldi
 -->
 
 <html lang="en">
+
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/credits.css">
 </head>
+
 <body>
   <h1>Credits</h1>
 
   <!-- menu selector box -->
-  <center><div id="creditsbox">
-    <h2> General Mentions: </h2>
-    <ul>
-      <li>Assignment issued by Professor Johnson, Marist College Computer Science </li>
-      <li>All current work: Tyler Rimaldi </li>
-      <li>Story developed By: Tyler Rimaldi </li>
-      <li>Development Tools: HTML & CSS, JavaScript, NodeJS </li>
-    </ul>
+  <center>
+    <div id="creditsbox">
+      <h2> General Mentions: </h2>
+      <ul>
+        <li>Assignment issued by Professor Johnson, Marist College Computer Science </li>
+        <li>All current work: Tyler Rimaldi </li>
+        <li>Story developed By: Tyler Rimaldi </li>
+        <li>Development Tools: HTML & CSS, JavaScript, NodeJS </li>
+      </ul>
 
-    <h2>Sounds &amp; Graphics:</h2>
-    <ul>
-      <li>Background music can be found <a href="http://www.sousound.com/music/healing/healing_01.mp3">here</a> </li>
-      <li>Background image can be found <a href= "http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html">here</a> </li>
-    </ul>
-  </div></center>
+      <h2>Sounds &amp; Graphics:</h2>
+      <ul>
+        <li>Background music can be found <a href="http://www.sousound.com/music/healing/healing_01.mp3">here</a> </li>
+        <li>Background image can be found <a href="http://www.fondox.net/wallpaper/1000x600/53-un-hombre-misterioso-sentado.html">here</a> </li>
+      </ul>
+    </div>
+  </center>
 
-  <script>
-    //Go back to main menu
-    function goToMenu() {
-        window.location.href = "menu";
-    }
-
-    //Spacebar trigger the above function
-    document.body.addEventListener("keyup",function(e) {
-      if (e.key == " ")
-          goToMenu();
-    });
-
-  </script>
+  <script type="text/javascript" src="scripts/goBack.js"></script>
 </body>
+
 </html>

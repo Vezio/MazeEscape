@@ -7,11 +7,13 @@ All Current Work: Tyler Rimaldi
 -->
 
 <html lang="en">
+
 <head>
   <title>Lights Out</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/maze.css">
 </head>
+
 <body>
   <main>
     <img src="images/no-wall.png" alt="wall to left" onclick="message()">
@@ -44,7 +46,9 @@ All Current Work: Tyler Rimaldi
     <h2 id="direction"></h2>
     <h1 class="descrip">Time</h1>
     <h2 id='seconds'>0</h2>
-    <button id="infoButton"><p id="infoButtonText">Info</p></button>
+    <button id="infoButton">
+      <p id="infoButtonText">Info</p>
+    </button>
   </aside>
 
   <!-- Modal -->
@@ -52,22 +56,23 @@ All Current Work: Tyler Rimaldi
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h1 id ="userName"></h1>
+      <h1 id="userName"></h1>
       <h2>OBJECTIVE:</h2>
       <p class="info">Escape alive, don't get killed by any of the traps or monsters. Find out
-         who you really are and why the maze will not ever let you leave this dark
-         mess!</p>
+        who you really are and why the maze will not ever let you leave this dark
+        mess!</p>
       <h2>Have to exit the game? </h2>
-        <p class="info">Don't worry! To go back to the main menu, press the "escape key" on your keyboard! All progress will be saved. <p>
+      <p class="info">Don't worry! To go back to the main menu, press the "escape key" on your keyboard! All progress will be saved. <p>
     </div>
   </div>
 
   <!-- Background music, autoplays on load -->
   <audio id="t-rex-roar" controls autoplay src="music/In Pursuit.mp3">
-   Your browser does not support the <code>audio</code> element.
+    Your browser does not support the <code>audio</code> element.
   </audio>
 
   <!--Script for neccessary actions -->
   <script type="text/javascript" src="scripts/maze.js"></script>
-  </body>
-  </html>
+</body>
+
+</html>
