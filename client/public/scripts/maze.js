@@ -21,22 +21,22 @@ window.onload = function() {
         .then((res) => res.json())
         .then(function(json) {
           player = json;
-          // console.log(playerId);
-          // fetch("http://localhost:3000/api/players/" + playerId, {
-          //   method: "PATCH",
-          //   // body: '{"attrib":"dir","value":"' + player.dir + '"}',
-          //   body:   '{"attrib":"attempt","value":"' + (player.attempt + 1) + '"}',
-          //   headers: {
-          //     "Content-type": "application/json"
-          //   }
-          // })
           fetch("http://localhost:3000/api/" + player.loc)
             .then((res) => res.json())
             .then(function(json) {
               cell = json
               renderCell(cell);
+              if (player.loc === "/cells/2/2") {
+                window.location.href = "victory";
+                fetch("http://localhost:3000/api/players/" + playerId, {
+                  method: "PATCH",
+                  body: '{"attrib":"progress","value":"Escaped"}',
+                  headers: {
+                    "Content-type": "application/json"
+                  }
+                })
+              }
             });
-          // console.log(player.loc);
           fetch("http://localhost:3000/api/items?owner=" + player.loc)
             .then((res) => res.json())
             .then(loadItems);
@@ -46,6 +46,7 @@ window.onload = function() {
               items = json;
               loadInventory(items);
             });
+
           //Load user name into info pop up (modal) and Load user location on game screen
           loadUserNameAndLoc();
         });
@@ -54,13 +55,10 @@ window.onload = function() {
 
 function loadCell(json) {
   cell = json;
-  // console.log(cell);
   renderCell(cell);
-  // console.log(cell);
 }
 
 function renderCell(cell) {
-  // console.log("TE")
   console.log(cell)
   let walls = document.querySelectorAll("main img");
   switch (player.dir) {
@@ -89,7 +87,6 @@ function renderCell(cell) {
   // If a player spends more than 10 Seconds in a cell, they will be "killed",
   // all items will be dropped in that room and they will be taken to the main menu
   // if they wish to play again, they will start from the beginning
-
   var seconds = 0;
   var counterTag = document.getElementById('seconds');
 
@@ -245,21 +242,15 @@ function moveFwd() {
   switch (player.dir) {
     case "north":
       if (cell.north) {
-        //must reload page for some reason so that the step counter will refresh... will look into fixing
-        //as it gets annoying
         location.reload(false);
-        console.log(player.loc + "HERE");
         let newY = cell.y + 1;
         let currentX = cell.x;
         player.loc = "/cells/" + currentX + "/" + newY;
-        console.log(player.loc + "HERE");
       } else
         alert("There's a wall, you cannot go this way!");
       break;
     case "south":
       if (cell.south) {
-        //must reload page for some reason so that the step counter will refresh... will look into fixing
-        //as it gets annoying
         location.reload(false);
         let newY = cell.y - 1;
         let currentX = cell.x;
@@ -269,27 +260,19 @@ function moveFwd() {
       break;
     case "west":
       if (cell.west) {
-        //must reload page for some reason so that the step counter will refresh... will look into fixing
-        //as it gets annoying
         location.reload(false);
-        // console.log(player.loc + "HERE");
         let currentY = cell.y;
         let newX = cell.x - 1;
         player.loc = "/cells/" + newX + "/" + currentY;
-        console.log(player.loc + "HERE");
       } else
         alert("There's a wall, you cannot go this way!");
       break;
     case "east":
       if (cell.east) {
-        //must reload page for some reason so that the step counter will refresh... will look into fixing
-        //as it gets annoying
         location.reload(false);
-        // console.log(player.loc + "HERE");
         let currentY = cell.y;
         let newX = cell.x + 1;
         player.loc = "/cells/" + newX + "/" + currentY;
-        console.log(player.loc + "HERE");
       } else
         alert("There's a wall, you cannot go this way!");
       break;
@@ -380,8 +363,6 @@ function populateItems(items, container, listener) {
 function takeItem(e) {
   var item = e.target;
   var inventory = document.querySelector("#inventory");
-  console.log("taking item", item.name);
-  console.log("http://localhost:3000/api/items/" + item.json.id);
   fetch("http://localhost:3000/api/items/" + item.json.id, {
       method: "PATCH",
       body: '{"attrib":"owner","value":"/players/' + playerId + '"}',
@@ -395,7 +376,6 @@ function takeItem(e) {
         inventory.appendChild(item);
         item.removeEventListener("click", takeItem);
         item.addEventListener("click", useItem);
-        console.log("took", item.name);
       }
     });
 }
@@ -405,8 +385,6 @@ function useItem(e) {
   var inventory = document.querySelector("#inventory");
   var work;
   var wall;
-  //Use below as a template:
-  //----
   if (item.name === "Chalk") {
     wall = prompt("Enter a wall (north, south, east, west)").toString();
     work = false;
@@ -427,12 +405,12 @@ function useItem(e) {
       }
     }
 
-    let input = prompt("Enter a message within 60 characters, exclusive!");
+    let input = prompt("Enter a message within 60 characters!");
     //Check for message with all spaces
     if (!input.replace(/\s/g, '').length) {
       alert("Your message must contain information!");
-      //Check for message longer than 60 characters, exclusive
-    } else if (input.length > 60) {
+      //Check for message longer than 60 characters
+    } else if (input.length >= 60) {
       alert("Please enter a message within 60 characters." +
         "Your message, \"" + input + "\" contained " + input.length + " characters");
     } else {
@@ -457,7 +435,6 @@ function useItem(e) {
         .then(function(res) {
           console.log(res.status);
           inventory.removeChild(item);
-          console.log("used", item.name);
         })
     }
   } else if (item.name === "Workbench") {
@@ -470,7 +447,6 @@ function useItem(e) {
     var metalId;
     var hammerId;
     var anvilId;
-
     if (hammer.length !== 0 && metal.length !== 0 && anvil.length !== 0) {
       alert("You crafted the key!!")
       fetch("http://localhost:3000/api/items/")
@@ -482,7 +458,6 @@ function useItem(e) {
             if (allItems[i]["name"] === "Key") {
               keyId = i + 1;
               key = allItems[i];
-              console.log(keyId);
             }
             //get the locations of such
             if (allItems[i]["name"] === "Metal") {
@@ -532,9 +507,7 @@ function useItem(e) {
             })
             .then(function(res) {
               console.log(res.status);
-              console.log(item)
               inventory.removeChild(item);
-              console.log("used", item.name);
               location.reload();
             });
         });
@@ -553,20 +526,71 @@ function useItem(e) {
       .then(function(res) {
         console.log(res.status);
         inventory.removeChild(item);
-        console.log("used", item.name);
       })
-      fetch("http://localhost:3000/api/players/" + playerId, {
+    fetch("http://localhost:3000/api/players/" + playerId, {
+      method: "PATCH",
+      body: '{"attrib":"progress","value":"Escaped"}',
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+    let hammer = document.getElementsByName("Hammer");
+    let metal = document.getElementsByName("Metal");
+    let anvil = document.getElementsByName("Anvil");
+  } else if (item.name === "Hammer" || item.name === "Metal" || item.name === "Anvil") {
+    alert("You need to find another item to use this!");
+  } else if (item.name === "Hint1") {
+    alert("Find a piece of metal! You might need it...")
+    fetch("http://localhost:3000/api/items/" + item.json.id, {
         method: "PATCH",
-        body: '{"attrib":"progress","value":"Escaped"}',
+        body: '{"attrib":"owner","value":"used"}',
         headers: {
           "Content-type": "application/json"
         }
       })
-      let hammer = document.getElementsByName("Hammer");
-      let metal = document.getElementsByName("Metal");
-      let anvil = document.getElementsByName("Anvil");
-  } else if (item.name === "Hammer" || item.name === "Metal" || item.name === "Anvil"){
-      alert("You need to find the work bench to use this!");
+      .then(function(res) {
+        console.log(res.status);
+        inventory.removeChild(item);
+      });
+  } else if (item.name === "Hint2") {
+    alert("Have you seen the anvil yet? It might be useful to you.")
+    fetch("http://localhost:3000/api/items/" + item.json.id, {
+        method: "PATCH",
+        body: '{"attrib":"owner","value":"used"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(function(res) {
+        console.log(res.status);
+        inventory.removeChild(item);
+      });
+  } else if (item.name === "Hint3") {
+    alert("FIND THE HAMMER!")
+    fetch("http://localhost:3000/api/items/" + item.json.id, {
+        method: "PATCH",
+        body: '{"attrib":"owner","value":"used"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(function(res) {
+        console.log(res.status);
+        inventory.removeChild(item);
+      });
+  } else if (item.name === "Hint4") {
+    alert("Get some kind of workbench to help you make a special tool!")
+    fetch("http://localhost:3000/api/items/" + item.json.id, {
+        method: "PATCH",
+        body: '{"attrib":"owner","value":"used"}',
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(function(res) {
+        console.log(res.status);
+        inventory.removeChild(item);
+      });
   }
 }
 
