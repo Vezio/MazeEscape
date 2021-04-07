@@ -1,4 +1,4 @@
-# Lights Out
+# Lights Out [First Ever Web Application Creation]
 
 A semester project designed to piece together the skills acquired throughout the learning process. 
 
